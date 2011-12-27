@@ -6,9 +6,9 @@
 //  Copyright (c) 2011 pawel.jankowski@me.com. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "DFNAppDelegate.h"
 
-@implementation AppDelegate
+@implementation DFNAppDelegate
 
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;

@@ -13,7 +13,7 @@
 		B57D6BB814AA480300A4D201 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D6BB714AA480300A4D201 /* CoreData.framework */; };
 		B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57D6BBC14AA480300A4D201 /* InfoPlist.strings */; };
 		B57D6BC014AA480300A4D201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BBF14AA480300A4D201 /* main.m */; };
-		B57D6BC414AA480300A4D201 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* AppDelegate.m */; };
+		B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */; };
 		B57D6BC714AA480300A4D201 /* DFN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC514AA480300A4D201 /* DFN.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -23,12 +23,12 @@
 		B57D6BB314AA480300A4D201 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B57D6BB514AA480300A4D201 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B57D6BB714AA480300A4D201 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B57D6BBB14AA480300A4D201 /* DFN-Info.plist */ = {isa = PBXFileReference; path = "DFN-Info.plist"; sourceTree = "<group>"; };
+		B57D6BBB14AA480300A4D201 /* DFN-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DFN-Info.plist"; sourceTree = "<group>"; };
 		B57D6BBD14AA480300A4D201 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B57D6BBF14AA480300A4D201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */ = {isa = PBXFileReference; path = "DFN-Prefix.pch"; sourceTree = "<group>"; };
-		B57D6BC214AA480300A4D201 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
-		B57D6BC314AA480300A4D201 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DFN-Prefix.pch"; sourceTree = "<group>"; };
+		B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */ = {isa = PBXFileReference; path = DFNAppDelegate.h; sourceTree = "<group>"; };
+		B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFNAppDelegate.m; sourceTree = "<group>"; };
 		B57D6BC614AA480300A4D201 /* DFN.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DFN.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,8 +78,8 @@
 		B57D6BB914AA480300A4D201 /* DFN */ = {
 			isa = PBXGroup;
 			children = (
-				B57D6BC214AA480300A4D201 /* AppDelegate.h */,
-				B57D6BC314AA480300A4D201 /* AppDelegate.m */,
+				B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */,
+				B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */,
 				B57D6BC514AA480300A4D201 /* DFN.xcdatamodeld */,
 				B57D6BBA14AA480300A4D201 /* Supporting Files */,
 			);
@@ -160,7 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57D6BC014AA480300A4D201 /* main.m in Sources */,
-				B57D6BC414AA480300A4D201 /* AppDelegate.m in Sources */,
+				B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */,
 				B57D6BC714AA480300A4D201 /* DFN.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +228,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -239,6 +240,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
