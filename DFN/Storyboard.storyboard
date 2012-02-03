@@ -37,7 +37,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umn-Zq-FMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="Sgq-P5-cZG" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HYI-Ua-19t">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-27" y="200"/>
+            <point key="canvasLocation" x="-45" y="266"/>
         </scene>
         <scene sceneID="hPH-ff-aCg">
             <objects>
