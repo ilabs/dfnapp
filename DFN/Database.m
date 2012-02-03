@@ -198,15 +198,37 @@
 }
 - (NSArray *) getALlEventsForCategory:(Category *)category
 {
-    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:
+    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"category == %@", category]];
 }
-- (NSArray *) getAllDatesForEvent:(Event *)event;
-- (NSArray *) getAllEventsForData:(NSDate *)date;
-- (NSArray *) getAllEventsAfterDay:(NSDate *)day;
-- (NSArray *) getAllEventsForCity:(NSString *)city;
-- (NSArray *) getAllEventsForPlace:(Place *)place;
-- (NSArray *) getAllEventsForLecturer:(NSString *)lecturer;
-- (NSArray *) getAllEventsForAddress:(NSString *)address;
+- (NSArray *) getAllDatesForEvent:(Event *)event
+{
+    return [self fetchedManagedObjectsForEntity:@"Data" withPredicate:[NSPredicate predicateWithFormat:@"event == %@", event]];
+}
+- (NSArray *) getAllEventsForData:(NSDate *)date
+{
+    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"data == %@", date]];
+}
+- (NSArray *) getAllEventsAfterDay:(NSDate *)day
+{
+    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"data >= %@", day]];
+}
+- (NSArray *) getAllEventsForCity:(NSString *)city
+{
+//    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"
+    return nil;
+}
+- (NSArray *) getAllEventsForPlace:(Place *)place
+{
+    return nil;
+}
+- (NSArray *) getAllEventsForLecturer:(NSString *)lecturer
+{
+    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"lecturer == %@", lecturer]];
+}
+- (NSArray *) getAllEventsForAddress:(NSString *)address
+{
+    return nil;
+}
 //
 - (Event *)getEventById:(NSString *)ID
 {
