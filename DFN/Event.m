@@ -2,7 +2,7 @@
 //  Event.m
 //  DFN
 //
-//  Created by Pawel Nuzka on 2/2/12.
+//  Created by Pawel Nuzka on 2/3/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
@@ -16,16 +16,17 @@
 
 @implementation Event
 
-@dynamic title;
 @dynamic key;
-@dynamic section;
+@dynamic last_update;
 @dynamic lecturer;
 @dynamic lecturers_title;
-@dynamic last_update;
-@dynamic dates;
+@dynamic section;
+@dynamic title;
+@dynamic dbID;
 @dynamic category;
-@dynamic form;
-@dynamic place;
+@dynamic dates;
+@dynamic forms;
 @dynamic organisation;
+@dynamic place;
 
 @end
