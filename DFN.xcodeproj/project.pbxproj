@@ -22,6 +22,7 @@
 		B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57D6BBC14AA480300A4D201 /* InfoPlist.strings */; };
 		B57D6BC014AA480300A4D201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BBF14AA480300A4D201 /* main.m */; };
 		B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */; };
+		BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF24518114DC586600DECB4F /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DFN-Prefix.pch"; sourceTree = "<group>"; };
 		B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFNAppDelegate.h; sourceTree = "<group>"; };
 		B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFNAppDelegate.m; sourceTree = "<group>"; };
+		BF24518114DC586600DECB4F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		502C2ED114DB461900EB8E34 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				BF24518114DC586600DECB4F /* Storyboard.storyboard */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */,
+				BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
