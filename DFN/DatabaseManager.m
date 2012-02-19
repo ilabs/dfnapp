@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 pawelqus@gmail.com. All rights reserved.
 //
 
-#import "Database.h"
+#import "DatabaseManager.h"
 
-@implementation Database
+@implementation DatabaseManager
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
@@ -167,9 +167,9 @@
 {
     return [[self getAllOrganisations] count];
 }
-- (NSInteger) getFormsCount
+- (NSInteger) getEventFormsCount
 {
-    return [[self getAllForms] count];
+    return [[self getAllEventForms] count];
 }
 - (NSInteger) getPlacesCount
 {
@@ -192,9 +192,9 @@
 {
     return [self fetchedManagedObjectsForEntity:@"Place" withPredicate:nil];
 }
-- (NSArray *) getAllForms
+- (NSArray *) getAllEventForms
 {
-    return [self fetchedManagedObjectsForEntity:@"Form" withPredicate:nil];
+    return [self fetchedManagedObjectsForEntity:@"EventForm" withPredicate:nil];
 }
 - (NSArray *) getALlEventsForCategory:(Category *)category
 {
@@ -202,9 +202,9 @@
 }
 - (NSArray *) getAllDatesForEvent:(Event *)event
 {
-    return [self fetchedManagedObjectsForEntity:@"Data" withPredicate:[NSPredicate predicateWithFormat:@"event == %@", event]];
+    return [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:[NSPredicate predicateWithFormat:@"event == %@", event]];
 }
-- (NSArray *) getAllEventsForData:(NSDate *)date
+- (NSArray *) getAllEventsForEventDate:(NSDate *)date
 {
     return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"data == %@", date]];
 }
@@ -234,9 +234,9 @@
 {
     return (Event *)[self getEntity:@"Event" withId:ID];
 }
-- (Date *)getDateById:(NSString *)ID
+- (EventDate *)getDateById:(NSString *)ID
 {
-    return (Date *)[self getEntity:@"Date" withId:ID];
+    return (EventDate *)[self getEntity:@"EventDate" withId:ID];
 }
 - (Place *)getPlaceById:(NSString *)ID
 {
@@ -246,9 +246,9 @@
 {
     return (Organisation *)[self getEntity:@"Organisation" withId:ID];
 }
-- (Form *)getFormById:(NSString *)ID
+- (EventForm *)getFormById:(NSString *)ID
 {
-    return (Form *)[self getEntity:@"Form" withId:ID];
+    return (EventForm *)[self getEntity:@"EventForm" withId:ID];
 }
 - (Category *)getCategoryById:(NSString *)ID
 {
@@ -263,11 +263,11 @@
 {
     [self removeEntity:[self getEventById:ID]];
 }
-- (void)removeForm:(Form *)form
+- (void)removeEventForm:(EventForm *)form
 {
     [self removeEntity:form];
 }
-- (void)removeFormById:(NSString *)ID
+- (void)removeEventFormById:(NSString *)ID
 {
     [self removeEntity:[self getEventById:ID]];
 }
@@ -287,7 +287,7 @@
 {
     [self removeEntity:[self getEventById:ID]];
 }
-- (void)removeDate:(Date *)date
+- (void)removeEventDate:(EventDate *)date
 {
     [self removeEntity:date];
 }

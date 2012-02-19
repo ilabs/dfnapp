@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		502C2ED614DB465D00EB8E34 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 502C2ED414DB465D00EB8E34 /* Model.xcdatamodeld */; };
-		50C7027A14DBEC62008C1D8F /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7027914DBEC62008C1D8F /* Database.m */; };
-		50C7028614DBF73C008C1D8F /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7028514DBF73C008C1D8F /* Category.m */; };
-		50C7028914DBF73D008C1D8F /* Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7028814DBF73C008C1D8F /* Date.m */; };
-		50C7028C14DBF73D008C1D8F /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7028B14DBF73D008C1D8F /* Form.m */; };
-		50C7028F14DBF73D008C1D8F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7028E14DBF73D008C1D8F /* Event.m */; };
-		50C7029214DBF73D008C1D8F /* Organisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7029114DBF73D008C1D8F /* Organisation.m */; };
-		50C7029514DBF73D008C1D8F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7029414DBF73D008C1D8F /* Place.m */; };
+		50C7027A14DBEC62008C1D8F /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7027914DBEC62008C1D8F /* DatabaseManager.m */; };
+		50E103B914F07DCE001068FE /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103B814F07DCE001068FE /* Category.m */; };
+		50E103BC14F07DCE001068FE /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103BB14F07DCE001068FE /* EventDate.m */; };
+		50E103BF14F07DCE001068FE /* EventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103BE14F07DCE001068FE /* EventForm.m */; };
+		50E103C214F07DCE001068FE /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103C114F07DCE001068FE /* Event.m */; };
+		50E103C514F07DCE001068FE /* Organisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103C414F07DCE001068FE /* Organisation.m */; };
+		50E103C814F07DCE001068FE /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E103C714F07DCE001068FE /* Place.m */; };
 		B57D6BB214AA480300A4D201 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D6BB114AA480300A4D201 /* UIKit.framework */; };
 		B57D6BB414AA480300A4D201 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D6BB314AA480300A4D201 /* Foundation.framework */; };
 		B57D6BB614AA480300A4D201 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57D6BB514AA480300A4D201 /* CoreGraphics.framework */; };
@@ -27,20 +27,20 @@
 
 /* Begin PBXFileReference section */
 		502C2ED514DB465D00EB8E34 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		50C7027814DBEC62008C1D8F /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		50C7027914DBEC62008C1D8F /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		50C7028414DBF73C008C1D8F /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		50C7028514DBF73C008C1D8F /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
-		50C7028714DBF73C008C1D8F /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
-		50C7028814DBF73C008C1D8F /* Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Date.m; sourceTree = "<group>"; };
-		50C7028A14DBF73D008C1D8F /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
-		50C7028B14DBF73D008C1D8F /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
-		50C7028D14DBF73D008C1D8F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		50C7028E14DBF73D008C1D8F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		50C7029014DBF73D008C1D8F /* Organisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organisation.h; sourceTree = "<group>"; };
-		50C7029114DBF73D008C1D8F /* Organisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organisation.m; sourceTree = "<group>"; };
-		50C7029314DBF73D008C1D8F /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		50C7029414DBF73D008C1D8F /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		50C7027814DBEC62008C1D8F /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		50C7027914DBEC62008C1D8F /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		50E103B714F07DCE001068FE /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		50E103B814F07DCE001068FE /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		50E103BA14F07DCE001068FE /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
+		50E103BB14F07DCE001068FE /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
+		50E103BD14F07DCE001068FE /* EventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventForm.h; sourceTree = "<group>"; };
+		50E103BE14F07DCE001068FE /* EventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventForm.m; sourceTree = "<group>"; };
+		50E103C014F07DCE001068FE /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		50E103C114F07DCE001068FE /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		50E103C314F07DCE001068FE /* Organisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organisation.h; sourceTree = "<group>"; };
+		50E103C414F07DCE001068FE /* Organisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organisation.m; sourceTree = "<group>"; };
+		50E103C614F07DCE001068FE /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		50E103C714F07DCE001068FE /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		B57D6BAD14AA480300A4D201 /* DFN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57D6BB114AA480300A4D201 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B57D6BB314AA480300A4D201 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,26 +70,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		502C2ECE14DB460600EB8E34 /* Database */ = {
+		502C2ECE14DB460600EB8E34 /* Database Model */ = {
 			isa = PBXGroup;
 			children = (
+				50E103C614F07DCE001068FE /* Place.h */,
+				50E103C714F07DCE001068FE /* Place.m */,
+				50E103C314F07DCE001068FE /* Organisation.h */,
+				50E103C414F07DCE001068FE /* Organisation.m */,
+				50E103C014F07DCE001068FE /* Event.h */,
+				50E103C114F07DCE001068FE /* Event.m */,
+				50E103BD14F07DCE001068FE /* EventForm.h */,
+				50E103BE14F07DCE001068FE /* EventForm.m */,
+				50E103BA14F07DCE001068FE /* EventDate.h */,
+				50E103BB14F07DCE001068FE /* EventDate.m */,
+				50E103B714F07DCE001068FE /* Category.h */,
+				50E103B814F07DCE001068FE /* Category.m */,
 				502C2ED414DB465D00EB8E34 /* Model.xcdatamodeld */,
-				50C7028414DBF73C008C1D8F /* Category.h */,
-				50C7028514DBF73C008C1D8F /* Category.m */,
-				50C7028714DBF73C008C1D8F /* Date.h */,
-				50C7028814DBF73C008C1D8F /* Date.m */,
-				50C7028A14DBF73D008C1D8F /* Form.h */,
-				50C7028B14DBF73D008C1D8F /* Form.m */,
-				50C7028D14DBF73D008C1D8F /* Event.h */,
-				50C7028E14DBF73D008C1D8F /* Event.m */,
-				50C7029014DBF73D008C1D8F /* Organisation.h */,
-				50C7029114DBF73D008C1D8F /* Organisation.m */,
-				50C7029314DBF73D008C1D8F /* Place.h */,
-				50C7029414DBF73D008C1D8F /* Place.m */,
-				50C7027814DBEC62008C1D8F /* Database.h */,
-				50C7027914DBEC62008C1D8F /* Database.m */,
+				50C7027814DBEC62008C1D8F /* DatabaseManager.h */,
+				50C7027914DBEC62008C1D8F /* DatabaseManager.m */,
 			);
-			name = Database;
+			name = "Database Model";
 			sourceTree = "<group>";
 		};
 		502C2ED014DB461000EB8E34 /* RestAPI */ = {
@@ -140,7 +140,7 @@
 			children = (
 				502C2ED114DB461900EB8E34 /* GUI */,
 				502C2ED014DB461000EB8E34 /* RestAPI */,
-				502C2ECE14DB460600EB8E34 /* Database */,
+				502C2ECE14DB460600EB8E34 /* Database Model */,
 				B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */,
 				B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */,
 				B57D6BBA14AA480300A4D201 /* Supporting Files */,
@@ -225,13 +225,13 @@
 				B57D6BC014AA480300A4D201 /* main.m in Sources */,
 				B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */,
 				502C2ED614DB465D00EB8E34 /* Model.xcdatamodeld in Sources */,
-				50C7027A14DBEC62008C1D8F /* Database.m in Sources */,
-				50C7028614DBF73C008C1D8F /* Category.m in Sources */,
-				50C7028914DBF73D008C1D8F /* Date.m in Sources */,
-				50C7028C14DBF73D008C1D8F /* Form.m in Sources */,
-				50C7028F14DBF73D008C1D8F /* Event.m in Sources */,
-				50C7029214DBF73D008C1D8F /* Organisation.m in Sources */,
-				50C7029514DBF73D008C1D8F /* Place.m in Sources */,
+				50C7027A14DBEC62008C1D8F /* DatabaseManager.m in Sources */,
+				50E103B914F07DCE001068FE /* Category.m in Sources */,
+				50E103BC14F07DCE001068FE /* EventDate.m in Sources */,
+				50E103BF14F07DCE001068FE /* EventForm.m in Sources */,
+				50E103C214F07DCE001068FE /* Event.m in Sources */,
+				50E103C514F07DCE001068FE /* Organisation.m in Sources */,
+				50E103C814F07DCE001068FE /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

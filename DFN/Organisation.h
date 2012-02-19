@@ -2,7 +2,7 @@
 //  Organisation.h
 //  DFN
 //
-//  Created by Pawel Nuzka on 2/3/12.
+//  Created by Pawel Nuzka on 2/19/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
@@ -13,8 +13,8 @@
 
 @interface Organisation : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * dbID;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *events;
 @end
 
@@ -24,4 +24,5 @@
 - (void)removeEventsObject:(Event *)value;
 - (void)addEvents:(NSSet *)values;
 - (void)removeEvents:(NSSet *)values;
+
 @end

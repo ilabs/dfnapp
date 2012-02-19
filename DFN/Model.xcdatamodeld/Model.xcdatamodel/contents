@@ -2,34 +2,34 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10J869" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="last_update" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
     </entity>
-    <entity name="Date" representedClassName="Date" syncable="YES">
-        <attribute name="closing_hour" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="day" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="last_update" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="opening_hour" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="dates" inverseEntity="Event" syncable="YES"/>
-    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="last_update" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lecturer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lecturers_title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="events" inverseEntity="Category" syncable="YES"/>
-        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Date" inverseName="event" inverseEntity="Date" syncable="YES"/>
-        <relationship name="forms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Form" inverseName="event" inverseEntity="Form" syncable="YES"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventDate" inverseName="event" inverseEntity="EventDate" syncable="YES"/>
+        <relationship name="forms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventForm" inverseName="event" inverseEntity="EventForm" syncable="YES"/>
         <relationship name="organisation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organisation" inverseName="events" inverseEntity="Organisation" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="event" inverseEntity="Place" syncable="YES"/>
     </entity>
-    <entity name="Form" representedClassName="Form" syncable="YES">
+    <entity name="EventDate" representedClassName="Date" syncable="YES">
+        <attribute name="closingHour" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="day" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="openingHour" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="dates" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="EventForm" representedClassName="Form" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="forms" inverseEntity="Event" syncable="YES"/>
@@ -43,16 +43,16 @@
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="free_places" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gps_coordinates" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="last_update" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="gpsCoordinates" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="numberOfFreePlaces" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="place" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
         <element name="Category" positionX="225" positionY="45" width="128" height="120"/>
-        <element name="Date" positionX="70" positionY="360" width="128" height="135"/>
+        <element name="EventDate" positionX="70" positionY="360" width="128" height="135"/>
         <element name="Event" positionX="72" positionY="78" width="128" height="225"/>
-        <element name="Form" positionX="70" positionY="-78" width="128" height="90"/>
+        <element name="EventForm" positionX="70" positionY="-78" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
     </elements>

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Event.h"
-#import "Form.h"
+#import "EventForm.h"
 #import "Category.h"
 #import "Place.h"
 #import "Organisation.h"
-#import "Date.h"
+#import "EventDate.h"
 
 
-@interface Database : NSObject
+@interface DatabaseManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;

@@ -1,8 +1,8 @@
 //
-//  Date.h
+//  EventDate.h
 //  DFN
 //
-//  Created by Pawel Nuzka on 2/3/12.
+//  Created by Pawel Nuzka on 2/19/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 
 @class Event;
 
-@interface Date : NSManagedObject
+@interface EventDate : NSManagedObject
 
-@property (nonatomic, retain) NSDate * closing_hour;
+@property (nonatomic, retain) NSDate * closingHour;
 @property (nonatomic, retain) NSDate * day;
-@property (nonatomic, retain) NSDate * last_update;
-@property (nonatomic, retain) NSDate * opening_hour;
 @property (nonatomic, retain) NSString * dbID;
+@property (nonatomic, retain) NSDate * lastUpdate;
+@property (nonatomic, retain) NSDate * openingHour;
 @property (nonatomic, retain) Event *event;
 
 @end
