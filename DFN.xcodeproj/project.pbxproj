@@ -23,6 +23,8 @@
 		B57D6BC014AA480300A4D201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BBF14AA480300A4D201 /* main.m */; };
 		B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */; };
 		BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF24518114DC586600DECB4F /* Storyboard.storyboard */; };
+		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
+		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,9 @@
 		B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFNAppDelegate.h; sourceTree = "<group>"; };
 		B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFNAppDelegate.m; sourceTree = "<group>"; };
 		BF24518114DC586600DECB4F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
+		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
+		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +143,7 @@
 		B57D6BB914AA480300A4D201 /* DFN */ = {
 			isa = PBXGroup;
 			children = (
+				E80A804B15090F8E006C1E3D /* Views */,
 				502C2ED114DB461900EB8E34 /* GUI */,
 				502C2ED014DB461000EB8E34 /* RestAPI */,
 				502C2ECE14DB460600EB8E34 /* Database Model */,
@@ -157,6 +163,16 @@
 				B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E80A804B15090F8E006C1E3D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E80A804C15090FC0006C1E3D /* LectureView.h */,
+				E80A804D15090FC0006C1E3D /* LectureView.m */,
+				E80A804E15090FC0006C1E3D /* LectureView.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +228,7 @@
 			files = (
 				B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */,
 				BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */,
+				E80A805015090FC0006C1E3D /* LectureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +249,7 @@
 				50E103C214F07DCE001068FE /* Event.m in Sources */,
 				50E103C514F07DCE001068FE /* Organisation.m in Sources */,
 				50E103C814F07DCE001068FE /* Place.m in Sources */,
+				E80A804F15090FC0006C1E3D /* LectureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

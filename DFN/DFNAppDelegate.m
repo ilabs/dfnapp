@@ -7,6 +7,7 @@
 //
 
 #import "DFNAppDelegate.h"
+#import "LectureView.h"
 
 @implementation DFNAppDelegate
 
@@ -26,10 +27,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    //self.window.backgroundColor = [UIColor whiteColor];
-    //[self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // *** Tylko na czas debuggingu
+    //LectureView *lecture = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
+    //[self.window addSubview:[lecture view]];
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
