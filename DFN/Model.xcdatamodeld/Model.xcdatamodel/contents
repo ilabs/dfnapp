@@ -21,7 +21,7 @@
         <relationship name="organisation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organisation" inverseName="events" inverseEntity="Organisation" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="event" inverseEntity="Place" syncable="YES"/>
     </entity>
-    <entity name="EventDate" representedClassName="Date" syncable="YES">
+    <entity name="EventDate" representedClassName="EventDate" syncable="YES">
         <attribute name="closingHour" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +29,7 @@
         <attribute name="openingHour" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="dates" inverseEntity="Event" syncable="YES"/>
     </entity>
-    <entity name="EventForm" representedClassName="Form" syncable="YES">
+    <entity name="EventForm" representedClassName="EventForm" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="forms" inverseEntity="Event" syncable="YES"/>

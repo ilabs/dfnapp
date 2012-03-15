@@ -34,17 +34,17 @@
 - (NSInteger) getEventsCountForCategory:(Category *)category;
 - (NSInteger) getCategoriesCount;
 - (NSInteger) getOrganisationsCount;
-- (NSInteger) getFormsCount;
+- (NSInteger) getEventFormsCount;
 - (NSInteger) getPlacesCount;
 - (NSInteger) getDatesCountForEvent:(Event *)event;
 //
 - (NSArray *) getAllCategories;
 - (NSArray *) getAllOrganisations;
 - (NSArray *) getAllPlaces;
-- (NSArray *) getAllForms;
+- (NSArray *) getAllEventForms;
 - (NSArray *) getALlEventsForCategory:(Category *)category;
 - (NSArray *) getAllDatesForEvent:(Event *)event;
-- (NSArray *) getAllEventsForData:(NSDate *)date;
+- (NSArray *) getAllEventsForEventDate:(NSDate *)date;
 - (NSArray *) getAllEventsAfterDay:(NSDate *)day;
 - (NSArray *) getAllEventsForCity:(NSString *)city;
 - (NSArray *) getAllEventsForPlace:(Place *)place;
