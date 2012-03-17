@@ -2,8 +2,8 @@
 //  Place.h
 //  DFN
 //
-//  Created by Pawel Nuzka on 2/19/12.
-//  Copyright (c) 2012 pawelqus@gmail.com All rights reserved.
+//  Created by Pawel Nuzka on 3/17/12.
+//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,9 +16,9 @@
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * dbID;
-@property (nonatomic, retain) NSString * numberOfFreePlaces;
 @property (nonatomic, retain) NSString * gpsCoordinates;
 @property (nonatomic, retain) NSDate * lastUpdate;
+@property (nonatomic, retain) NSString * numberOfFreePlaces;
 @property (nonatomic, retain) NSSet *event;
 @end
 
@@ -28,5 +28,4 @@
 - (void)removeEventObject:(Event *)value;
 - (void)addEvent:(NSSet *)values;
 - (void)removeEvent:(NSSet *)values;
-
 @end

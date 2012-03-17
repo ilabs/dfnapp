@@ -61,7 +61,7 @@
     [numberOfPlaces setText:event.place.numberOfFreePlaces];
     [organisation setText:event.organisation.name];
     [lecturers setText:lecturers_];
-    [date setText:event.dates];
+    [date setText:[event.dates description]];
     
     if([event.place.gpsCoordinates length]>0){
         [mapButton setEnabled:YES];

@@ -2,8 +2,8 @@
 //  Organisation.h
 //  DFN
 //
-//  Created by Pawel Nuzka on 2/19/12.
-//  Copyright (c) 2012 pawelqus@gmail.com All rights reserved.
+//  Created by Pawel Nuzka on 3/17/12.
+//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -24,5 +24,4 @@
 - (void)removeEventsObject:(Event *)value;
 - (void)addEvents:(NSSet *)values;
 - (void)removeEvents:(NSSet *)values;
-
 @end
