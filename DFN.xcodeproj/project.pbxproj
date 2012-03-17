@@ -25,6 +25,12 @@
 		B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57D6BBC14AA480300A4D201 /* InfoPlist.strings */; };
 		B57D6BC014AA480300A4D201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BBF14AA480300A4D201 /* main.m */; };
 		B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */; };
+		BF094A7A15151064009F3628 /* MainCategoryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF094A7815151064009F3628 /* MainCategoryListView.m */; };
+		BF094A7B15151064009F3628 /* MainCategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A7915151064009F3628 /* MainCategoryListView.xib */; };
+		BF094A801515108C009F3628 /* SubCategoryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF094A7E1515108B009F3628 /* SubCategoryListView.m */; };
+		BF094A811515108C009F3628 /* SubCategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A7F1515108B009F3628 /* SubCategoryListView.xib */; };
+		BF094A86151510B5009F3628 /* LecturesListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF094A84151510B5009F3628 /* LecturesListView.m */; };
+		BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A85151510B5009F3628 /* LecturesListView.xib */; };
 		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
 		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
 /* End PBXBuildFile section */
@@ -62,6 +68,15 @@
 		B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DFN-Prefix.pch"; sourceTree = "<group>"; };
 		B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFNAppDelegate.h; sourceTree = "<group>"; };
 		B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFNAppDelegate.m; sourceTree = "<group>"; };
+		BF094A7715151064009F3628 /* MainCategoryListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCategoryListView.h; sourceTree = "<group>"; };
+		BF094A7815151064009F3628 /* MainCategoryListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCategoryListView.m; sourceTree = "<group>"; };
+		BF094A7915151064009F3628 /* MainCategoryListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCategoryListView.xib; sourceTree = "<group>"; };
+		BF094A7D1515108B009F3628 /* SubCategoryListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryListView.h; sourceTree = "<group>"; };
+		BF094A7E1515108B009F3628 /* SubCategoryListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryListView.m; sourceTree = "<group>"; };
+		BF094A7F1515108B009F3628 /* SubCategoryListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCategoryListView.xib; sourceTree = "<group>"; };
+		BF094A83151510B5009F3628 /* LecturesListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LecturesListView.h; sourceTree = "<group>"; };
+		BF094A84151510B5009F3628 /* LecturesListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LecturesListView.m; sourceTree = "<group>"; };
+		BF094A85151510B5009F3628 /* LecturesListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LecturesListView.xib; sourceTree = "<group>"; };
 		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
 		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
 		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
@@ -177,12 +192,53 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E80A804B15090F8E006C1E3D /* Views */ = {
+		BF094A7415151020009F3628 /* LectureView */ = {
 			isa = PBXGroup;
 			children = (
 				E80A804C15090FC0006C1E3D /* LectureView.h */,
 				E80A804D15090FC0006C1E3D /* LectureView.m */,
 				E80A804E15090FC0006C1E3D /* LectureView.xib */,
+			);
+			name = LectureView;
+			sourceTree = "<group>";
+		};
+		BF094A761515103D009F3628 /* MainCategoryListView */ = {
+			isa = PBXGroup;
+			children = (
+				BF094A7715151064009F3628 /* MainCategoryListView.h */,
+				BF094A7815151064009F3628 /* MainCategoryListView.m */,
+				BF094A7915151064009F3628 /* MainCategoryListView.xib */,
+			);
+			name = MainCategoryListView;
+			sourceTree = "<group>";
+		};
+		BF094A7C1515106F009F3628 /* SubCategoryListView */ = {
+			isa = PBXGroup;
+			children = (
+				BF094A7D1515108B009F3628 /* SubCategoryListView.h */,
+				BF094A7E1515108B009F3628 /* SubCategoryListView.m */,
+				BF094A7F1515108B009F3628 /* SubCategoryListView.xib */,
+			);
+			name = SubCategoryListView;
+			sourceTree = "<group>";
+		};
+		BF094A8215151091009F3628 /* LecturesListView */ = {
+			isa = PBXGroup;
+			children = (
+				BF094A83151510B5009F3628 /* LecturesListView.h */,
+				BF094A84151510B5009F3628 /* LecturesListView.m */,
+				BF094A85151510B5009F3628 /* LecturesListView.xib */,
+			);
+			name = LecturesListView;
+			sourceTree = "<group>";
+		};
+		E80A804B15090F8E006C1E3D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF094A8215151091009F3628 /* LecturesListView */,
+				BF094A7C1515106F009F3628 /* SubCategoryListView */,
+				BF094A761515103D009F3628 /* MainCategoryListView */,
+				BF094A7415151020009F3628 /* LectureView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -240,6 +296,9 @@
 			files = (
 				B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */,
 				E80A805015090FC0006C1E3D /* LectureView.xib in Resources */,
+				BF094A7B15151064009F3628 /* MainCategoryListView.xib in Resources */,
+				BF094A811515108C009F3628 /* SubCategoryListView.xib in Resources */,
+				BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +323,9 @@
 				50E552511514F66C00526E51 /* Place.m in Sources */,
 				50E552541514F66C00526E51 /* Update.m in Sources */,
 				50E552571514F66C00526E51 /* Category.m in Sources */,
+				BF094A7A15151064009F3628 /* MainCategoryListView.m in Sources */,
+				BF094A801515108C009F3628 /* SubCategoryListView.m in Sources */,
+				BF094A86151510B5009F3628 /* LecturesListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
