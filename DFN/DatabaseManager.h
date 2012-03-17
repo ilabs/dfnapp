@@ -52,33 +52,33 @@
 - (NSArray *) getAllEventsForAddress:(NSString *)address;
 //
 - (Event *) createEvent;
-- (Form *) createForm;
+- (EventForm *) createForm;
 - (Category *)createCategory;
 - (Place *) createPlace;
 - (Organisation *) createOrganisation;
-- (Date *) createDate;
+- (EventDate *) createDate;
 - (void)addEvent:(Event *)event toCategory:(Category *)category;
 - (void)addPlace:(Place *)place toEvent:(Event *)event;
 - (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
-- (void)addDate:(Date *)date toEvent:(Event *)event;
-- (void)addForm:(Form *)form toEvent:(Event *)event;
+- (void)addDate:(EventDate *)date toEvent:(Event *)event;
+- (void)addForm:(EventForm *)form toEvent:(Event *)event;
 //
 - (Event *)getEventById:(NSString *)ID;
-- (Date *)getDateById:(NSString *)ID;
+- (EventDate *)getDateById:(NSString *)ID;
 - (Place *)getPlaceById:(NSString *)ID;
 - (Organisation *)getOrganistationById:(NSString *)ID;
-- (Form *)getFormById:(NSString *)ID;
+- (EventForm *)getFormById:(NSString *)ID;
 - (Category *)getCategoryById:(NSString *)ID;
 //
 - (void)removeEvent:(Event *)event;
 - (void)removeEventById:(NSString *)ID;
-- (void)removeForm:(Form *)form;
+- (void)removeForm:(EventForm *)form;
 - (void)removeFormById:(NSString *)ID;
 - (void)removeOrganisation:(Organisation *)organisation;
 - (void)removeOrganisationById:(NSString *)ID;
 - (void)removePlace:(Place *)place;
 - (void)removePlaceById:(NSString *)ID;
-- (void)removeDate:(Date *)date;
+- (void)removeDate:(EventDate *)date;
 - (void)removeDateById:(NSString *)ID;
 - (void)removeCategory:(Category *)category;
 - (void)removeCategoryById:(NSString *)ID;

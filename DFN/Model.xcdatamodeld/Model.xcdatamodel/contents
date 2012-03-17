@@ -9,10 +9,12 @@
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lecturer" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lecturers_title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lecturersTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="events" inverseEntity="Category" syncable="YES"/>
@@ -50,8 +52,8 @@
     </entity>
     <elements>
         <element name="Category" positionX="225" positionY="45" width="128" height="120"/>
+        <element name="Event" positionX="72" positionY="78" width="128" height="255"/>
         <element name="EventDate" positionX="70" positionY="360" width="128" height="135"/>
-        <element name="Event" positionX="72" positionY="78" width="128" height="225"/>
         <element name="EventForm" positionX="70" positionY="-78" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
