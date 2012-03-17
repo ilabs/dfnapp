@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DFNAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@interface DFNAppDelegate : NSObject <UIApplicationDelegate> {
+    
+}
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+
+
 
 @end

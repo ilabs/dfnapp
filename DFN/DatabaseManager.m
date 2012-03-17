@@ -8,10 +8,16 @@
 
 #import "DatabaseManager.h"
 
+@interface DatabaseManager ()
+
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+- (NSString *)applicationDocumentsDirectory;
+
+@end
+
 @implementation DatabaseManager
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 + (id)sharedInstance
 {
@@ -25,77 +31,75 @@
     return master;
 }
 
-- (void)saveDatabase
+-(NSString *) databasePath
 {
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil)
-    {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
-        {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
+    return [[self  applicationDocumentsDirectory] stringByAppendingPathComponent:@"DFN.sqlite"];
+}
+- (NSString *)applicationDocumentsDirectory
+{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (__managedObjectContext != nil)
+    if (managedObjectContext != nil)
     {
-        return __managedObjectContext;
+        return managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil)
     {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return __managedObjectContext;
+    return managedObjectContext;
 }
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (__managedObjectModel != nil)
+    if (managedObjectModel != nil)
     {
-        return __managedObjectModel;
+        return managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DFN" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return __managedObjectModel;
+    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    return managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (__persistentStoreCoordinator != nil)
+    if (persistentStoreCoordinator != nil)
     {
-        return __persistentStoreCoordinator;
+        return persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DFN.sqlite"];
+    NSString *path = [self databasePath];
+    NSURL *storeURL = [NSURL fileURLWithPath:path];
     
     NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        return nil;
     }    
     
-    return __persistentStoreCoordinator;
+    return persistentStoreCoordinator;
 }
 
-- (NSURL *)applicationDocumentsDirectory
+//**Saving database
+- (void)saveDatabase
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSError *error = nil;
+    if (managedObjectContext != nil)
+    {
+        if([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
+        {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
-
-- (NSString *) databasePath
-{
-    return [[[self  applicationDocumentsDirectory] description] stringByAppendingPathComponent:@"temp.sqlite"];
-}
-
 
 
 - (void)removeEntity:(NSManagedObject *)entity
@@ -154,6 +158,45 @@
     return result;
     
 }
+//
+- (NSManagedObject *)createEntity:(NSString *)entityName withID:(NSString *)entityId
+{
+    NSManagedObject * entity = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    if (entityId != [NSNull null])
+        [entity setValue:entityId forKey:@"dbID"];
+    [self saveDatabase];
+    return entity;
+}
+- (EventForm *)createEventFormWithId:(NSString *)ID
+{
+    return (EventForm *)[self createEntity:@"EventForm" withID:ID];
+}
+- (Organisation *)createOrganisationWithId:(NSString *)ID
+{
+    return (Organisation *)[self createEntity:@"Organisation" withID:ID];
+}
+- (Event *)createEvent
+{
+    return (Event *)[self createEntity:@"Event" withID:nil];
+}
+- (Category *)createCategoryWithId:(NSString *)ID
+{
+    return (Category *)[self createEntity:@"Category" withID:ID];
+}
+- (EventForm *)createEventForm
+{
+    return (EventForm *)[self createEntity:@"EventForm" withID:nil];
+}
+- (Organisation *)createOrganisation
+{
+    return (Organisation *)[self createEntity:@"Organisation" withID:nil];
+}
+
+- (Category *)createCategory
+{
+    return (Category *)[self createEntity:@"Category" withID:nil];
+}
+
 //
 - (NSInteger) getEventsCountForCategory:(Category *)category
 {
@@ -244,15 +287,24 @@
 }
 - (Organisation *)getOrganistationById:(NSString *)ID;
 {
-    return (Organisation *)[self getEntity:@"Organisation" withId:ID];
+    Organisation * org = (Organisation *)[self getEntity:@"Organisation" withId:ID];
+    if (!org)
+        org = [self createOrganisationWithId:ID];
+    return org;
 }
 - (EventForm *)getFormById:(NSString *)ID
 {
-    return (EventForm *)[self getEntity:@"EventForm" withId:ID];
+    EventForm * res = (EventForm *)[self getEntity:@"EventForm" withId:ID];
+    if (!res)
+        res = [self createEventFormWithId:ID];
+    return res;
 }
 - (Category *)getCategoryById:(NSString *)ID
 {
-    return (Category *)[self getEntity:@"Category" withId:ID];
+    Category * res = (Category *)[self getEntity:@"Category" withId:ID];
+    if (!res)
+        res = [self createCategoryWithId:ID];
+    return res;
 }
 //
 - (void)removeEvent:(Event *)event
@@ -303,4 +355,25 @@
 {
     [self removeEntity:[self getEventById:ID]];
 }
+- (Update *)getUpdate
+{
+    Update *update = (Update *)[[self fetchedManagedObjectsForEntity:@"Update" withPredicate:nil] objectAtIndex:0];
+    if (update == nil)
+    {
+        update = [NSEntityDescription insertNewObjectForEntityForName:@"Update" inManagedObjectContext:self.managedObjectContext];
+        [update setStaticChecksum:@"NULL"];
+        [update setDynamicChecksum:@"NULL"];
+        [self saveDatabase];
+    }
+    return update;
+}
+- (NSString *)getLastEventsChecksum
+{
+    return  [[self getUpdate] staticChecksum];
+}
+- (NSString *)getLastEventsDatesChecksum
+{
+    return [[self getUpdate] dynamicChecksum ];
+}
+
 @end

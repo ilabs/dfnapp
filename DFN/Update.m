@@ -1,19 +1,17 @@
 //
-//  EventForm.m
+//  Update.m
 //  DFN
 //
 //  Created by Pawel Nuzka on 3/17/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
-#import "EventForm.h"
-#import "Event.h"
+#import "Update.h"
 
 
-@implementation EventForm
+@implementation Update
 
-@dynamic dbID;
-@dynamic name;
-@dynamic event;
+@dynamic dynamicChecksum;
+@dynamic staticChecksum;
 
 @end

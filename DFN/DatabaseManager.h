@@ -1,5 +1,5 @@
 //
-//  Database.h
+//  DatabaseManager.h
 //  DFN
 //
 //  Created by Pawel Nuzka on 2/3/12.
@@ -13,18 +13,18 @@
 #import "Place.h"
 #import "Organisation.h"
 #import "EventDate.h"
+#import "Update.h"
 
-
-@interface DatabaseManager : NSObject
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
+@interface DatabaseManager : NSObject {
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    
+}
 //********************************************************************************************************
 +(id)sharedInstance;
 //********************************************************************************************************
 - (void)saveDatabase;
-- (NSURL *)applicationDocumentsDirectory;
 - (NSString *) databasePath;
 //********************************************************************************************************
 - (NSArray *)fetchedManagedObjectsForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
@@ -82,4 +82,7 @@
 - (void)removeDateById:(NSString *)ID;
 - (void)removeCategory:(Category *)category;
 - (void)removeCategoryById:(NSString *)ID;
+//
+- (NSString *)getLastEventsChecksum;
+- (NSString *)getLastEventsDatesChecksum;
 @end

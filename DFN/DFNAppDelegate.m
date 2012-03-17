@@ -8,33 +8,30 @@
 
 #import "DFNAppDelegate.h"
 #import "LectureView.h"
+#import "DataFetcher.h"
 
 @implementation DFNAppDelegate
 
 @synthesize window = _window;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+
 
 - (void)dealloc
 {
     [_window release];
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
     // *** Tylko na czas debuggingu
     //LectureView *lecture = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
     //[self.window addSubview:[lecture view]];
+    DataFetcher *dataFetcher = [DataFetcher sharedInstance];
     
+    [dataFetcher updateData];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -72,7 +69,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
 }
 
 

@@ -50,6 +50,10 @@
         <attribute name="numberOfFreePlaces" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="place" inverseEntity="Event" syncable="YES"/>
     </entity>
+    <entity name="Update" representedClassName="Update" syncable="YES">
+        <attribute name="dynamicChecksum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="staticChecksum" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Category" positionX="225" positionY="45" width="128" height="120"/>
         <element name="Event" positionX="72" positionY="78" width="128" height="255"/>
@@ -57,5 +61,6 @@
         <element name="EventForm" positionX="70" positionY="-78" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
+        <element name="Update" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
