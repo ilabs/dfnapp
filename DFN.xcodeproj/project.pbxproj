@@ -22,7 +22,8 @@
 		B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57D6BBC14AA480300A4D201 /* InfoPlist.strings */; };
 		B57D6BC014AA480300A4D201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BBF14AA480300A4D201 /* main.m */; };
 		B57D6BC414AA480300A4D201 /* DFNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */; };
-		BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF24518114DC586600DECB4F /* Storyboard.storyboard */; };
+		BFBFBFE41514ED9200F42422 /* MainCategoryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFBFE21514ED9200F42422 /* MainCategoryListView.m */; };
+		BFBFBFE51514ED9200F42422 /* MainCategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFBFBFE31514ED9200F42422 /* MainCategoryListView.xib */; };
 		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
 		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
 /* End PBXBuildFile section */
@@ -54,7 +55,9 @@
 		B57D6BC114AA480300A4D201 /* DFN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DFN-Prefix.pch"; sourceTree = "<group>"; };
 		B57D6BC214AA480300A4D201 /* DFNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFNAppDelegate.h; sourceTree = "<group>"; };
 		B57D6BC314AA480300A4D201 /* DFNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFNAppDelegate.m; sourceTree = "<group>"; };
-		BF24518114DC586600DECB4F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		BFBFBFE11514ED9200F42422 /* MainCategoryListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCategoryListView.h; sourceTree = "<group>"; };
+		BFBFBFE21514ED9200F42422 /* MainCategoryListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCategoryListView.m; sourceTree = "<group>"; };
+		BFBFBFE31514ED9200F42422 /* MainCategoryListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCategoryListView.xib; sourceTree = "<group>"; };
 		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
 		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
 		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
@@ -107,7 +110,6 @@
 		502C2ED114DB461900EB8E34 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				BF24518114DC586600DECB4F /* Storyboard.storyboard */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -171,6 +173,9 @@
 				E80A804C15090FC0006C1E3D /* LectureView.h */,
 				E80A804D15090FC0006C1E3D /* LectureView.m */,
 				E80A804E15090FC0006C1E3D /* LectureView.xib */,
+				BFBFBFE11514ED9200F42422 /* MainCategoryListView.h */,
+				BFBFBFE21514ED9200F42422 /* MainCategoryListView.m */,
+				BFBFBFE31514ED9200F42422 /* MainCategoryListView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -227,8 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */,
-				BF24518214DC586600DECB4F /* Storyboard.storyboard in Resources */,
 				E80A805015090FC0006C1E3D /* LectureView.xib in Resources */,
+				BFBFBFE51514ED9200F42422 /* MainCategoryListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +255,7 @@
 				50E103C514F07DCE001068FE /* Organisation.m in Sources */,
 				50E103C814F07DCE001068FE /* Place.m in Sources */,
 				E80A804F15090FC0006C1E3D /* LectureView.m in Sources */,
+				BFBFBFE41514ED9200F42422 /* MainCategoryListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
