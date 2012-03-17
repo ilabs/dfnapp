@@ -42,6 +42,29 @@
         urlToEventsDatesJSON = [[NSString alloc] initWithFormat:DYNAMIC_JSON_PATH];
     return urlToEventsDatesJSON;
 }
+-(NSDate *)xsdDateToNSDate:(NSString *)dateTime {
+    NSDateFormatter *xsdDateTimeFormatter;
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: dateTime];
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
+-(NSDate *)xsdDateTimeToNSDate:(NSString *)dateString andTime:(NSString *)time {
+    NSDateFormatter *xsdDateTimeFormatter;
+    NSMutableString *datetime = [NSMutableString stringWithFormat:@"%@", dateString];
+    [datetime appendFormat:@";"];
+    [datetime appendString:time];
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss'";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: datetime];
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
 
 - (void)updateEvents
 {
@@ -98,20 +121,47 @@
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    NSLog(@"events's dates \n %@", [eventsDatesData description]);
+ //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
     for (NSDictionary *eventDatesData in eventsDatesData)
     {
         NSLog(@"%d %@",i, [eventDatesData description] );
         i++;
-       /* Event * dbEvent = [dbManager createEvent];
-        id ID = [eventDatesData objectForKey:@"forma1"];
+        id ID = [eventDatesData objectForKey:@"id_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
         {
-            //To jeszcze nie działa do końca!!!
-            EventForm *dbEventForm = [dbManager getFormById:(NSString *)ID];
-            [dbEvent addFormsObject:dbEventForm];
-        }*/
+            Event *dbEvent = [dbManager getEventById:(NSString *)ID];
+            if (!dbEvent)
+            {
+                dbEvent = [dbManager createEvent];
+                [dbEvent setDbID:(NSString *)ID];
+            }
+            EventDate *dbDate = [dbManager createEventDate];
+            ID = [eventDatesData objectForKey:@"dzien"];
+            if ([ID isKindOfClass:[NSString class]])
+            {
+                [dbDate setDay:[self xsdDateToNSDate:(NSString *)ID]];
+                [dbDate setEvent:dbEvent];
+                [dbEvent addDatesObject:dbDate];
+            }
+            ID = [eventDatesData objectForKey:@"godzina_start"];
+            if ([ID isKindOfClass:[NSString class]])
+                [dbDate setOpeningHour:[self xsdDateTimeToNSDate:[eventDatesData objectForKey:@"dzien"] andTime:ID]];
+            ID = [eventDatesData objectForKey:@"godzina_stop"];
+            if ([ID isKindOfClass:[NSString class]])
+                [dbDate setClosingHour:[self xsdDateTimeToNSDate:[eventDatesData objectForKey:@"dzien"] andTime:ID]];
+            ID = [eventDatesData objectForKey:@"lokalizacja"];
+            if ([ID isKindOfClass:[NSString class]])
+            {
+                Place *dbPlace = [dbManager createPlace];
+                [dbPlace addEventObject:dbEvent];
+                [dbEvent setPlace:dbPlace];
+                [dbPlace setAddress:(NSString *)ID];
+                ID = [eventDatesData objectForKey:@"miasto"];
+                if ([ID isKindOfClass:[NSString class]])
+                    [dbPlace setCity:(NSString *)ID];
+            }
+        }
     }
 }
 - (void)updateData
@@ -124,11 +174,17 @@
     
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
-        [self updateEvents];
+    {
+   //     [self updateEvents];
+        [dbManager setLastEventsChecksum:eventsChecksum];
+    }
     else
         NSLog(@"events up to date");
     if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
+    {
         [self updateEventsData];
+   //     [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
+    }
 }
 - (NSData *)downloadDataFromURL:(NSString *)urlString
 {
@@ -145,15 +201,5 @@
 {
     return [data mutableObjectFromJSONData];
 }
--(NSDate *)xsdDateTimeToNSDate:(NSString *)dateTime {
-    NSDateFormatter *xsdDateTimeFormatter;
-    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
-    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
-    NSDate *date = nil;
-    date = [xsdDateTimeFormatter dateFromString: dateTime];
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
-    [xsdDateTimeFormatter autorelease];
-    return (date);
-    
-}
+
 @end

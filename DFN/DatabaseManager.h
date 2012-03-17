@@ -52,11 +52,11 @@
 - (NSArray *) getAllEventsForAddress:(NSString *)address;
 //
 - (Event *) createEvent;
-- (EventForm *) createForm;
+- (EventForm *) createEventForm;
 - (Category *)createCategory;
 - (Place *) createPlace;
 - (Organisation *) createOrganisation;
-- (EventDate *) createDate;
+- (EventDate *) createEventDate;
 - (void)addEvent:(Event *)event toCategory:(Category *)category;
 - (void)addPlace:(Place *)place toEvent:(Event *)event;
 - (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
@@ -85,4 +85,7 @@
 //
 - (NSString *)getLastEventsChecksum;
 - (NSString *)getLastEventsDatesChecksum;
+- (void)setLastEventsChecksum:(NSString *)checksum;
+- (void)setLastEventsDatesChecksum:(NSString *)checksum;
+
 @end
