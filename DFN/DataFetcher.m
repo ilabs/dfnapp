@@ -42,6 +42,18 @@
         urlToEventsDatesJSON = [[NSString alloc] initWithFormat:DYNAMIC_JSON_PATH];
     return urlToEventsDatesJSON;
 }
+-(NSDate *)jsonDateAndTimeToNSDate:(NSString *)dateTime
+{
+    NSDateFormatter *xsdDateTimeFormatter;
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: dateTime];
+    NSLog(@"skonwertowana data %@", date);
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
 -(NSDate *)xsdDateToNSDate:(NSString *)dateTime {
     NSDateFormatter *xsdDateTimeFormatter;
     xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
@@ -58,7 +70,7 @@
     [datetime appendFormat:@";"];
     [datetime appendString:time];
     xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
-    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss'";
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss";
     NSDate *date = nil;
     date = [xsdDateTimeFormatter dateFromString: datetime];
     // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
@@ -104,7 +116,9 @@
             Organisation *dbOrganisation = [dbManager getOrganistationById:(NSString *)ID];
             [dbEvent setOrganisation:dbOrganisation];
         }
-//        [dbEvent setLastUpdate:]
+        ID = [event objectForKey:@"poprawial_data"];
+        if ([ID isKindOfClass:[NSString class]])
+            [dbEvent setLastUpdate:[self jsonDateAndTimeToNSDate:(NSString *)ID]];
         ID = [event objectForKey:@"prowadzacy"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setLecturer:(NSString *)ID];
@@ -175,7 +189,7 @@
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
     {
-   //     [self updateEvents];
+        [self updateEvents];
         [dbManager setLastEventsChecksum:eventsChecksum];
     }
     else
@@ -183,8 +197,10 @@
     if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
     {
         [self updateEventsData];
-   //     [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
+        [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
     }
+    else
+        NSLog(@"dates up to date ;D");
 }
 - (NSData *)downloadDataFromURL:(NSString *)urlString
 {

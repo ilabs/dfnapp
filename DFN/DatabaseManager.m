@@ -391,5 +391,6 @@
 - (void)setLastEventsDatesChecksum:(NSString *)checksum
 {
     [[self getUpdate] setDynamicChecksum:checksum];
+    [self saveDatabase];
 }
 @end
