@@ -97,8 +97,22 @@
 - (void)updateEventsData
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
-  //  DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+    DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     NSLog(@"events's dates \n %@", [eventsDatesData description]);
+    int i = 1;
+    for (NSDictionary *eventDatesData in eventsDatesData)
+    {
+        NSLog(@"%d %@",i, [eventDatesData description] );
+        i++;
+       /* Event * dbEvent = [dbManager createEvent];
+        id ID = [eventDatesData objectForKey:@"forma1"];
+        if ([ID isKindOfClass:[NSString class]])
+        {
+            //To jeszcze nie działa do końca!!!
+            EventForm *dbEventForm = [dbManager getFormById:(NSString *)ID];
+            [dbEvent addFormsObject:dbEventForm];
+        }*/
+    }
 }
 - (void)updateData
 {
@@ -113,8 +127,8 @@
         [self updateEvents];
     else
         NSLog(@"events up to date");
-  /*  if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
-        [self updateEventsData];*/
+    if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
+        [self updateEventsData];
 }
 - (NSData *)downloadDataFromURL:(NSString *)urlString
 {
@@ -131,5 +145,15 @@
 {
     return [data mutableObjectFromJSONData];
 }
-
+-(NSDate *)xsdDateTimeToNSDate:(NSString *)dateTime {
+    NSDateFormatter *xsdDateTimeFormatter;
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: dateTime];
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+    
+}
 @end
