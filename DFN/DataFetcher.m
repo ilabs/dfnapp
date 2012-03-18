@@ -217,5 +217,11 @@
 {
     return [data mutableObjectFromJSONData];
 }
-
+- (void)dealloc
+{
+    [self.urlToMainJSON release];
+    [self.urlToEventsJSON release];
+    [self.urlToEventsDatesJSON release];
+    [super dealloc];
+}
 @end
