@@ -42,6 +42,41 @@
         urlToEventsDatesJSON = [[NSString alloc] initWithFormat:DYNAMIC_JSON_PATH];
     return urlToEventsDatesJSON;
 }
+-(NSDate *)jsonDateAndTimeToNSDate:(NSString *)dateTime
+{
+    NSDateFormatter *xsdDateTimeFormatter;
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: dateTime];
+    NSLog(@"skonwertowana data %@", date);
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
+-(NSDate *)xsdDateToNSDate:(NSString *)dateTime {
+    NSDateFormatter *xsdDateTimeFormatter;
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: dateTime];
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
+-(NSDate *)xsdDateTimeToNSDate:(NSString *)dateString andTime:(NSString *)time {
+    NSDateFormatter *xsdDateTimeFormatter;
+    NSMutableString *datetime = [NSMutableString stringWithFormat:@"%@", dateString];
+    [datetime appendFormat:@";"];
+    [datetime appendString:time];
+    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
+    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss";
+    NSDate *date = nil;
+    date = [xsdDateTimeFormatter dateFromString: datetime];
+    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    [xsdDateTimeFormatter autorelease];
+    return (date);
+}
 
 - (void)updateEvents
 {
@@ -81,7 +116,9 @@
             Organisation *dbOrganisation = [dbManager getOrganistationById:(NSString *)ID];
             [dbEvent setOrganisation:dbOrganisation];
         }
-//        [dbEvent setLastUpdate:]
+        ID = [event objectForKey:@"poprawial_data"];
+        if ([ID isKindOfClass:[NSString class]])
+            [dbEvent setLastUpdate:[self jsonDateAndTimeToNSDate:(NSString *)ID]];
         ID = [event objectForKey:@"prowadzacy"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setLecturer:(NSString *)ID];
@@ -97,8 +134,49 @@
 - (void)updateEventsData
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
-  //  DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    NSLog(@"events's dates \n %@", [eventsDatesData description]);
+    DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+ //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
+    int i = 1;
+    for (NSDictionary *eventDatesData in eventsDatesData)
+    {
+        NSLog(@"%d %@",i, [eventDatesData description] );
+        i++;
+        id ID = [eventDatesData objectForKey:@"id_imprezy"];
+        if ([ID isKindOfClass:[NSString class]])
+        {
+            Event *dbEvent = [dbManager getEventById:(NSString *)ID];
+            if (!dbEvent)
+            {
+                dbEvent = [dbManager createEvent];
+                [dbEvent setDbID:(NSString *)ID];
+            }
+            EventDate *dbDate = [dbManager createEventDate];
+            ID = [eventDatesData objectForKey:@"dzien"];
+            if ([ID isKindOfClass:[NSString class]])
+            {
+                [dbDate setDay:[self xsdDateToNSDate:(NSString *)ID]];
+                [dbDate setEvent:dbEvent];
+                [dbEvent addDatesObject:dbDate];
+            }
+            ID = [eventDatesData objectForKey:@"godzina_start"];
+            if ([ID isKindOfClass:[NSString class]])
+                [dbDate setOpeningHour:[self xsdDateTimeToNSDate:[eventDatesData objectForKey:@"dzien"] andTime:ID]];
+            ID = [eventDatesData objectForKey:@"godzina_stop"];
+            if ([ID isKindOfClass:[NSString class]])
+                [dbDate setClosingHour:[self xsdDateTimeToNSDate:[eventDatesData objectForKey:@"dzien"] andTime:ID]];
+            ID = [eventDatesData objectForKey:@"lokalizacja"];
+            if ([ID isKindOfClass:[NSString class]])
+            {
+                Place *dbPlace = [dbManager createPlace];
+                [dbPlace addEventObject:dbEvent];
+                [dbEvent setPlace:dbPlace];
+                [dbPlace setAddress:(NSString *)ID];
+                ID = [eventDatesData objectForKey:@"miasto"];
+                if ([ID isKindOfClass:[NSString class]])
+                    [dbPlace setCity:(NSString *)ID];
+            }
+        }
+    }
 }
 - (void)updateData
 {
@@ -110,11 +188,19 @@
     
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
+    {
         [self updateEvents];
+        [dbManager setLastEventsChecksum:eventsChecksum];
+    }
     else
         NSLog(@"events up to date");
-  /*  if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
-        [self updateEventsData];*/
+    if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
+    {
+        [self updateEventsData];
+        [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
+    }
+    else
+        NSLog(@"dates up to date ;D");
 }
 - (NSData *)downloadDataFromURL:(NSString *)urlString
 {

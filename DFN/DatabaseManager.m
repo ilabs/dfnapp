@@ -197,6 +197,14 @@
     return (Category *)[self createEntity:@"Category" withID:nil];
 }
 
+- (Place *)createPlace
+{
+    return (Place *)[self createEntity:@"Place" withID:nil];
+}
+- (EventDate *)createEventDate
+{
+    return (EventDate *)[self createEntity:@"EventDate" withID:nil];
+}
 //
 - (NSInteger) getEventsCountForCategory:(Category *)category
 {
@@ -375,5 +383,14 @@
 {
     return [[self getUpdate] dynamicChecksum ];
 }
-
+- (void)setLastEventsChecksum:(NSString *)checksum
+{
+    [[self getUpdate] setStaticChecksum:checksum];
+    [self saveDatabase];
+}
+- (void)setLastEventsDatesChecksum:(NSString *)checksum
+{
+    [[self getUpdate] setDynamicChecksum:checksum];
+    [self saveDatabase];
+}
 @end
