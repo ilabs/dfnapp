@@ -10,10 +10,8 @@
 
 @implementation MainCategoryListView
 
-- (id)init
+- (void)loadData
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    
     list = [[NSMutableArray alloc] init];
     [list addObject:@"IMPREZY WIODĄCE XIV DFN"];   
     [list addObject:@"NAUKI HUMANISTYCZNE"];
@@ -25,7 +23,11 @@
     [list addObject:@"NAUKI O ZIEMI"];
     [list addObject:@"MATEMATYKA, FIZYKA, ASTRONOMIA - TRZY SIOSTRY"];
     [list addObject:@"TECHNIKA I TECHNOLOGIA"];
-    
+}
+
+- (id)init
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
 
@@ -54,7 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self loadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -100,7 +102,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;   //jest jedna sekcja?
+    return 1;   //jest jedna sekcja? //tak jest jedna sekcja
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -168,6 +170,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    //tu musisz zrobic kod do obslugi wybrania komórki 
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
