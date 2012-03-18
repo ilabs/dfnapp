@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatabaseManager.h"
 
 @interface MainCategoryListView : UITableViewController
-
+{
+    NSMutableArray *list;
+}
 @end

@@ -10,14 +10,36 @@
 
 @implementation MainCategoryListView
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    
+    list = [[NSMutableArray alloc] init];
+    [list addObject:@"IMPREZY WIODĄCE XIV DFN"];   
+    [list addObject:@"NAUKI HUMANISTYCZNE"];
+    [list addObject:@"OBSZARY SZTUKI"];
+    [list addObject:@"CZŁOWIEK I SPOŁECZEŃSTWO"];
+    [list addObject:@"MEDYCYNA I ZDROWIE"];
+    [list addObject:@"SCIEŻKAMI BIOLOGII"];
+    [list addObject:@"NIEZWYKŁY ŚWIAT CHEMII"];
+    [list addObject:@"NAUKI O ZIEMI"];
+    [list addObject:@"MATEMATYKA, FIZYKA, ASTRONOMIA - TRZY SIOSTRY"];
+    [list addObject:@"TECHNIKA I TECHNOLOGIA"];
+    
     return self;
 }
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    return [self init];
+}
+
+/*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    //self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    return [self init];
+}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -77,16 +99,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;   //jest jedna sekcja?
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [list count];  //w list trzymam nadkategorie
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,11 +114,13 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSLog(@"dupa");
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        NSLog(@"dupa2");
     }
     
-    // Configure the cell...
+    [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
     
     return cell;
 }

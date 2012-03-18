@@ -9,6 +9,7 @@
 #import "DFNAppDelegate.h"
 #import "LectureView.h"
 #import "DataFetcher.h"
+#import "MainCategoryListView.h"
 
 @implementation DFNAppDelegate
 
@@ -29,6 +30,10 @@
     // *** Tylko na czas debuggingu
     //LectureView *lecture = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
     //[self.window addSubview:[lecture view]];
+    
+    // *** do testowania 
+    MainCategoryListView *mainCategoryList = [[MainCategoryListView alloc] init]; //podobno trzeba zwolnić, ale to tylko na testy
+    [self.window addSubview:[mainCategoryList view]];
     DataFetcher *dataFetcher = [DataFetcher sharedInstance];
     
     [dataFetcher updateData];
