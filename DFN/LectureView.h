@@ -12,14 +12,14 @@
 @interface LectureView : UIViewController {
     IBOutlet UIView *viewBase;
     IBOutlet UIScrollView *scrollView;
-    IBOutlet UILabel *title;
-    IBOutlet UILabel *lecturers;
-    IBOutlet UILabel *lecturersInfo;
-    IBOutlet UILabel *date;
-    IBOutlet UILabel *place;
-    IBOutlet UILabel *placeCity;
-    IBOutlet UILabel *organisation;
-    IBOutlet UILabel *numberOfPlaces;
+    IBOutlet UILabel *titleLabel;
+    IBOutlet UILabel *lecturersLabel;
+    IBOutlet UILabel *lecturersInfoLabel;
+    IBOutlet UILabel *dateLabel;
+    IBOutlet UILabel *placeLabel;
+    IBOutlet UILabel *placeCityLabel;
+    IBOutlet UILabel *organisationLabel;
+    IBOutlet UILabel *numberOfPlacesLabel;
     IBOutlet UIView *lowerContent;
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *signinButton;
