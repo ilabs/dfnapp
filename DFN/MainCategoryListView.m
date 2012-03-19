@@ -25,23 +25,16 @@
     [list addObject:@"TECHNIKA I TECHNOLOGIA"];
 }
 
-- (id)init
-{
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    return self;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    return [self init];
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
-/*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    //self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    return [self init];
-}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -178,6 +171,11 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+- (void)dealloc {
+    [list release];
+    [super dealloc];
 }
 
 @end

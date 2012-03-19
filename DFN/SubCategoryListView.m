@@ -10,6 +10,13 @@
 
 @implementation SubCategoryListView
 
+- (void)loadData
+{
+    NSLog(@"dupa");
+    list = [[NSMutableArray alloc] initWithArray:[[DatabaseManager sharedInstance] getAllCategories]];
+    NSLog(@"%d", [list count]);
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -18,6 +25,7 @@
     }
     return self;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -32,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadData];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -79,14 +88,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [list count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,7 +107,8 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
+    [[cell textLabel] setText:[[list objectAtIndex:[indexPath row]] name]];
+    NSLog(@"alamala %@", [[list objectAtIndex:[indexPath row]] name]);
     
     return cell;
 }
@@ -154,6 +164,11 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+- (void)dealloc {
+    [list release];
+    [super dealloc];
 }
 
 @end
