@@ -162,7 +162,7 @@
 - (NSManagedObject *)createEntity:(NSString *)entityName withID:(NSString *)entityId
 {
     NSManagedObject * entity = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
-    if (entityId != [NSNull null])
+    if ([entityId isKindOfClass:[NSString class]])
         [entity setValue:entityId forKey:@"dbID"];
     [self saveDatabase];
     return entity;

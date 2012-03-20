@@ -94,6 +94,7 @@
         {
             //To jeszcze nie działa do końca!!!
             EventForm *dbEventForm = [dbManager getFormById:(NSString *)ID];
+            [dbEventForm setName:(NSString *)ID];
             [dbEvent addFormsObject:dbEventForm];
         }
         [dbEvent setDbID:[event objectForKey:@"id_imprezy"]];
@@ -102,6 +103,7 @@
         {
             //To jeszcze nie działa do końca!!!
             Category *dbCategory = [dbManager getCategoryById:(NSString *)ID];
+            [dbCategory setName:(NSString *)ID];
             [dbEvent setCategory:dbCategory];
         }
         ID = [event objectForKey:@"e_mail"];
@@ -114,6 +116,7 @@
         if ([ID isKindOfClass:[NSString class]])
         {
             Organisation *dbOrganisation = [dbManager getOrganistationById:(NSString *)ID];
+            [dbOrganisation setName:(NSString *)ID];
             [dbEvent setOrganisation:dbOrganisation];
         }
         ID = [event objectForKey:@"poprawial_data"];
