@@ -16,6 +16,7 @@
 
 @synthesize window = _window;
 @synthesize tabBar = _tabBar;
+@synthesize navigationController = _nav;
 
 
 - (void)dealloc
@@ -41,6 +42,9 @@
     //UIViewController *obserwowane = [[[UIViewController alloc] init] autorelease];
     UIViewController *ustawienia = [[[UIViewController alloc] init] autorelease];
     
+    _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
+    mainView.navigationController = _nav;
+    
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
@@ -49,18 +53,19 @@
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"Ustawienia" image:[UIImage imageNamed:@"logo2.png"] tag:2];
 
     // Ustawiamy dla kazdego view buttona
-    mainView.tabBarItem = item1;
+    _nav.tabBarItem = item1;
     obserwowane.tabBarItem = item2;
     ustawienia.tabBarItem = item3;
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
+    _nav.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
     obserwowane.view.backgroundColor = [UIColor clearColor];
     ustawienia.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
     NSMutableArray *views = [[NSMutableArray alloc] init];
-    [views addObject:mainView];
+    [views addObject:_nav];
     [views addObject:obserwowane];
     [views addObject:ustawienia];
     

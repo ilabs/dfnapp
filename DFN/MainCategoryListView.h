@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SubCategoryListView.h"
 
 @interface MainCategoryListView : UITableViewController
 {
     NSMutableArray *list;
+    NSMutableArray *iconList;
+    UINavigationController *navigationController;
 }
-@end
+
+@property (nonatomic, retain)UINavigationController *navigationController;
+
+@end 

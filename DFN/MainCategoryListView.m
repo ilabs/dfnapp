@@ -10,6 +10,8 @@
 
 @implementation MainCategoryListView
 
+@synthesize navigationController;
+
 - (void)loadData
 {
     list = [[NSMutableArray alloc] init];
@@ -23,6 +25,10 @@
     [list addObject:@"NAUKI O ZIEMI"];
     [list addObject:@"MATEMATYKA, FIZYKA, ASTRONOMIA - TRZY SIOSTRY"];
     [list addObject:@"TECHNIKA I TECHNOLOGIA"];
+    
+    iconList = [[NSMutableArray alloc] init];
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"1331600213_gimp2" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path1]];
 }
 
 
@@ -50,6 +56,7 @@
 {
     [super viewDidLoad];
     [self loadData];
+    self.title = @"kategoria";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -114,6 +121,7 @@
     }
     
     [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
+    [cell.imageView setImage:[iconList objectAtIndex:0]];
     
     return cell;
 }
@@ -164,13 +172,14 @@
     
     //tu musisz zrobic kod do obslugi wybrania komórki 
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+    
+    SubCategoryListView *subCategoryListView = [[SubCategoryListView alloc] initWithNibName:@"SubCategoryListView" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    [self.navigationController pushViewController:subCategoryListView animated:YES];
+    subCategoryListView.view.backgroundColor = [UIColor clearColor];
+    [subCategoryListView release];
+     
 }
 
 - (void)dealloc {
