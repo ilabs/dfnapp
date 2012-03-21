@@ -74,14 +74,6 @@
     self.window.rootViewController = _tabBar;
     [self.window addSubview:[_tabBar view]];
     
-    // *** do testowania 
-    //MainCategoryListView *mainCategoryList = [[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil]; //podobno trzeba zwolnić, ale to tylko na testy
-    //[self.window addSubview:[mainCategoryList view]];
-    
-    // *** do testowania
-    //SubCategoryListView *subCategoryListView = [[SubCategoryListView alloc] initWithNibName:@"SubCategoryListView" bundle:nil]; //trzeba zwolnić, ale to tylko do testów
-    //[self.window addSubview:[subCategoryListView view]];
-    
     DataFetcher *dataFetcher = [DataFetcher sharedInstance];
     [dataFetcher updateData];
     NSArray *categories = [[DatabaseManager sharedInstance] getAllCategories];
