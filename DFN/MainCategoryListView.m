@@ -27,8 +27,26 @@
     [list addObject:@"Technika i technologia"];
     
     iconList = [[NSMutableArray alloc] init];
-    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"png"];
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"8" ofType:@"png"];
     [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path1]];
+    NSString *path2 = [[NSBundle mainBundle] pathForResource:@"2" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path2]];
+    NSString *path3 = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path3]];
+    NSString *path4 = [[NSBundle mainBundle] pathForResource:@"10" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path4]];
+    NSString *path5 = [[NSBundle mainBundle] pathForResource:@"3" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path5]];
+    NSString *path6 = [[NSBundle mainBundle] pathForResource:@"11" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path6]];
+    NSString *path7 = [[NSBundle mainBundle] pathForResource:@"4" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path7]];
+    NSString *path8 = [[NSBundle mainBundle] pathForResource:@"5" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path8]];
+    NSString *path9 = [[NSBundle mainBundle] pathForResource:@"6" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path9]];
+    NSString *path10 = [[NSBundle mainBundle] pathForResource:@"12" ofType:@"png"];
+    [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path10]];
 }
 
 
@@ -56,7 +74,7 @@
 {
     [super viewDidLoad];
     [self loadData];
-    self.title = @"kategoria";
+    self.title = @"działy";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -121,7 +139,7 @@
     }
     
     [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
-    [cell.imageView setImage:[iconList objectAtIndex:0]];
+    [cell.imageView setImage:[iconList objectAtIndex:[indexPath row]]];
     
     return cell;
 }

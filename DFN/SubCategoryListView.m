@@ -12,9 +12,7 @@
 
 - (void)loadData
 {
-    NSLog(@"dupa");
     list = [[NSMutableArray alloc] initWithArray:[[DatabaseManager sharedInstance] getAllCategories]];
-    NSLog(@"%d", [list count]);
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -41,6 +39,7 @@
 {
     [super viewDidLoad];
     [self loadData];
+    self.title = @"kategorie";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
