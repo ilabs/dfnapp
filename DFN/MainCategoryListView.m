@@ -15,19 +15,19 @@
 - (void)loadData
 {
     list = [[NSMutableArray alloc] init];
-    [list addObject:@"IMPREZY WIODĄCE XIV DFN"];   
-    [list addObject:@"NAUKI HUMANISTYCZNE"];
-    [list addObject:@"OBSZARY SZTUKI"];
-    [list addObject:@"CZŁOWIEK I SPOŁECZEŃSTWO"];
-    [list addObject:@"MEDYCYNA I ZDROWIE"];
-    [list addObject:@"SCIEŻKAMI BIOLOGII"];
-    [list addObject:@"NIEZWYKŁY ŚWIAT CHEMII"];
-    [list addObject:@"NAUKI O ZIEMI"];
-    [list addObject:@"MATEMATYKA, FIZYKA, ASTRONOMIA - TRZY SIOSTRY"];
-    [list addObject:@"TECHNIKA I TECHNOLOGIA"];
+    [list addObject:@"Imprezy wiodące XIV DFN"];   
+    [list addObject:@"Nauki humanistyczne"];
+    [list addObject:@"Obszary sztuki"];
+    [list addObject:@"Człowiek i społeczeństwo"];
+    [list addObject:@"Medycyna i zdrowie"];
+    [list addObject:@"Ścieżkami biologii"];
+    [list addObject:@"Niezwykły świat chemii"];
+    [list addObject:@"Nauki o Ziemii"];
+    [list addObject:@"Matematyka, fizyka, astronomia - trzy siostry"];
+    [list addObject:@"Technika i technologia"];
     
     iconList = [[NSMutableArray alloc] init];
-    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"1331600213_gimp2" ofType:@"png"];
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"png"];
     [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path1]];
 }
 
