@@ -13,20 +13,22 @@
     IBOutlet UIView *viewBase;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UILabel *titleLabel;
-    IBOutlet UILabel *lecturersLabel;
-    IBOutlet UILabel *lecturersInfoLabel;
     IBOutlet UILabel *dateLabel;
     IBOutlet UILabel *placeLabel;
     IBOutlet UILabel *placeCityLabel;
     IBOutlet UILabel *organisationLabel;
     IBOutlet UILabel *numberOfPlacesLabel;
-    IBOutlet UIView *lowerContent;
+    IBOutlet UILabel *eventFormLabel;
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *signinButton;
     Event *event;
 }
+@property (assign) UINavigationController *navigationController;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event;
 - (IBAction)showOnMap:(id)sender;
+- (IBAction)showLecturers:(id)sender;
 - (IBAction)signIn:(id)sender;
+- (IBAction)showCalendar:(id)sender;
 
 @end

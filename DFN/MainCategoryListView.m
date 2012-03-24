@@ -74,7 +74,7 @@
 {
     [super viewDidLoad];
     [self loadData];
-    self.title = @"działy";
+    self.title = @"Działy";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

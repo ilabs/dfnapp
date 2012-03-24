@@ -7,9 +7,13 @@
 //
 
 #import "LectureView.h"
+#import "LecturersView.h"
+#import "LectureMapView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation LectureView
+
+@synthesize navigationController = _nav;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event {
     if(self=[self initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
@@ -17,10 +21,19 @@
     }
     return self;
 }
+
 - (IBAction)showOnMap:(id)sender {
-    
+    LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
+    [_nav pushViewController:lview animated:YES];
+}
+- (IBAction)showLecturers:(id)sender {
+    LecturersView *lview = [[[LecturersView alloc] initWithNibName:@"LecturersView" bundle:nil lecture:event] autorelease];
+    [_nav pushViewController:lview animated:YES];
 }
 - (IBAction)signIn:(id)sender {
+    
+}
+- (IBAction)showCalendar:(id)sender {
     
 }
 
@@ -29,6 +42,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _nav = nil;
     }
     return self;
 }
@@ -53,16 +67,55 @@
     [titleLabel setText:event.title];
     [placeLabel setText:event.place.address];
     [placeCityLabel setText:event.place.city];
-    [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
+    if(event.place.numberOfFreePlaces>0){
+        [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
+    }else{
+        [numberOfPlacesLabel setText:@"Brak ograniczenia"];
+    }
     [organisationLabel setText:event.organisation.name];
     [dateLabel setText:[event.dates description]];
-    
     if([event.place.gpsCoordinates length]>0){
-        [mapButton setHidden:YES];
+        [mapButton setHidden:NO];
     }
     // TODO to samo z sign in button
     
+    NSMutableString *tekst = [[[NSMutableString alloc] init] autorelease];
+    for(EventForm* form in event.forms)
+    {
+        if([tekst length]>0)
+            [tekst appendString:@", "];
+        [tekst appendString:form.name];
+    }
+    [eventFormLabel setText:tekst];
     // TODO czemu Data to SET ?
+    // NSDate to jest, tak?
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy 'o' HH:mm"];
+    dateLabel.text = @"";
+    for(NSDate *date in event.dates)
+    {
+        dateLabel.text = [dateLabel.text stringByAppendingFormat:@"%s\r\n" ,[dateFormatter stringFromDate:date]];
+    }
+    [dateFormatter release];
+    switch (event.dates.count) {
+        case 0:
+            dateLabel.text = @"Na razie nieznane";
+            break;
+        case 1:
+            dateLabel.font = [UIFont systemFontOfSize:24];
+            break;
+        case 2:
+            dateLabel.font = [UIFont systemFontOfSize:20];
+            break;
+        case 3:
+            dateLabel.font = [UIFont systemFontOfSize:16];
+            break;
+        case 4:
+            dateLabel.font = [UIFont systemFontOfSize:14];
+            break;
+        default:
+            break;
+    }
     
     self.title = @"Impreza";
     

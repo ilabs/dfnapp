@@ -35,6 +35,15 @@
     Event *e = [m createEvent];
     e.title = @"NOWY WYKLAD";
     e.lecturer = @"Ziemek, staszek, franek";
+    e.lecturersTitle = @"Ziemek ma inżyniera z biofizyki, a staszek i franek po doktorze w lekkoatletyce";
+    e.place = [m createPlace];
+    e.place.gpsCoordinates = @"51.844252,16.598943";
+    e.organisation = [m createOrganisation];
+    e.organisation.name = @"Wyższa Szkoła chuj\r\nI druga linijka jakby co";
+    e.place.address = @"ul. Kup mi buty za 5 złoty \r\nKoło starego baru mlecznego";
+    e.place.city = @"Zdżebłaszowykotywice";
+    //[e addDates:[[NSSet alloc] initWithObjects:[[NSDate alloc] initWithTimeIntervalSinceNow:0],[[NSDate alloc] initWithTimeIntervalSinceNow:12890], nil]];
+    e.place.numberOfFreePlaces = @"1267";
     LectureView *obserwowane = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:e]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
     // ***
     
@@ -43,7 +52,11 @@
     UIViewController *ustawienia = [[[UIViewController alloc] init] autorelease];
     
     _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
+    //_nav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
+    _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
     mainView.navigationController = _nav;
+    //obserwowane.navigationController = _nav;
     
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
@@ -66,6 +79,8 @@
     // Dodajemy widoki do listy
     NSMutableArray *views = [[NSMutableArray alloc] init];
     [views addObject:_nav];
+    
+    // UNDO
     [views addObject:obserwowane];
     [views addObject:ustawienia];
     
