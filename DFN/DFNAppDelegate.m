@@ -32,7 +32,7 @@
     
     // *** Tylko na czas debuggingu
     DatabaseManager *m = [[DatabaseManager alloc] init];
-    Event *e = [m createEvent];
+    /*Event *e = [m createEvent];
     e.title = @"NOWY WYKLAD";
     e.lecturer = @"Ziemek, staszek, franek";
     e.lecturersTitle = @"Ziemek ma inżyniera z biofizyki, a staszek i franek po doktorze w lekkoatletyce";
@@ -45,19 +45,15 @@
     //[e addDates:[[NSSet alloc] initWithObjects:[[NSDate alloc] initWithTimeIntervalSinceNow:0],[[NSDate alloc] initWithTimeIntervalSinceNow:12890], nil]];
     e.place.numberOfFreePlaces = @"1267";
     LectureView *obserwowane = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:e]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
-    // ***
+    */// ***
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
-    //UIViewController *obserwowane = [[[UIViewController alloc] init] autorelease];
+    UIViewController *obserwowane = [[[UIViewController alloc] init] autorelease];
     UIViewController *ustawienia = [[[UIViewController alloc] init] autorelease];
     
     _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
-    //_nav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
     _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    
-    mainView.navigationController = _nav;
-    //obserwowane.navigationController = _nav;
-    
+       
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
@@ -79,8 +75,6 @@
     // Dodajemy widoki do listy
     NSMutableArray *views = [[NSMutableArray alloc] init];
     [views addObject:_nav];
-    
-    // UNDO
     [views addObject:obserwowane];
     [views addObject:ustawienia];
     
@@ -98,7 +92,7 @@
     [dataFetcher updateData];
     NSArray *categories = [[DatabaseManager sharedInstance] getAllCategories];
     for (Category * category in categories)
-        NSLog(@"nazwa: %@", [category dbID]);
+        // NSLog(@"nazwa: %@", [category dbID]);
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "SubCategoryListView.h"
+#import "LecturesListView.h"
 
 @implementation SubCategoryListView
 
@@ -105,7 +106,6 @@
     }
     
     [[cell textLabel] setText:[[list objectAtIndex:[indexPath row]] name]];
-    
     return cell;
 }
 
@@ -153,13 +153,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+
+    LecturesListView *detailViewController = [[LecturesListView alloc] initWithNibName:@"LecturesListView" bundle:nil category:[list objectAtIndex:indexPath.row]];
      // ...
      // Pass the selected object to the new view controller.
+     NSLog(@"PUSH");
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     */
+     
 }
 
 - (void)dealloc {

@@ -80,7 +80,7 @@
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        // NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }    
     
@@ -95,7 +95,7 @@
     {
         if([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            // NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -247,7 +247,7 @@
 {
     return [self fetchedManagedObjectsForEntity:@"EventForm" withPredicate:nil];
 }
-- (NSArray *) getALlEventsForCategory:(Category *)category
+- (NSArray *) getAllEventsForCategory:(Category *)category
 {
     return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"category == %@", category]];
 }

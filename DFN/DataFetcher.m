@@ -49,8 +49,8 @@
     xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = nil;
     date = [xsdDateTimeFormatter dateFromString: dateTime];
-    NSLog(@"skonwertowana data %@", date);
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    // NSLog(@"skonwertowana data %@", date);
+    // if (date==nil) // NSLog(@"could not parse date '%@'", dateTime);
     [xsdDateTimeFormatter autorelease];
     return (date);
 }
@@ -60,7 +60,7 @@
     xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
     NSDate *date = nil;
     date = [xsdDateTimeFormatter dateFromString: dateTime];
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    // if (date==nil) // NSLog(@"could not parse date '%@'", dateTime);
     [xsdDateTimeFormatter autorelease];
     return (date);
 }
@@ -73,7 +73,7 @@
     xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss";
     NSDate *date = nil;
     date = [xsdDateTimeFormatter dateFromString: datetime];
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
+    // if (date==nil) // NSLog(@"could not parse date '%@'", dateTime);
     [xsdDateTimeFormatter autorelease];
     return (date);
 }
@@ -82,11 +82,11 @@
 {
     NSDictionary *eventsData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-   // NSLog(@"events\n %@", [eventsData description]);
+   // // NSLog(@"events\n %@", [eventsData description]);
     int i = 1;
     for (NSDictionary *event in eventsData)
     {
-        NSLog(@"%d %@",i, [event description] );
+        // NSLog(@"%d %@",i, [event description] );
         i++;
         Event * dbEvent = [dbManager createEvent];
         id ID = [event objectForKey:@"forma1"];
@@ -138,11 +138,11 @@
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
- //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
+ //   // NSLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
     for (NSDictionary *eventDatesData in eventsDatesData)
     {
-        NSLog(@"%d %@",i, [eventDatesData description] );
+        // NSLog(@"%d %@",i, [eventDatesData description] );
         i++;
         id ID = [eventDatesData objectForKey:@"id_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
@@ -183,11 +183,11 @@
 }
 - (void)updateData
 {
-    NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    // NSLog(@"Jestem tu! %@", self.urlToMainJSON);
     NSDictionary * checksums = [self decodeFromJSON:[self downloadDataFromURL:self.urlToMainJSON]];
     NSString *eventsChecksum = [checksums objectForKey:@"imprezy"];
     NSString *eventsDatesChecksum = [checksums objectForKey:@"terminy"];
-    NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
+    // NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
     
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
@@ -196,9 +196,10 @@
         [dbManager setLastEventsChecksum:eventsChecksum];
     }
     else
-        NSLog(@"events up to date");
+         NSLog(@"events up to date");
     if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
     {
+        NSLog(@"dates not up to date");
         [self updateEventsData];
         [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
     }

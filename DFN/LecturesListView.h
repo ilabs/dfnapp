@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatabaseManager.h"
 
-@interface LecturesListView : UITableViewController
+@interface LecturesListView : UITableViewController {
+    Category *category;
+    //UINavigationController *navigationController;
+    NSArray *list;
+}
+
+//@property (nonatomic, retain)UINavigationController *navigationController;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(Category*)_category;
 
 @end

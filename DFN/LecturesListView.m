@@ -7,8 +7,21 @@
 //
 
 #import "LecturesListView.h"
+#import "LectureView.h"
+
 
 @implementation LecturesListView
+
+//@synthesize navigationController;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(Category*)_category {
+    if(self=[self initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
+        category = [_category retain];
+        list = [[[DatabaseManager sharedInstance] getAllEventsForCategory:category] retain];
+    }
+    return self;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,7 +45,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.view.backgroundColor = [UIColor clearColor];
+    self.title = @"Wykłady";
+    // NSLog(@"DID LOAD");
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -77,16 +92,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+    
+    NSLog(@"COUNT: %@",list);
     // Return the number of rows in the section.
-    return 0;
+    return [list count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +114,8 @@
     }
     
     // Configure the cell...
-    
+    [[cell textLabel] setText:[[list objectAtIndex:[indexPath row]] title]];
+
     return cell;
 }
 
@@ -147,13 +163,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+    
+     LectureView *detailViewController = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:[list objectAtIndex:indexPath.row]];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     */
+     
+}
+
+- (void)dealloc {
+    [category release];
+    [list release];
+    [super dealloc];
 }
 
 @end

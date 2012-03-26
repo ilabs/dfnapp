@@ -42,7 +42,7 @@
 - (NSArray *) getAllOrganisations;
 - (NSArray *) getAllPlaces;
 - (NSArray *) getAllEventForms;
-- (NSArray *) getALlEventsForCategory:(Category *)category;
+- (NSArray *) getAllEventsForCategory:(Category *)category;
 - (NSArray *) getAllDatesForEvent:(Event *)event;
 - (NSArray *) getAllEventsForEventDate:(NSDate *)date;
 - (NSArray *) getAllEventsAfterDay:(NSDate *)day;

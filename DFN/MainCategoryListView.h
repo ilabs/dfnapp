@@ -13,9 +13,9 @@
 {
     NSMutableArray *list;
     NSMutableArray *iconList;
-    UINavigationController *navigationController;
+   // UINavigationController *navigationController;
 }
 
-@property (nonatomic, retain)UINavigationController *navigationController;
+//@property (nonatomic, retain)UINavigationController *navigationController;
 
 @end 

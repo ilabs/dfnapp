@@ -13,7 +13,6 @@
 
 @implementation LectureView
 
-@synthesize navigationController = _nav;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event {
     if(self=[self initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
@@ -24,11 +23,11 @@
 
 - (IBAction)showOnMap:(id)sender {
     LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
-    [_nav pushViewController:lview animated:YES];
+    [self.navigationController pushViewController:lview animated:YES];
 }
 - (IBAction)showLecturers:(id)sender {
     LecturersView *lview = [[[LecturersView alloc] initWithNibName:@"LecturersView" bundle:nil lecture:event] autorelease];
-    [_nav pushViewController:lview animated:YES];
+    [self.navigationController pushViewController:lview animated:YES];
 }
 - (IBAction)signIn:(id)sender {
     
@@ -42,7 +41,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _nav = nil;
     }
     return self;
 }
@@ -65,12 +63,12 @@
     scrollView.contentSize = viewBase.frame.size;
 
     [titleLabel setText:event.title];
-    [placeLabel setText:event.place.address];
+    [placeLabel setText:[event.place.address stringByReplacingOccurrencesOfString:@", " withString:@"\r\n"]];
     [placeCityLabel setText:event.place.city];
     if(event.place.numberOfFreePlaces>0){
         [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
     }else{
-        [numberOfPlacesLabel setText:@"Brak ograniczenia"];
+        [numberOfPlacesLabel setText:@"Bez ograniczeń"];
     }
     [organisationLabel setText:event.organisation.name];
     [dateLabel setText:[event.dates description]];
@@ -80,6 +78,7 @@
     // TODO to samo z sign in button
     
     NSMutableString *tekst = [[[NSMutableString alloc] init] autorelease];
+    NSLog(@"forms: %@",event.forms);
     for(EventForm* form in event.forms)
     {
         if([tekst length]>0)
@@ -89,34 +88,42 @@
     [eventFormLabel setText:tekst];
     // TODO czemu Data to SET ?
     // NSDate to jest, tak?
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy 'o' HH:mm"];
-    dateLabel.text = @"";
-    for(NSDate *date in event.dates)
-    {
-        dateLabel.text = [dateLabel.text stringByAppendingFormat:@"%s\r\n" ,[dateFormatter stringFromDate:date]];
+    if(event.dates!=nil){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *dateFormatterHour = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+        [dateFormatterHour setDateFormat:@"HH:mm"];
+        dateLabel.text = @"";
+        for(EventDate *date in event.dates)
+        {
+            //NSLog(@"datattt: %@",date.day);
+            //NSLog(@"data: %@",[dateFormatter stringFromDate:date]);
+            dateLabel.text = [dateLabel.text stringByAppendingFormat:@"%@, %@ - %@\r\n" ,[dateFormatter stringFromDate:date.day], [dateFormatterHour stringFromDate:date.openingHour], [dateFormatterHour stringFromDate:date.closingHour]];
+        }
+        [dateFormatter release];
+        [dateFormatterHour release];
+        switch (event.dates.count) {
+            case 0:
+                dateLabel.text = @"Na razie nieznane";
+                break;
+            case 1:
+                dateLabel.font = [UIFont systemFontOfSize:23];
+                break;
+            case 2:
+                dateLabel.font = [UIFont systemFontOfSize:20];
+                break;
+            case 3:
+                dateLabel.font = [UIFont systemFontOfSize:16];
+                break;
+            case 4:
+                dateLabel.font = [UIFont systemFontOfSize:14];
+                break;
+            default:
+                break;
+        }
+    }else{
+        dateLabel.text = @"Na razie nieznane";
     }
-    [dateFormatter release];
-    switch (event.dates.count) {
-        case 0:
-            dateLabel.text = @"Na razie nieznane";
-            break;
-        case 1:
-            dateLabel.font = [UIFont systemFontOfSize:24];
-            break;
-        case 2:
-            dateLabel.font = [UIFont systemFontOfSize:20];
-            break;
-        case 3:
-            dateLabel.font = [UIFont systemFontOfSize:16];
-            break;
-        case 4:
-            dateLabel.font = [UIFont systemFontOfSize:14];
-            break;
-        default:
-            break;
-    }
-    
     self.title = @"Impreza";
     
     UIView *round = [viewBase viewWithTag:2];

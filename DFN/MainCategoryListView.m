@@ -10,7 +10,7 @@
 
 @implementation MainCategoryListView
 
-@synthesize navigationController;
+//@synthesize navigationController;
 
 - (void)loadData
 {
@@ -195,6 +195,7 @@
      // ...
      // Pass the selected object to the new view controller.
     [self.navigationController pushViewController:subCategoryListView animated:YES];
+   // subCategoryListView.navigationController = self.navigationController;
     subCategoryListView.view.backgroundColor = [UIColor clearColor];
     [subCategoryListView release];
      

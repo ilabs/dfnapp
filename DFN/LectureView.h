@@ -23,7 +23,6 @@
     IBOutlet UIButton *signinButton;
     Event *event;
 }
-@property (assign) UINavigationController *navigationController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event;
 - (IBAction)showOnMap:(id)sender;
