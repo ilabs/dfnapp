@@ -11,6 +11,7 @@
 #import "DataFetcher.h"
 #import "MainCategoryListView.h"
 #import "SubCategoryListView.h"
+#import "SearchView.h"
 
 
 
@@ -35,6 +36,13 @@
     [UIView setAnimationDuration:0.8];
     _loadingView.view.alpha = 0.0;
     [UIView commitAnimations];
+}
+
+- (void)dataDidNotLoad {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualizacja danych" message:@"Nie można było pobrać nowych danych." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+    [self dataDidLoad];
 }
 
 - (void)removeLoadingScreen {
@@ -73,7 +81,7 @@
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[UIViewController alloc] init] autorelease];
-    UIViewController *ustawienia = [[[UIViewController alloc] init] autorelease];
+    SearchView *search = [[[SearchView alloc] init] autorelease];
     
     _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
@@ -83,24 +91,24 @@
     // Buttony na TabBar
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"Wykłady" image:[UIImage imageNamed:@"logo2.png"] tag:0];
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"Obserwowane" image:[UIImage imageNamed:@"logo2.png"] tag:1];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"Ustawienia" image:[UIImage imageNamed:@"logo2.png"] tag:2];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"Szukaj" image:[UIImage imageNamed:@"logo2.png"] tag:2];
     
     // Ustawiamy dla kazdego view buttona
     _nav.tabBarItem = item1;
     obserwowane.tabBarItem = item2;
-    ustawienia.tabBarItem = item3;
+    search.tabBarItem = item3;
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
     _nav.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
     obserwowane.view.backgroundColor = [UIColor clearColor];
-    ustawienia.view.backgroundColor = [UIColor clearColor];
+    search.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
     NSMutableArray *views = [[NSMutableArray alloc] init];
     [views addObject:_nav];
     [views addObject:obserwowane];
-    [views addObject:ustawienia];
+    [views addObject:search];
     
     [_tabBar setViewControllers:views];
     

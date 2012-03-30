@@ -104,6 +104,7 @@
 
 - (void)dealloc {
     [event release];
+    [super dealloc];
 }
 
 @end

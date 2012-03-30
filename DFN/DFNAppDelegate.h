@@ -18,6 +18,10 @@
 @property (nonatomic, retain) IBOutlet LoadingView *loadingView;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+- (void)loadData;
+- (void)removeLoadingScreen;
+- (void)dataDidLoad;
+- (void)dataDidNotLoad;
 
 
 @end

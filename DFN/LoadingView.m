@@ -52,7 +52,7 @@
     [UIView beginAnimations:@"Intro" context:NULL];
     [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
     [UIView setAnimationDidStopSelector:@selector(loadData)];
-    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDuration:0.6];
     defaultImage.alpha = 0.0;
     backView.alpha = 0.7;
     [UIView commitAnimations];

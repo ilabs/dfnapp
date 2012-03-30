@@ -8,8 +8,7 @@
 
 #import "LectureView.h"
 #import "LecturersView.h"
-#import "LectureMapView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "LectureCalendarView.h"
 
 @implementation LectureView
 
@@ -22,8 +21,21 @@
 }
 
 - (IBAction)showOnMap:(id)sender {
-    LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
-    [self.navigationController pushViewController:lview animated:YES];
+    NSString *url;
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if([language isEqual:@"pl"] || [language isEqual:@"pol"]){
+        language = @"Bieżące położenie";
+    }else{
+        language = @"Current Location";
+    }
+    if([event.place.gpsCoordinates length]>0){
+        url = [NSString stringWithFormat:@"http://maps.google.com/maps?daddr=%@&saddr=%@",event.place.gpsCoordinates, language];
+    }else{
+        url = [NSString stringWithFormat:@"http://maps.google.com/maps?daddr=%@&saddr=%@, %@",event.place.address, event.place.city, language];
+    }
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    /*LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
+    [self.navigationController pushViewController:lview animated:YES];*/
 }
 - (IBAction)showLecturers:(id)sender {
     LecturersView *lview = [[[LecturersView alloc] initWithNibName:@"LecturersView" bundle:nil lecture:event] autorelease];
@@ -33,7 +45,8 @@
     
 }
 - (IBAction)showCalendar:(id)sender {
-    
+    LectureCalendarView *lview = [[[LectureCalendarView alloc] initWithNibName:@"LectureCalendarView" bundle:nil lecture:event] autorelease];
+    [self.navigationController pushViewController:lview animated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,13 +81,14 @@
     if(![event.place.numberOfFreePlaces isEqualToString:@"0"]){
         [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
     }else{
-        [numberOfPlacesLabel setText:@"Bez ograniczeń"];
+        [numberOfPlacesLabel setText:@"∞"];
+         numberOfPlacesLabel.font = [UIFont systemFontOfSize:32];
     }
     [organisationLabel setText:event.organisation.name];
     [dateLabel setText:[event.dates description]];
-    if([event.place.gpsCoordinates length]>0){
+    /*if([event.place.gpsCoordinates length]>0){
         [mapButton setHidden:NO];
-    }
+    }*/
     // TODO to samo z sign in button
     
     NSMutableString *tekst = [[[NSMutableString alloc] init] autorelease];
@@ -86,8 +100,7 @@
         [tekst appendString: [((EventFormType*) form.eventFormType) name]];
     }
     [eventFormLabel setText:tekst];
-    // TODO czemu Data to SET ?
-    // NSDate to jest, tak?
+    
     if(event.dates!=nil){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         NSDateFormatter *dateFormatterHour = [[NSDateFormatter alloc] init];
@@ -116,29 +129,16 @@
                 dateLabel.font = [UIFont systemFontOfSize:16];
                 break;
             case 4:
-                dateLabel.font = [UIFont systemFontOfSize:14];
+                dateLabel.font = [UIFont systemFontOfSize:12];
                 break;
             default:
+                dateLabel.font = [UIFont systemFontOfSize:12];
                 break;
         }
     }else{
         dateLabel.text = @"Na razie nieznane";
     }
     self.title = @"Impreza";
-    
-    UIView *round = [viewBase viewWithTag:2];
-    while(round!=nil){
-        round.layer.borderWidth = 1;
-        round.layer.cornerRadius = 12;
-        round.layer.borderColor = [[UIColor grayColor] CGColor];
-        round.backgroundColor = [UIColor whiteColor];
-        round.tag = 0;
-        round.alpha = 0.95;
-        round.layer.shadowOffset = CGSizeMake(0,0);
-        round.layer.shadowRadius = 8;
-        round.layer.shadowOpacity = 0.2;
-        round = [viewBase viewWithTag:2];
-    }
     
     viewBase.backgroundColor = [UIColor clearColor];
     [scrollView addSubview:viewBase];
