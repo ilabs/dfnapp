@@ -65,7 +65,7 @@
     [titleLabel setText:event.title];
     [placeLabel setText:[event.place.address stringByReplacingOccurrencesOfString:@", " withString:@"\r\n"]];
     [placeCityLabel setText:event.place.city];
-    if(event.place.numberOfFreePlaces>0){
+    if(![event.place.numberOfFreePlaces isEqualToString:@"0"]){
         [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
     }else{
         [numberOfPlacesLabel setText:@"Bez ograniczeń"];
@@ -83,7 +83,7 @@
     {
         if([tekst length]>0)
             [tekst appendString:@", "];
-        [tekst appendString:form.name];
+        [tekst appendString: [((EventFormType*) form.eventFormType) name]];
     }
     [eventFormLabel setText:tekst];
     // TODO czemu Data to SET ?

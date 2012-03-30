@@ -92,7 +92,7 @@
     [dataFetcher updateData];
     NSArray *categories = [[DatabaseManager sharedInstance] getAllCategories];
     for (Category * category in categories)
-        // NSLog(@"nazwa: %@", [category dbID]);
+        NSLog(@"nazwa: %@", [category dbID]);
     [self.window makeKeyAndVisible];
     return YES;
 }

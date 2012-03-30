@@ -14,6 +14,7 @@
 #import "Organisation.h"
 #import "EventDate.h"
 #import "Update.h"
+#import "EventFormType.h"
 
 @interface DatabaseManager : NSObject {
     NSManagedObjectContext *managedObjectContext;
@@ -53,6 +54,7 @@
 //
 - (Event *) createEvent;
 - (EventForm *) createEventForm;
+- (EventFormType *) createEventFormType;
 - (Category *)createCategory;
 - (Place *) createPlace;
 - (Organisation *) createOrganisation;
@@ -68,12 +70,14 @@
 - (Place *)getPlaceById:(NSString *)ID;
 - (Organisation *)getOrganistationById:(NSString *)ID;
 - (EventForm *)getFormById:(NSString *)ID;
+- (EventFormType *)getFormTypeById:(NSString *)ID;
 - (Category *)getCategoryById:(NSString *)ID;
 //
 - (void)removeEvent:(Event *)event;
 - (void)removeEventById:(NSString *)ID;
 - (void)removeForm:(EventForm *)form;
 - (void)removeFormById:(NSString *)ID;
+- (void)removeFormTypeById:(NSString *)ID;
 - (void)removeOrganisation:(Organisation *)organisation;
 - (void)removeOrganisationById:(NSString *)ID;
 - (void)removePlace:(Place *)place;

@@ -1,0 +1,27 @@
+//
+//  EventFormType.h
+//  DFN
+//
+//  Created by Pawel Nuzka on 3/30/12.
+//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class EventForm;
+
+@interface EventFormType : NSManagedObject
+
+@property (nonatomic, retain) NSString * dbID;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *eventForms;
+@end
+
+@interface EventFormType (CoreDataGeneratedAccessors)
+
+- (void)addEventFormsObject:(EventForm *)value;
+- (void)removeEventFormsObject:(EventForm *)value;
+- (void)addEventForms:(NSSet *)values;
+- (void)removeEventForms:(NSSet *)values;
+@end

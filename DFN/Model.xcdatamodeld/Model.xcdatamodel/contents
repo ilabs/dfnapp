@@ -33,8 +33,13 @@
     </entity>
     <entity name="EventForm" representedClassName="EventForm" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="forms" inverseEntity="Event" syncable="YES"/>
+        <relationship name="eventFormType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventFormType" inverseName="eventForms" inverseEntity="EventFormType" syncable="YES"/>
+    </entity>
+    <entity name="EventFormType" representedClassName="EventFormType" syncable="YES">
+        <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventForms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventForm" inverseName="eventFormType" inverseEntity="EventForm" syncable="YES"/>
     </entity>
     <entity name="Organisation" representedClassName="Organisation" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
@@ -61,6 +66,7 @@
         <element name="EventForm" positionX="70" positionY="-78" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
-        <element name="Update" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Update" positionX="421" positionY="36" width="128" height="75"/>
+        <element name="EventFormType" positionX="-108" positionY="-81" width="128" height="90"/>
     </elements>
 </model>

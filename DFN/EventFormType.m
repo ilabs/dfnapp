@@ -1,19 +1,19 @@
 //
-//  EventForm.m
+//  EventFormType.m
 //  DFN
 //
 //  Created by Pawel Nuzka on 3/30/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
+#import "EventFormType.h"
 #import "EventForm.h"
-#import "Event.h"
 
 
-@implementation EventForm
+@implementation EventFormType
 
 @dynamic dbID;
-@dynamic event;
-@dynamic eventFormType;
+@dynamic name;
+@dynamic eventForms;
 
 @end

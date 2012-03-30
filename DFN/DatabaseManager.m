@@ -80,7 +80,7 @@
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
-        // NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }    
     
@@ -95,7 +95,7 @@
     {
         if([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            // NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -171,6 +171,11 @@
 {
     return (EventForm *)[self createEntity:@"EventForm" withID:ID];
 }
+- (EventFormType *)createEventFormTypeWithId:(NSString *)ID
+{
+    return (EventFormType *)[self createEntity:@"EventFormType" withID:ID];
+}
+
 - (Organisation *)createOrganisationWithId:(NSString *)ID
 {
     return (Organisation *)[self createEntity:@"Organisation" withID:ID];
@@ -186,6 +191,10 @@
 - (EventForm *)createEventForm
 {
     return (EventForm *)[self createEntity:@"EventForm" withID:nil];
+}
+- (EventFormType *)createEventFormType
+{
+    return (EventFormType *)[self createEntity:@"EventFormType" withID:nil];
 }
 - (Organisation *)createOrganisation
 {
@@ -307,6 +316,14 @@
         res = [self createEventFormWithId:ID];
     return res;
 }
+- (EventFormType *)getFormTypeById:(NSString *)ID
+{
+    EventFormType * res = (EventFormType *)[self getEntity:@"EventFormType" withId:ID];
+    if (!res)
+        res = [self createEventFormTypeWithId:ID];
+    return res;
+}
+
 - (Category *)getCategoryById:(NSString *)ID
 {
     Category * res = (Category *)[self getEntity:@"Category" withId:ID];
@@ -327,6 +344,11 @@
 {
     [self removeEntity:form];
 }
+- (void)removeEventFormType:(EventFormType *)formType
+{
+    [self removeEntity:formType];
+}
+
 - (void)removeEventFormById:(NSString *)ID
 {
     [self removeEntity:[self getEventById:ID]];

@@ -47,7 +47,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.title = @"Wykłady";
-    // NSLog(@"DID LOAD");
+    NSLog(@"DID LOAD");
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
