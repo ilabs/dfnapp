@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LoadingView.h"
 
 @interface DFNAppDelegate : NSObject <UIApplicationDelegate> {
     
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBar;
+@property (nonatomic, retain) IBOutlet LoadingView *loadingView;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 

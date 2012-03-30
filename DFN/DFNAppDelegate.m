@@ -12,17 +12,41 @@
 #import "MainCategoryListView.h"
 #import "SubCategoryListView.h"
 
+
+
 @implementation DFNAppDelegate
 
 @synthesize window = _window;
 @synthesize tabBar = _tabBar;
 @synthesize navigationController = _nav;
+@synthesize loadingView = _loadingView;
 
 
 - (void)dealloc
 {
     [_window release];
     [super dealloc];
+}
+
+- (void)dataDidLoad {
+    [UIView beginAnimations:@"Launch" context:NULL];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removeLoadingScreen)];
+    [UIView setAnimationDuration:0.8];
+    _loadingView.view.alpha = 0.0;
+    [UIView commitAnimations];
+}
+
+- (void)removeLoadingScreen {
+    [_loadingView.view removeFromSuperview];
+    [_loadingView release];
+    _loadingView = nil;
+}
+
+- (void)loadData {
+    DataFetcher *dataFetcher = [DataFetcher sharedInstance];
+    [dataFetcher updateData];
+    [self dataDidLoad];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -53,14 +77,14 @@
     
     _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-       
+    
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"Wykłady" image:[UIImage imageNamed:@"logo2.png"] tag:0];
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"Obserwowane" image:[UIImage imageNamed:@"logo2.png"] tag:1];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"Ustawienia" image:[UIImage imageNamed:@"logo2.png"] tag:2];
-
+    
     // Ustawiamy dla kazdego view buttona
     _nav.tabBarItem = item1;
     obserwowane.tabBarItem = item2;
@@ -81,18 +105,18 @@
     [_tabBar setViewControllers:views];
     
     // Customize TabBar
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background@2x.png"]];
     [_tabBar.view insertSubview:imageView atIndex:0];
     [imageView release];
     
     self.window.rootViewController = _tabBar;
     [self.window addSubview:[_tabBar view]];
     
-    DataFetcher *dataFetcher = [DataFetcher sharedInstance];
-    [dataFetcher updateData];
-    NSArray *categories = [[DatabaseManager sharedInstance] getAllCategories];
-    for (Category * category in categories)
-        NSLog(@"nazwa: %@", [category dbID]);
+    // Loading view commituje krotka animacja i wywoluje (void)loadData
+    _loadingView = [[LoadingView alloc] initWithNibName:@"LoadingView" bundle:nil];
+    [self.window addSubview:_loadingView.view];
+    
+    // To co tu bylo jest teraz w -loadData!
     [self.window makeKeyAndVisible];
     return YES;
 }
