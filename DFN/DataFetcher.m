@@ -7,11 +7,16 @@
 //
 
 #import "DataFetcher.h"
+
+#define JSONS_PATH @"http://michaljodko.com/dfn/"
 #define MAIN_JSON_PATH @"http://michaljodko.com/dfn/checksums.json"
 #define STATIC_JSON_PATH @"http://michaljodko.com/dfn/imprezy.json"
 #define DYNAMIC_JSON_PATH @"http://michaljodko.com/dfn/terminy.json"
 
 @implementation DataFetcher
+@synthesize urlToMainJSON, urlToEventsJSON, urlToEventsDatesJSON;
+
+BOOL showProgress = FALSE; 
 
 + (id)sharedInstance
 {
@@ -20,28 +25,20 @@
     @synchronized(self)
     {
         if (master == nil)
+        {
             master = [self new];
+            [master setUrlToMainJSON:MAIN_JSON_PATH];
+            [master setUrlToEventsJSON:STATIC_JSON_PATH];
+            [master setUrlToEventsDatesJSON:DYNAMIC_JSON_PATH];
+        }
     }
     return master;
 }
-- (NSString *)urlToMainJSON
+- (JSONDecoder *)jsonDecoder
 {
-    if(!urlToMainJSON)
-        urlToMainJSON = [[NSString alloc] initWithFormat:MAIN_JSON_PATH];
-    return urlToMainJSON;
+    return [JSONDecoder decoder];
 }
-- (NSString *)urlToEventsJSON
-{
-    if(!urlToEventsJSON)
-        urlToEventsJSON = [[NSString alloc] initWithFormat:STATIC_JSON_PATH];
-    return urlToEventsJSON;
-}
-- (NSString *)urlToEventsDatesJSON
-{
-    if(!urlToEventsDatesJSON)
-        urlToEventsDatesJSON = [[NSString alloc] initWithFormat:DYNAMIC_JSON_PATH];
-    return urlToEventsDatesJSON;
-}
+
 -(NSDate *)jsonDateAndTimeToNSDate:(NSString *)dateTime
 {
     NSDateFormatter *xsdDateTimeFormatter;
@@ -82,8 +79,9 @@
 {
     NSDictionary *eventsData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-   // NSLog(@"events\n %@", [eventsData description]);
+    NSLog(@"events\n %@", [eventsData description]);
     int i = 1;
+    int all = [eventsData count];
     for (NSDictionary *event in eventsData)
     {
         NSLog(@"%d %@",i, [event description] );
@@ -94,7 +92,7 @@
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
         {
             //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getFormTypeById:(NSString *)ID];
+            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
             [dbEventFormType setName:(NSString *)ID];
             EventForm * dbEventForm = [dbManager createEventForm];
             [dbEventForm setEventFormType:dbEventFormType];
@@ -107,7 +105,7 @@
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
         {
             //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getFormTypeById:(NSString *)ID];
+            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
             [dbEventFormType setName:(NSString *)ID];
             EventForm * dbEventForm = [dbManager createEventForm];
             [dbEventForm setEventFormType:dbEventFormType];
@@ -119,7 +117,7 @@
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
         {
             //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getFormTypeById:(NSString *)ID];
+            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
             [dbEventFormType setName:(NSString *)ID];
             EventForm * dbEventForm = [dbManager createEventForm];
             [dbEventForm setEventFormType:dbEventFormType];
@@ -134,7 +132,7 @@
         if ([ID isKindOfClass:[NSString class]])
         {
             //To jeszcze nie działa do końca!!!
-            Category *dbCategory = [dbManager getCategoryById:(NSString *)ID];
+            Category *dbCategory = [dbManager getCategoryWithId:(NSString *)ID];
             [dbCategory setName:(NSString *)ID];
             [dbEvent setCategory:dbCategory];
         }
@@ -147,7 +145,7 @@
         ID = [event objectForKey:@"organizacja"];
         if ([ID isKindOfClass:[NSString class]])
         {
-            Organisation *dbOrganisation = [dbManager getOrganistationById:(NSString *)ID];
+            Organisation *dbOrganisation = [dbManager getOrganistationWithId:(NSString *)ID];
             [dbOrganisation setName:(NSString *)ID];
             [dbEvent setOrganisation:dbOrganisation];
         }
@@ -162,7 +160,11 @@
             [dbEvent setLecturersTitle:(NSString *)ID];
         ID = [event objectForKey:@"tytul_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setTitle:(NSString *)ID];    
+            [dbEvent setTitle:(NSString *)ID]; 
+        
+        if (i % (all/10) == 0 && showProgress)
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+                                                                object:[NSNumber numberWithFloat:i/(all*2.0)]];
         
     }
 }
@@ -172,6 +174,7 @@
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
  //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
+    int all = [eventsDatesData count];
     for (NSDictionary *eventDatesData in eventsDatesData)
     {
         NSLog(@"%d %@",i, [eventDatesData description] );
@@ -179,7 +182,7 @@
         id ID = [eventDatesData objectForKey:@"id_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
         {
-            Event *dbEvent = [dbManager getEventById:(NSString *)ID];
+            Event *dbEvent = [dbManager getEventWithId:(NSString *)ID];
             if (!dbEvent)
             {
                 dbEvent = [dbManager createEvent];
@@ -215,32 +218,107 @@
                 
             }
         }
+        if (i % (all/10) == 0 && showProgress)
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+                                                                object:[NSNumber numberWithFloat:0.5+i/(all*2.0)]];
     }
 }
 - (void)updateData
 {
     NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    if (![self checkConnection])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"No connection" object:nil];
+        return;
+    }
     NSDictionary * checksums = [self decodeFromJSON:[self downloadDataFromURL:self.urlToMainJSON]];
+    
     NSString *eventsChecksum = [checksums objectForKey:@"imprezy"];
     NSString *eventsDatesChecksum = [checksums objectForKey:@"terminy"];
     NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
-    
+
+    int numberOfEvents = [(NSString *)[checksums objectForKey:@"ile_imprez"] intValue];
+    int numberOfEventsDates = [(NSString *)[checksums objectForKey:@"ile_terminow"] intValue];
+    NSLog(@"# imprez - %d , # dat - %d", numberOfEvents, numberOfEventsDates);
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
+    
+    if ([dbManager getNumberOfEventsChecksums] == 0)
     {
+        showProgress = TRUE;
         [self updateEvents];
         [dbManager setLastEventsChecksum:eventsChecksum];
+        [dbManager setNumberOfEventsChecksums:numberOfEvents];
+        [dbManager removeAllEventsChecksums];
+        for (int i =0; i < numberOfEvents; i++)
+            [dbManager saveChecksum:[checksums objectForKey:[NSString stringWithFormat:@"impreza%d", i]]
+                    withEventsNumber:i];
+        showProgress = FALSE;
     }
-    else
-         NSLog(@"events up to date");
-    if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
+    
+    if ([dbManager getNumberOfEventsDatesChecksums] == 0)
     {
-        NSLog(@"dates not up to date");
+        showProgress = TRUE;
         [self updateEventsData];
         [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
+        [dbManager setNumberOfEventsDatesChecksums:numberOfEventsDates];
+        [dbManager removeAllEventDatesChecksums];
+        for (int i =0; i < numberOfEventsDates; i++)
+            [dbManager saveChecksum:[checksums objectForKey:[NSString stringWithFormat:@"termin%d", i]]
+                    withEventsDatesNumber:i];
+        showProgress = FALSE;
     }
-    else
-        NSLog(@"dates up to date ;D");
+    
+    
+    
+    if (numberOfEvents != [dbManager getNumberOfEventsChecksums])
+    {
+        [dbManager removeAllEventsChecksums];
+        [dbManager setNumberOfEventsChecksums:0];
+    }
+    
+    if (numberOfEventsDates != [dbManager getNumberOfEventsDatesChecksums])
+    {
+        [dbManager removeAllEventDatesChecksums];
+        [dbManager setNumberOfEventsDatesChecksums:0];
+    }
+    
+    if (![eventsChecksum isEqualToString:[dbManager getLastEventsChecksum]])
+    {
+        for (int i = 0; i < numberOfEvents; i++)
+        {
+            NSString *eventChecksumFromJSON = [checksums objectForKey:[NSString stringWithFormat:@"impreza%d", i]];
+            NSString *eventChecksumFromDB = [dbManager getChecksumWithEventNumber:i];
+            if (![eventChecksumFromJSON isEqualToString:eventChecksumFromDB])
+            {
+                [self setUrlToEventsJSON:[NSString stringWithFormat:@"%@impreza%d.json", JSONS_PATH, i]];
+                [self updateEvents];
+                [dbManager saveChecksum:eventChecksumFromJSON withEventsNumber:i];
+            }
+            if (i % (numberOfEvents/10) == 0)
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+                                                                    object:[NSNumber numberWithFloat:i/(numberOfEvents*2.0)]];
+        }
+        [dbManager setLastEventsChecksum:eventsChecksum];
+        [dbManager setNumberOfEventsChecksums:numberOfEvents];
+    }
+    if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
+    {
+        for (int i = 0; i < numberOfEventsDates; i++)
+        {                        NSString *eventDatesChecksumFromJSON = [checksums objectForKey:[NSString stringWithFormat:@"termin%d", i]];
+            NSString *eventDatesChecksumFromDB = [dbManager getChecksumWithEventDatesNumber:i];
+            if (![eventDatesChecksumFromJSON isEqualToString:eventDatesChecksumFromDB])
+            {
+                [self setUrlToEventsDatesJSON:[NSString stringWithFormat:@"%@termin%d.json", JSONS_PATH, i]];
+                [self updateEventsData];
+                [dbManager saveChecksum:eventDatesChecksumFromJSON withEventsDatesNumber:i];
+            }
+            if (i % (numberOfEventsDates/10) == 0)
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+                                                                    object:[NSNumber numberWithFloat:0.5+i/(numberOfEventsDates*2.0)]];
+        }
+        [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
+        [dbManager setNumberOfEventsDatesChecksums:numberOfEventsDates];
+    }
 }
 - (NSData *)downloadDataFromURL:(NSString *)urlString
 {
@@ -255,7 +333,14 @@
 }
 - (NSDictionary *)decodeFromJSON:(NSData *)data
 {
-    return [data mutableObjectFromJSONData];
+    //return [data mutableObjectFromJSONData];
+    return [[self jsonDecoder] objectWithData:data];
+}
+- (BOOL)checkConnection
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];  
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
+    return !(networkStatus == NotReachable);
 }
 - (void)dealloc
 {

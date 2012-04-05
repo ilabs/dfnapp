@@ -25,8 +25,19 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_window release];
     [super dealloc];
+}
+
+- (void)progressBar:(NSNotification *)notif;
+{
+    float progress = [[notif object] floatValue] * 100;
+    NSLog(@"%f", progress);
+    NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
+    for (int i = 0; i < progress; i++)
+        [string appendString:@"=>"];
+    NSLog(@"%@", string);
 }
 
 - (void)dataDidLoad {
@@ -52,6 +63,11 @@
 }
 
 - (void)loadData {
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(progressBar:) name:@"DownloadProgress" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataDidNotLoad:) name:@"No connection" object:nil];
+    
     DataFetcher *dataFetcher = [DataFetcher sharedInstance];
     [dataFetcher updateData];
     [self dataDidLoad];

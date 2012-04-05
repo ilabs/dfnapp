@@ -2,7 +2,7 @@
 //  Event.m
 //  DFN
 //
-//  Created by Pawel Nuzka on 3/17/12.
+//  Created by Pawel Nuzka on 4/6/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 #import "EventForm.h"
 #import "Organisation.h"
 #import "Place.h"
+#import "WatchedEntities.h"
 
 
 @implementation Event
@@ -24,11 +25,13 @@
 @dynamic lecturer;
 @dynamic lecturersTitle;
 @dynamic section;
+@dynamic subscription;
 @dynamic title;
 @dynamic category;
 @dynamic dates;
 @dynamic forms;
 @dynamic organisation;
 @dynamic place;
+@dynamic watched;
 
 @end

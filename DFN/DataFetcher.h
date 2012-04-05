@@ -9,21 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "JSONKit.h"
 #import "DatabaseManager.h"
-
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface DataFetcher : NSObject{
     NSString * urlToMainJSON;
     NSString * urlToEventsJSON;
     NSString * urlToEventsDatesJSON;
+    JSONDecoder *jsonDecoder;
 }
 
 + (id)sharedInstance;
 - (void)updateData;
 - (NSData *)downloadDataFromURL:(NSString *)url;
 - (NSDictionary *)decodeFromJSON:(NSData *)data;
-
-@property (readonly) NSString *urlToMainJSON;
-@property (readonly) NSString *urlToEventsJSON;
-@property (readonly) NSString *urlToEventsDatesJSON;
+- (BOOL)checkConnection;
+@property (retain) NSString *urlToMainJSON;
+@property (retain) NSString *urlToEventsJSON;
+@property (retain) NSString *urlToEventsDatesJSON;
+@property (readonly) JSONDecoder *jsonDecoder;
 
 @end

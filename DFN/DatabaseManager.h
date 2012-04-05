@@ -13,7 +13,6 @@
 #import "Place.h"
 #import "Organisation.h"
 #import "EventDate.h"
-#import "Update.h"
 #import "EventFormType.h"
 
 @interface DatabaseManager : NSObject {
@@ -37,7 +36,7 @@
 - (NSInteger) getOrganisationsCount;
 - (NSInteger) getEventFormsCount;
 - (NSInteger) getPlacesCount;
-- (NSInteger) getDatesCountForEvent:(Event *)event;
+- (NSInteger) getEventDatesCountForEvent:(Event *)event;
 //
 - (NSArray *) getAllCategories;
 - (NSArray *) getAllOrganisations;
@@ -59,34 +58,46 @@
 - (Place *) createPlace;
 - (Organisation *) createOrganisation;
 - (EventDate *) createEventDate;
-- (void)addEvent:(Event *)event toCategory:(Category *)category;
-- (void)addPlace:(Place *)place toEvent:(Event *)event;
-- (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
-- (void)addDate:(EventDate *)date toEvent:(Event *)event;
-- (void)addForm:(EventForm *)form toEvent:(Event *)event;
+- (void)addToWatchedEntities:(Event *)event;
+- (void)removeFromWatchedEntities:(Event *)event;
+//- (void)addEvent:(Event *)event toCategory:(Category *)category;
+//- (void)addPlace:(Place *)place toEvent:(Event *)event;
+//- (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
+//- (void)addDate:(EventDate *)date toEvent:(Event *)event;
+//- (void)addForm:(EventForm *)form toEvent:(Event *)event;
 //
-- (Event *)getEventById:(NSString *)ID;
-- (EventDate *)getDateById:(NSString *)ID;
-- (Place *)getPlaceById:(NSString *)ID;
-- (Organisation *)getOrganistationById:(NSString *)ID;
-- (EventForm *)getFormById:(NSString *)ID;
-- (EventFormType *)getFormTypeById:(NSString *)ID;
-- (Category *)getCategoryById:(NSString *)ID;
+- (Event *)getEventWithId:(NSString *)ID;
+- (EventDate *)getEventDateWithId:(NSString *)ID;
+- (Place *)getPlaceWithId:(NSString *)ID;
+- (Organisation *)getOrganistationWithId:(NSString *)ID;
+- (EventForm *)getEventFormWithId:(NSString *)ID;
+- (EventFormType *)getEventFormTypeWithId:(NSString *)ID;
+- (Category *)getCategoryWithId:(NSString *)ID;
 //
 - (void)removeEvent:(Event *)event;
-- (void)removeEventById:(NSString *)ID;
-- (void)removeForm:(EventForm *)form;
-- (void)removeFormById:(NSString *)ID;
-- (void)removeFormTypeById:(NSString *)ID;
+- (void)removeEventWithId:(NSString *)ID;
+- (void)removeEventForm:(EventForm *)form;
+- (void)removeEventFormWithId:(NSString *)ID;
+- (void)removeEventFormTypeWithId:(NSString *)ID;
 - (void)removeOrganisation:(Organisation *)organisation;
-- (void)removeOrganisationById:(NSString *)ID;
+- (void)removeOrganisationWithId:(NSString *)ID;
 - (void)removePlace:(Place *)place;
-- (void)removePlaceById:(NSString *)ID;
-- (void)removeDate:(EventDate *)date;
-- (void)removeDateById:(NSString *)ID;
+- (void)removePlaceWithId:(NSString *)ID;
+- (void)removeEventDate:(EventDate *)date;
+- (void)removeEventDateWithId:(NSString *)ID;
 - (void)removeCategory:(Category *)category;
-- (void)removeCategoryById:(NSString *)ID;
+- (void)removeCategoryWithId:(NSString *)ID;
 //
+- (int)getNumberOfEventsChecksums;
+- (int)getNumberOfEventsDatesChecksums;
+- (void)setNumberOfEventsChecksums:(int)number;
+- (void)setNumberOfEventsDatesChecksums:(int)number;
+- (void)saveChecksum:(NSString *)md5 withEventsNumber:(int)eventsNumber;
+- (void)saveChecksum:(NSString *)md5 withEventsDatesNumber:(int)eventsDateNumber;
+- (void)removeAllEventsChecksums;
+- (void)removeAllEventDatesChecksums;
+- (NSString *)getChecksumWithEventNumber:(int)eventNumber;
+- (NSString *)getChecksumWithEventDatesNumber:(int)eventDatesNumber;
 - (NSString *)getLastEventsChecksum;
 - (NSString *)getLastEventsDatesChecksum;
 - (void)setLastEventsChecksum:(NSString *)checksum;

@@ -7,7 +7,9 @@
 //
 
 #import "DatabaseManager.h"
-
+#import "WatchedEntities.h"
+#import "Update.h"
+#import "Checksum.h"
 @interface DatabaseManager ()
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -214,7 +216,16 @@
 {
     return (EventDate *)[self createEntity:@"EventDate" withID:nil];
 }
+- (WatchedEntities *)createWatchedEntities
+{
+    return (WatchedEntities *)[self createEntity:@"WatchedEntities" withID:nil];
+}
+- (Checksum *)createChecksum
+{
+    return (Checksum *)[self createEntity:@"Checksum" withID:nil];
+}
 //
+
 - (NSInteger) getEventsCountForCategory:(Category *)category
 {
     return [category.events count];
@@ -235,7 +246,7 @@
 {
     return [[self getAllPlaces] count];
 }
-- (NSInteger) getDatesCountForEvent:(Event *)event
+- (NSInteger) getEventDatesCountForEvent:(Event *)event
 {
     return [event.dates count];
 }
@@ -274,12 +285,13 @@
 }
 - (NSArray *) getAllEventsForCity:(NSString *)city
 {
-//    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"
-    return nil;
+    Place * place = (Place *)[[self fetchedManagedObjectsForEntity:@"Place" 
+                                           withPredicate:[NSPredicate predicateWithFormat:@"city == %@", city]] objectAtIndex:0];
+    return [self getAllEventsForPlace:place];
 }
 - (NSArray *) getAllEventsForPlace:(Place *)place
 {
-    return nil;
+    return [self fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:@"place == %@", place]];;
 }
 - (NSArray *) getAllEventsForLecturer:(NSString *)lecturer
 {
@@ -287,36 +299,45 @@
 }
 - (NSArray *) getAllEventsForAddress:(NSString *)address
 {
-    return nil;
+    Place * place = (Place *)[[self fetchedManagedObjectsForEntity:@"Place" 
+                                                     withPredicate:[NSPredicate predicateWithFormat:@"address == %@", address]] objectAtIndex:0];
+    return [self getAllEventsForPlace:place];
 }
 //
-- (Event *)getEventById:(NSString *)ID
+- (WatchedEntities *)getWatchedEntities
+{
+    WatchedEntities * watched = (WatchedEntities *)[self getEntity:@"WatchedEntities" withId:nil];
+    if (!watched)
+        watched = [self createWatchedEntities];
+    return watched;
+}
+- (Event *)getEventWithId:(NSString *)ID
 {
     return (Event *)[self getEntity:@"Event" withId:ID];
 }
-- (EventDate *)getDateById:(NSString *)ID
+- (EventDate *)getEventDateWithId:(NSString *)ID
 {
     return (EventDate *)[self getEntity:@"EventDate" withId:ID];
 }
-- (Place *)getPlaceById:(NSString *)ID
+- (Place *)getPlaceWithId:(NSString *)ID
 {
     return (Place *)[self getEntity:@"Place" withId:ID];
 }
-- (Organisation *)getOrganistationById:(NSString *)ID;
+- (Organisation *)getOrganistationWithId:(NSString *)ID;
 {
     Organisation * org = (Organisation *)[self getEntity:@"Organisation" withId:ID];
     if (!org)
         org = [self createOrganisationWithId:ID];
     return org;
 }
-- (EventForm *)getFormById:(NSString *)ID
+- (EventForm *)getEventFormWithId:(NSString *)ID
 {
     EventForm * res = (EventForm *)[self getEntity:@"EventForm" withId:ID];
     if (!res)
         res = [self createEventFormWithId:ID];
     return res;
 }
-- (EventFormType *)getFormTypeById:(NSString *)ID
+- (EventFormType *)getEventFormTypeWithId:(NSString *)ID
 {
     EventFormType * res = (EventFormType *)[self getEntity:@"EventFormType" withId:ID];
     if (!res)
@@ -324,7 +345,7 @@
     return res;
 }
 
-- (Category *)getCategoryById:(NSString *)ID
+- (Category *)getCategoryWithId:(NSString *)ID
 {
     Category * res = (Category *)[self getEntity:@"Category" withId:ID];
     if (!res)
@@ -336,9 +357,9 @@
 {
     [self removeEntity:event];
 }
-- (void)removeEventById:(NSString *)ID
+- (void)removeEventWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventWithId:ID]];
 }
 - (void)removeEventForm:(EventForm *)form
 {
@@ -348,42 +369,57 @@
 {
     [self removeEntity:formType];
 }
-
-- (void)removeEventFormById:(NSString *)ID
+- (void)removeEventFormWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventWithId:ID]];
+}
+- (void)removeEventFormTypeWithId:(NSString *)ID
+{
+    [self removeEntity:[self getEventFormTypeWithId:ID]];
 }
 - (void)removeOrganisation:(Organisation *)organisation
 {
     [self removeEntity:organisation];
 }
-- (void)removeOrganisationById:(NSString *)ID
+- (void)removeOrganisationWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventWithId:ID]];
 }
 - (void)removePlace:(Place *)place
 {
     [self removeEntity:place];
 }
-- (void)removePlaceById:(NSString *)ID
+- (void)removePlaceWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventWithId:ID]];
 }
 - (void)removeEventDate:(EventDate *)date
 {
     [self removeEntity:date];
 }
-- (void)removeDateById:(NSString *)ID
+- (void)removeEventDateWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventDateWithId:ID]];
 }
 - (void)removeCategory:(Category *)category
 {
     [self removeEntity:category];
 }
-- (void)removeCategoryById:(NSString *)ID
+- (void)removeCategoryWithId:(NSString *)ID
 {
-    [self removeEntity:[self getEventById:ID]];
+    [self removeEntity:[self getEventWithId:ID]];
+}
+- (void)addToWatchedEntities:(Event *)event
+{
+    WatchedEntities * watched = [self getWatchedEntities];
+    [watched addWatchedObject:event];
+    [self saveDatabase];
+}
+- (void)removeFromWatchedEntities:(Event *)event
+{
+    WatchedEntities *watched = [self getWatchedEntities];
+    [watched removeWatchedObject:event];
+    [self saveDatabase];
 }
 - (Update *)getUpdate
 {
@@ -393,6 +429,8 @@
         update = [NSEntityDescription insertNewObjectForEntityForName:@"Update" inManagedObjectContext:self.managedObjectContext];
         [update setStaticChecksum:@"NULL"];
         [update setDynamicChecksum:@"NULL"];
+        [update setNumberOfEventsChecksums:[NSNumber numberWithInt:0]];
+        [update setNumberOfEventsDatesChecksums:[NSNumber numberWithInt:0]];
         [self saveDatabase];
     }
     return update;
@@ -415,4 +453,92 @@
     [[self getUpdate] setDynamicChecksum:checksum];
     [self saveDatabase];
 }
+- (Checksum *)getChecksumWithPredicate:(NSPredicate *)predicate
+{
+    Checksum *checksum = [[self fetchedManagedObjectsForEntity:@"Checksum" withPredicate:predicate] objectAtIndex:0];
+    return checksum;
+}
+- (NSString *)getChecksumWithEventNumber:(int)eventNumber
+{
+    Update * update = [self getUpdate];
+    Checksum *checksum = [self getChecksumWithPredicate:
+                          [NSPredicate predicateWithFormat:@"((number = %d)) AND ((eventsUpdate = %@))",
+                           eventNumber, update]];
+    return [checksum md5];
+}
+- (NSString *)getChecksumWithEventDatesNumber:(int)eventDatesNumber
+{
+    Update * update = [self getUpdate];
+    Checksum *checksum = [self getChecksumWithPredicate:
+                           [NSPredicate predicateWithFormat:@"((number == %d)) AND ((eventsDatesUpdate == %@))",
+                            eventDatesNumber, update]];
+    return [checksum md5];
+}
+- (void)saveChecksum:(NSString *)md5 withEventsNumber:(int)eventsNumber
+{
+    Update * update = [self getUpdate];
+    Checksum *checksum = [self getChecksumWithPredicate:
+                          [NSPredicate predicateWithFormat:@"((number == %d)) AND ((eventsUpdate == %@))",
+                           eventsNumber, update]];
+    if (!checksum)
+    {
+        checksum = [self createChecksum];
+        [checksum setNumber:[NSNumber numberWithInt:eventsNumber]];
+        [update addEventsChecksumObject:checksum];
+        [checksum setEventsUpdate:update];
+    }
+    [checksum setMd5:md5];
+    [self saveDatabase];
+    NSLog(@"zapisuje checksume event %@", checksum);
+}
+- (void)saveChecksum:(NSString *)md5 withEventsDatesNumber:(int)eventsDatesNumber
+{
+    Update * update = [self getUpdate];
+    Checksum *checksum = [self getChecksumWithPredicate:
+                          [NSPredicate predicateWithFormat:@"((number == %d)) AND ((eventsDatesUpdate == %@))",
+                           eventsDatesNumber, update]];
+    if (!checksum)
+    {
+        checksum = [self createChecksum];
+        [checksum setNumber:[NSNumber numberWithInt:eventsDatesNumber]];
+        [update addEventsDatesChecksumObject:checksum];
+        [checksum setEventsDatesUpdate:update];
+    }
+    [checksum setMd5:md5];
+    [self saveDatabase];
+    NSLog(@"zapisuje checksume event date %@", checksum);
+}
+- (int)getNumberOfEventsChecksums
+{
+    return [[[self getUpdate] numberOfEventsChecksums] intValue];
+}
+- (int)getNumberOfEventsDatesChecksums
+{
+    return [[[self getUpdate] numberOfEventsDatesChecksums] intValue];
+}
+- (void)setNumberOfEventsChecksums:(int)number
+{
+    [[self getUpdate] setNumberOfEventsChecksums:[NSNumber numberWithInt:number]];
+}
+- (void)setNumberOfEventsDatesChecksums:(int)number
+{
+    [[self getUpdate] setNumberOfEventsDatesChecksums:[NSNumber numberWithInt:number]];
+}
+- (void)removeAllEventsChecksums
+{
+    Update * update = [self getUpdate];
+    NSArray *checksumArray = [self fetchedManagedObjectsForEntity:@"Checksum" 
+                                                    withPredicate:[NSPredicate predicateWithFormat:@"eventsUpdate == %@", update]];
+    for (int i = 0; i < [checksumArray count]; i++)
+        [self removeEntity:(Checksum *)[checksumArray objectAtIndex:i]];
+}
+- (void)removeAllEventDatesChecksums
+{
+    Update * update = [self getUpdate];
+    NSArray *checksumArray = [self fetchedManagedObjectsForEntity:@"Checksum" 
+                                                    withPredicate:[NSPredicate predicateWithFormat:@"eventsDatesUpdate == %@", update]];
+    for (int i = 0; i < [checksumArray count]; i++)
+        [self removeEntity:(Checksum *)[checksumArray objectAtIndex:i]];
+}
+
 @end

@@ -7,6 +7,12 @@
         <attribute name="year" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
     </entity>
+    <entity name="Checksum" representedClassName="Checksum" syncable="YES">
+        <attribute name="md5" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="eventsDatesUpdate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Update" inverseName="eventsDatesChecksum" inverseEntity="Update" syncable="YES"/>
+        <relationship name="eventsUpdate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Update" inverseName="eventsChecksum" inverseEntity="Update" syncable="YES"/>
+    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionContent" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,12 +22,14 @@
         <attribute name="lecturer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lecturersTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subscription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="events" inverseEntity="Category" syncable="YES"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventDate" inverseName="event" inverseEntity="EventDate" syncable="YES"/>
         <relationship name="forms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventForm" inverseName="event" inverseEntity="EventForm" syncable="YES"/>
         <relationship name="organisation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organisation" inverseName="events" inverseEntity="Organisation" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="event" inverseEntity="Place" syncable="YES"/>
+        <relationship name="watched" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WatchedEntities" inverseName="watched" inverseEntity="WatchedEntities" syncable="YES"/>
     </entity>
     <entity name="EventDate" representedClassName="EventDate" syncable="YES">
         <attribute name="closingHour" optional="YES" attributeType="Date" syncable="YES"/>
@@ -57,16 +65,25 @@
     </entity>
     <entity name="Update" representedClassName="Update" syncable="YES">
         <attribute name="dynamicChecksum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfEventsChecksums" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="numberOfEventsDatesChecksums" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="staticChecksum" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventsChecksum" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checksum" inverseName="eventsUpdate" inverseEntity="Checksum" syncable="YES"/>
+        <relationship name="eventsDatesChecksum" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checksum" inverseName="eventsDatesUpdate" inverseEntity="Checksum" syncable="YES"/>
+    </entity>
+    <entity name="WatchedEntities" representedClassName="WatchedEntities" syncable="YES">
+        <relationship name="watched" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="watched" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
         <element name="Category" positionX="225" positionY="45" width="128" height="120"/>
+        <element name="Checksum" positionX="666" positionY="147" width="128" height="105"/>
         <element name="Event" positionX="72" positionY="78" width="128" height="255"/>
         <element name="EventDate" positionX="70" positionY="360" width="128" height="135"/>
         <element name="EventForm" positionX="70" positionY="-78" width="128" height="90"/>
+        <element name="EventFormType" positionX="-108" positionY="-81" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
-        <element name="Update" positionX="421" positionY="36" width="128" height="75"/>
-        <element name="EventFormType" positionX="-108" positionY="-81" width="128" height="90"/>
+        <element name="Update" positionX="457" positionY="27" width="128" height="135"/>
+        <element name="WatchedEntities" positionX="358" positionY="189" width="128" height="60"/>
     </elements>
 </model>
