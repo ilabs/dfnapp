@@ -50,6 +50,9 @@
 - (NSArray *) getAllEventsForPlace:(Place *)place;
 - (NSArray *) getAllEventsForLecturer:(NSString *)lecturer;
 - (NSArray *) getAllEventsForAddress:(NSString *)address;
+- (NSArray *) getAllWatched;
+- (BOOL)isWatched:(Event *)event;
+
 //
 - (Event *) createEvent;
 - (EventForm *) createEventForm;
