@@ -665,7 +665,7 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<string key="NSFrame">{{20, 737}, {280, 45}}</string>
 						<reference key="NSSuperview" ref="361054765"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="207102666"/>
+						<reference key="NSNextKeyView" ref="351664532"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -704,7 +704,7 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 					<object class="IBUILabel" id="725390173">
 						<reference key="NSNextResponder" ref="361054765"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 853}, {280, 21}}</string>
+						<string key="NSFrame">{{20, 850}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="361054765"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -720,10 +720,32 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">2</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="709853418">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
 						</object>
+						<reference key="IBUIFont" ref="771090440"/>
+					</object>
+					<object class="IBUILabel" id="351664532">
+						<reference key="NSNextResponder" ref="361054765"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{16, 782}, {280, 21}}</string>
+						<reference key="NSSuperview" ref="361054765"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="207102666"/>
+						<string key="NSReuseIdentifierKey">_NS:328</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">Dodano do obserwowanych...</string>
+						<reference key="IBUITextColor" ref="255201310"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">2</int>
+						<reference key="IBUIFontDescription" ref="709853418"/>
 						<reference key="IBUIFont" ref="771090440"/>
 					</object>
 				</array>
@@ -837,6 +859,22 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<reference key="destination" ref="270859311"/>
 					</object>
 					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">watchButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="343486892"/>
+					</object>
+					<int key="connectionID">81</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dodanoLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="351664532"/>
+					</object>
+					<int key="connectionID">84</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -956,6 +994,7 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 							<reference ref="343486892"/>
 							<reference ref="682770889"/>
 							<reference ref="725390173"/>
+							<reference ref="351664532"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1089,6 +1128,11 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<reference key="object" ref="725390173"/>
 						<reference key="parent" ref="361054765"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">83</int>
+						<reference key="object" ref="351664532"/>
+						<reference key="parent" ref="361054765"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1133,12 +1177,13 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">84</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1176,6 +1221,7 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="dateLabel">UILabel</string>
+						<string key="dodanoLabel">UILabel</string>
 						<string key="eventFormLabel">UILabel</string>
 						<string key="mapButton">UIButton</string>
 						<string key="numberOfPlacesLabel">UILabel</string>
@@ -1186,10 +1232,15 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<string key="signinButton">UIButton</string>
 						<string key="titleLabel">UILabel</string>
 						<string key="viewBase">UIView</string>
+						<string key="watchButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="dateLabel">
 							<string key="name">dateLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dodanoLabel">
+							<string key="name">dodanoLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="eventFormLabel">
@@ -1231,6 +1282,10 @@ MTIsIDIxOjAwIC0gMTI6MDAKMDMuMTIuMjAxMiwgMjE6MDAgLSAxMjowMA</string>
 						<object class="IBToOneOutletInfo" key="viewBase">
 							<string key="name">viewBase</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="watchButton">
+							<string key="name">watchButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

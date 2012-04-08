@@ -24,6 +24,7 @@
     DatabaseManager *m = [DatabaseManager sharedInstance];
     [m addToWatchedEntities:event];
     [sender setEnabled:NO];
+    [dodanoLabel setHidden:NO];
 }
 
 - (IBAction)showOnMap:(id)sender {
@@ -145,6 +146,10 @@
         dateLabel.text = @"Na razie nieznane";
     }
     self.title = @"Impreza";
+    if([[DatabaseManager sharedInstance] isWatched:event]){
+        [watchButton setEnabled:NO];
+        [dodanoLabel setHidden:NO];
+    }
     
     viewBase.backgroundColor = [UIColor clearColor];
     [scrollView addSubview:viewBase];

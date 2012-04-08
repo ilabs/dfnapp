@@ -21,6 +21,8 @@
     IBOutlet UILabel *eventFormLabel;
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *signinButton;
+    IBOutlet UIButton *watchButton;
+    IBOutlet UILabel *dodanoLabel;
     Event *event;
 }
 

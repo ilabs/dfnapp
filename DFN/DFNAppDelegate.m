@@ -112,6 +112,7 @@
     _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     obserwNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
+    
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar

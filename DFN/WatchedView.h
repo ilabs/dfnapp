@@ -10,6 +10,8 @@
 
 @interface WatchedView : UIViewController {
     IBOutlet UITableView *tableView;
+    NSArray *list;
+    UIImage *changed;
 }
 
 @end

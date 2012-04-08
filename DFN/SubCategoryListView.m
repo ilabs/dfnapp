@@ -157,10 +157,8 @@
     LecturesListView *detailViewController = [[LecturesListView alloc] initWithNibName:@"LecturesListView" bundle:nil category:[list objectAtIndex:indexPath.row]];
      // ...
      // Pass the selected object to the new view controller.
-     NSLog(@"PUSH");
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     
 }
 
 - (void)dealloc {
