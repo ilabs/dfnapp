@@ -87,7 +87,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     // *** Tylko na czas debuggingu
-    DatabaseManager *m = [[DatabaseManager alloc] init];
+    //DatabaseManager *m = [[DatabaseManager alloc] init];
     /*Event *e = [m createEvent];
     e.title = @"NOWY WYKLAD";
     e.lecturer = @"Ziemek, staszek, franek";
@@ -116,9 +116,9 @@
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"Wykłady" image:[UIImage imageNamed:@"logo2.png"] tag:0];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"Obserwowane" image:[UIImage imageNamed:@"logo2.png"] tag:1];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"Szukaj" image:[UIImage imageNamed:@"logo2.png"] tag:2];
+    UITabBarItem *item1 = [[[UITabBarItem alloc] initWithTitle:@"Wykłady" image:[UIImage imageNamed:@"logo2.png"] tag:0] autorelease];
+    UITabBarItem *item2 = [[[UITabBarItem alloc] initWithTitle:@"Obserwowane" image:[UIImage imageNamed:@"logo2.png"] tag:1] autorelease];
+    UITabBarItem *item3 = [[[UITabBarItem alloc] initWithTitle:@"Szukaj" image:[UIImage imageNamed:@"logo2.png"] tag:2] autorelease];
     
     // Ustawiamy dla kazdego view buttona
     _nav.tabBarItem = item1;
@@ -132,7 +132,7 @@
     search.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
-    NSMutableArray *views = [[NSMutableArray alloc] init];
+    NSMutableArray *views = [[[NSMutableArray alloc] init] autorelease];
     [views addObject:_nav];
     [views addObject:obserwNav];
     [views addObject:search];

@@ -99,7 +99,6 @@
     // TODO to samo z sign in button
     
     NSMutableString *tekst = [[[NSMutableString alloc] init] autorelease];
-    NSLog(@"forms: %@",event.forms);
     for(EventForm* form in event.forms)
     {
         if([tekst length]>0)

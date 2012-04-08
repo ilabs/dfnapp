@@ -47,7 +47,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.title = @"Wykłady";
-    NSLog(@"DID LOAD");
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -99,7 +98,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    NSLog(@"COUNT: %@",list);
     // Return the number of rows in the section.
     return [list count];
 }

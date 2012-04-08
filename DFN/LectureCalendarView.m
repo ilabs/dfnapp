@@ -42,6 +42,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatterHour = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    [dateFormatterHour setDateFormat:@"HH:mm"];
+    
     self.view.backgroundColor = [UIColor clearColor];
     tableView.backgroundColor = [UIColor clearColor];
     self.title = @"Kalendarz";
@@ -70,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"ROws ins selc : %d",[list count]);
+    //NSLog(@"ROws ins selc : %d",[list count]);
     // Return the number of rows in the section.
     return [list count];
 }
@@ -78,10 +83,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //NSLog(@"KJHGASDKLHASD");   
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSDateFormatter *dateFormatterHour = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    [dateFormatterHour setDateFormat:@"HH:mm"];
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -90,7 +92,7 @@
     }
     EventDate *date = [list objectAtIndex:[indexPath row]];
     NSString *val = [NSString stringWithFormat:@"%@, %@ - %@" ,[dateFormatter stringFromDate:date.day], [dateFormatterHour stringFromDate:date.openingHour], [dateFormatterHour stringFromDate:date.closingHour]];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+    //[dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm"];
     //NSLog(@"DATEFRMT: %@",[dateFormatter stringFromDate:date.openingHour]);
     [[cell textLabel] setText:val];
     
@@ -107,7 +109,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex==1){
-        EKEventStore *eventStore = [[EKEventStore alloc] init];
+        EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
         EKEvent *nevent  = [EKEvent eventWithEventStore:eventStore];
         nevent.title     = event.title;
         EventDate *evdate = [list objectAtIndex:selected];
@@ -122,6 +124,8 @@
 }
 
 - (void)dealloc {
+    [dateFormatter release];
+    [dateFormatterHour release];
     [list release];
     [event release];
     [super dealloc];

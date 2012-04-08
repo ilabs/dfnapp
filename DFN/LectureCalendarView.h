@@ -14,6 +14,8 @@
     Event *event;
     NSMutableArray *list;
     int selected;
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *dateFormatterHour;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event;
 
