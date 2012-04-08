@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    tableView.backgroundColor = [UIColor clearColor];
+    self.title = @"Obserwowane";
 }
 
 - (void)viewDidUnload
@@ -47,5 +49,33 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+/*
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [list count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
+    
+    return cell;
+}
+ */
 
 @end

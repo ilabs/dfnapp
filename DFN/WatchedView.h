@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WatchedView : UIViewController
+@interface WatchedView : UIViewController {
+    IBOutlet UITableView *tableView;
+}
 
 @end

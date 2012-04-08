@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 - (void)loadData;
+- (void)loadDataAsync;
 - (void)removeLoadingScreen;
 - (void)dataDidLoad;
 - (void)dataDidNotLoad;

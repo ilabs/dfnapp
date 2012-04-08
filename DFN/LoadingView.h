@@ -14,8 +14,12 @@
     IBOutlet UILabel *randomText;
     IBOutlet UILabel *authorLabel;
     IBOutlet UIView *backView;
+    IBOutlet UIProgressView *progressBar;
     NSArray *texts;
     NSArray *authors;
 }
+
+- (void)setLoadingProgress:(float)prog;
+//- (void)setLoadingProgress:(NSNumber*)prog;
 
 @end

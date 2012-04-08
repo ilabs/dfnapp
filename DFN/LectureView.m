@@ -20,6 +20,12 @@
     return self;
 }
 
+- (IBAction)addToWatched:(id)sender {
+    DatabaseManager *m = [DatabaseManager sharedInstance];
+    [m addToWatchedEntities:event];
+    [sender setEnabled:NO];
+}
+
 - (IBAction)showOnMap:(id)sender {
     NSString *url;
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];

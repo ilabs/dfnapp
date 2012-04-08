@@ -29,5 +29,6 @@
 - (IBAction)showLecturers:(id)sender;
 - (IBAction)signIn:(id)sender;
 - (IBAction)showCalendar:(id)sender;
+- (IBAction)addToWatched:(id)sender;
 
 @end
