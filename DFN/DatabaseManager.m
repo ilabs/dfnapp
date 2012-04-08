@@ -153,7 +153,14 @@
 
 -(NSManagedObject *) getEntity:(NSString *)entity withId:(NSString *)entityId
 {
-    NSArray *foundEntity = [self fetchedManagedObjectsForEntity:entity withPredicate:[NSPredicate predicateWithFormat:@"dbID == %@", entityId]];
+    NSArray *foundEntity;
+    if (entityId)
+        foundEntity = [self fetchedManagedObjectsForEntity:entity 
+                                          withPredicate:[NSPredicate predicateWithFormat:@"dbID == %@", entityId]];
+    else
+        foundEntity = [self fetchedManagedObjectsForEntity:entity 
+                                             withPredicate:nil];
+        
     NSManagedObject *result = nil;
     if (foundEntity != nil && [foundEntity count] > 0)
         result = [foundEntity objectAtIndex:0];
@@ -310,6 +317,19 @@
     if (!watched)
         watched = [self createWatchedEntities];
     return watched;
+}
+
+- (NSArray *)getAllWatched
+{
+    WatchedEntities * watched = [self getWatchedEntities];
+    return [[watched watched] allObjects];
+}
+- (BOOL)isWatched:(Event *)event
+{
+    if ([event watched])
+        return TRUE;
+    else
+        return FALSE;
 }
 - (Event *)getEventWithId:(NSString *)ID
 {

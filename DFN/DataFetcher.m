@@ -74,7 +74,44 @@ BOOL showProgress = FALSE;
     [xsdDateTimeFormatter autorelease];
     return (date);
 }
+- (void)notifyUpdatedEvent:(Event *)dbEvent
+{
+    if ([[DatabaseManager sharedInstance] isWatched:dbEvent])
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Event updated" object:[dbEvent dbID]]];
+}
+- (void)updateEvent:(Event *)dbEvent withForm:(NSString *)form
+{
+    DatabaseManager * dbManager = [DatabaseManager sharedInstance];
+    EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:form];
+    [dbEventFormType setName:form];
+    EventForm * dbEventForm = [dbManager getEventFormWithId:
+                               [NSString stringWithFormat:@"%@1", dbEvent.dbID]];
+    if (!dbEventForm)     //nie istnieje forma 1, tworzymy wiec nowa, nie ma update'u
+    {
+        dbEventForm = [dbManager createEventForm];
+        [dbEventForm setDbID:[NSString stringWithFormat:@"%@1", dbEvent.dbID]];
+        [dbEventForm setEventFormType:dbEventFormType];
+        [dbEventFormType addEventFormsObject:dbEventForm];
+        [dbEventForm setEvent:dbEvent];
+    }
+    else          //forma juz istnieje, byc moze cos sie zmienilo
+    {
+        
+        if (dbEventForm.eventFormType != dbEventFormType)
+        {
+            [dbEventForm setEventFormType:dbEventFormType];
+            [dbEventFormType addEventFormsObject:dbEventForm];
+            [self notifyUpdatedEvent:dbEvent];
+        }
+        if (dbEventForm.event != dbEvent)
+        {
+            [dbEvent addFormsObject:dbEventForm];
+            [dbEventForm setEvent:dbEvent];
+            [self notifyUpdatedEvent:dbEvent];
+        }
+    }
 
+}
 - (void)updateEvents
 {
     NSDictionary *eventsData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsJSON]];
@@ -86,55 +123,36 @@ BOOL showProgress = FALSE;
     {
         NSLog(@"%d %@",i, [event description] );
         i++;
-        Event * dbEvent = [dbManager createEvent];
+        Event * dbEvent = [dbManager getEventWithId:[event objectForKey:@"id_imprezy"]];
+        if (!dbEvent)
+        {
+            dbEvent = [dbManager createEvent];
+            [dbEvent setDbID:[event objectForKey:@"id_imprezy"]];
+        }
         id ID = [event objectForKey:@"forma1"];
         ID = [event objectForKey:@"forma1"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
-        {
-            //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
-            [dbEventFormType setName:(NSString *)ID];
-            EventForm * dbEventForm = [dbManager createEventForm];
-            [dbEventForm setEventFormType:dbEventFormType];
-            [dbEventFormType addEventFormsObject:dbEventForm];
-            [dbEventForm setEvent:dbEvent];
-            [dbEvent addFormsObject:dbEventForm];
-        }
+            [self updateEvent:dbEvent withForm:(NSString *)ID];
 
         ID = [event objectForKey:@"forma2"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
-        {
-            //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
-            [dbEventFormType setName:(NSString *)ID];
-            EventForm * dbEventForm = [dbManager createEventForm];
-            [dbEventForm setEventFormType:dbEventFormType];
-            [dbEventFormType addEventFormsObject:dbEventForm];
-            [dbEventForm setEvent:dbEvent];
-            [dbEvent addFormsObject:dbEventForm];
-        }
+            [self updateEvent:dbEvent withForm:(NSString *)ID];
+        
         ID = [event objectForKey:@"forma3"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
-        {
-            //To jeszcze nie działa do końca!!!
-            EventFormType *dbEventFormType = [dbManager getEventFormTypeWithId:(NSString *)ID];
-            [dbEventFormType setName:(NSString *)ID];
-            EventForm * dbEventForm = [dbManager createEventForm];
-            [dbEventForm setEventFormType:dbEventFormType];
-            [dbEventFormType addEventFormsObject:dbEventForm];
-            [dbEventForm setEvent:dbEvent];
-            [dbEvent addFormsObject:dbEventForm];
-        }
-
+            [self updateEvent:dbEvent withForm:(NSString *)ID];
         
-        [dbEvent setDbID:[event objectForKey:@"id_imprezy"]];
         ID = [event objectForKey:@"kategoria"];
         if ([ID isKindOfClass:[NSString class]])
         {
             //To jeszcze nie działa do końca!!!
             Category *dbCategory = [dbManager getCategoryWithId:(NSString *)ID];
-            [dbCategory setName:(NSString *)ID];
-            [dbEvent setCategory:dbCategory];
+            if (dbEvent.category != dbCategory || ![dbCategory.name isEqualToString:(NSString *)ID])
+            {
+                [dbCategory setName:(NSString *)ID];
+                [dbEvent setCategory:dbCategory];
+                [self notifyUpdatedEvent:dbEvent];
+            }
         }
         ID = [event objectForKey:@"e_mail"];
         if ([ID isKindOfClass:[NSString class]])
@@ -151,7 +169,14 @@ BOOL showProgress = FALSE;
         }
         ID = [event objectForKey:@"poprawial_data"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setLastUpdate:[self jsonDateAndTimeToNSDate:(NSString *)ID]];
+        {
+            NSDate *lastUpdate = [self jsonDateAndTimeToNSDate:(NSString *)ID];
+            if (![lastUpdate isEqualToDate:dbEvent.lastUpdate])
+            {
+                [dbEvent setLastUpdate:lastUpdate];
+                [self notifyUpdatedEvent:dbEvent];
+            }
+        }
         ID = [event objectForKey:@"prowadzacy"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setLecturer:(NSString *)ID];
@@ -188,7 +213,16 @@ BOOL showProgress = FALSE;
                 dbEvent = [dbManager createEvent];
                 [dbEvent setDbID:(NSString *)ID];
             }
-            EventDate *dbDate = [dbManager createEventDate];
+            ID = [eventDatesData objectForKey:@"id_termin"];
+            EventDate *dbDate = [dbManager getEventDateWithId:(NSString *)ID];
+            if (!dbDate)
+            {
+                dbDate = [dbManager createEventDate];
+                [dbDate setDbID:(NSString *)ID];
+            }
+            NSDate *previousDay = dbDate.day;
+            NSDate *previousOpeningHour = dbDate.openingHour;
+            NSDate *previousClosingHour = dbDate.closingHour;
             ID = [eventDatesData objectForKey:@"dzien"];
             if ([ID isKindOfClass:[NSString class]])
             {
@@ -202,20 +236,52 @@ BOOL showProgress = FALSE;
             ID = [eventDatesData objectForKey:@"godzina_stop"];
             if ([ID isKindOfClass:[NSString class]])
                 [dbDate setClosingHour:[self xsdDateTimeToNSDate:[eventDatesData objectForKey:@"dzien"] andTime:ID]];
+            
+            if (![previousDay isEqualToDate:dbDate.day] || ![previousOpeningHour isEqualToDate:dbDate.openingHour]
+                || ![previousClosingHour isEqualToDate:dbDate.closingHour])
+                [self notifyUpdatedEvent:dbEvent];
+
             ID = [eventDatesData objectForKey:@"lokalizacja"];
             if ([ID isKindOfClass:[NSString class]])
             {
-                Place *dbPlace = [dbManager createPlace];
-                [dbPlace addEventObject:dbEvent];
-                [dbEvent setPlace:dbPlace];
-                [dbPlace setAddress:(NSString *)ID];
+                ID = [eventDatesData objectForKey:@"id_miejsce"];
+                Place *dbPlace = [dbManager getPlaceWithId:(NSString *)ID];
+                if (!dbPlace)
+                {
+                    dbPlace = [dbManager createPlace];
+                    [dbPlace setDbID:(NSString *)ID];
+                }
+                if (dbEvent.place != dbPlace)
+                {
+                    [dbPlace addEventObject:dbEvent];
+                    [dbEvent setPlace:dbPlace];
+                    [self notifyUpdatedEvent:dbEvent];
+                }
+                
+                if (![dbPlace.address isEqualToString:(NSString *)ID])
+                {
+                    [dbPlace setAddress:(NSString *)ID];
+                    [self notifyUpdatedEvent:dbEvent];
+                }
+                
                 ID = [eventDatesData objectForKey:@"miasto"];
                 if ([ID isKindOfClass:[NSString class]])
-                    [dbPlace setCity:(NSString *)ID];
+                {
+                    if (![dbPlace.city isEqualToString:(NSString *)ID])
+                    {
+                        [dbPlace setCity:(NSString *)ID];
+                        [self notifyUpdatedEvent:dbEvent];
+                    }
+                }
                 ID = [eventDatesData objectForKey:@"ilosc_miejsc"];
                 if ([ID isKindOfClass:[NSString class]])
-                    [dbPlace setNumberOfFreePlaces:(NSString *)ID];
-                
+                {
+                    if (![dbPlace.numberOfFreePlaces isEqualToString:(NSString *)ID])
+                    {
+                        [dbPlace setNumberOfFreePlaces:(NSString *)ID];
+                        [self notifyUpdatedEvent:dbEvent];
+                    }
+                }
             }
         }
         if (i % (all/10) == 0 && showProgress)
