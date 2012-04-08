@@ -21,6 +21,8 @@
     IBOutlet UILabel *eventFormLabel;
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *signinButton;
+    IBOutlet UIButton *watchButton;
+    IBOutlet UILabel *dodanoLabel;
     Event *event;
 }
 
@@ -29,5 +31,6 @@
 - (IBAction)showLecturers:(id)sender;
 - (IBAction)signIn:(id)sender;
 - (IBAction)showCalendar:(id)sender;
+- (IBAction)addToWatched:(id)sender;
 
 @end

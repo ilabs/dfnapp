@@ -10,6 +10,23 @@
 
 @implementation LoadingView
 
+- (void)setLoadingProgress:(float)prog {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if(progressBar.hidden){
+            [progressBar setHidden:NO];
+            [UIView beginAnimations:@"ProgBar" context:NULL];
+            [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
+            [UIView setAnimationDidStopSelector:@selector(loadData)];
+            [UIView setAnimationDuration:0.6];
+            progressBar.alpha = 1.0;
+            [UIView commitAnimations];
+        }
+        [progressBar setProgress:prog animated:YES];
+    }
+    );
+
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -47,6 +47,8 @@
     [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path9]];
     NSString *path10 = [[NSBundle mainBundle] pathForResource:@"12" ofType:@"png"];
     [iconList addObject:[[UIImage alloc] initWithContentsOfFile:path10]];
+    
+    
 }
 
 
@@ -75,6 +77,7 @@
     [super viewDidLoad];
     [self loadData];
     self.title = @"Działy";
+    infoImage = [[UIImage imageNamed:@"info@2x.png"] retain];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -120,13 +123,17 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;  
+    return 2;  
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [list count];  
+    if(section==0){
+        return [list count];
+    }else{
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,10 +144,13 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
-    [cell.imageView setImage:[iconList objectAtIndex:[indexPath row]]];
-    
+    if(indexPath.section==0){
+        [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
+        [cell.imageView setImage:[iconList objectAtIndex:[indexPath row]]];
+    }else{
+        [[cell textLabel] setText:@"O nas..."];
+        [cell.imageView setImage:infoImage];
+    }
     return cell;
 }
 
@@ -187,21 +197,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //tu musisz zrobic kod do obslugi wybrania komórki 
-    // Navigation logic may go here. Create and push another view controller.
-    
-    SubCategoryListView *subCategoryListView = [[SubCategoryListView alloc] initWithNibName:@"SubCategoryListView" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:subCategoryListView animated:YES];
-   // subCategoryListView.navigationController = self.navigationController;
-    subCategoryListView.view.backgroundColor = [UIColor clearColor];
-    [subCategoryListView release];
+    if(indexPath.section==0){ // standardowa kategoria
+        //tu musisz zrobic kod do obslugi wybrania komórki 
+        // Navigation logic may go here. Create and push another view controller.
+        
+        SubCategoryListView *subCategoryListView = [[SubCategoryListView alloc] initWithNibName:@"SubCategoryListView" bundle:nil];
+         // ...
+         // Pass the selected object to the new view controller.
+        [self.navigationController pushViewController:subCategoryListView animated:YES];
+       // subCategoryListView.navigationController = self.navigationController;
+        subCategoryListView.view.backgroundColor = [UIColor clearColor];
+        [subCategoryListView release];
+    }else{ // About us
+        /* // wystarczy odkomentowac...
+        AboutUsView *aboutUs = [[AboutUsView alloc] initWithNibName:@"AboutUsView" bundle:nil];
+        [self.navigationController pushViewController:abousUs animated:YES];
+        abousUs.view.backgroundColor = [UIColor clearColor];
+        [aboutUs release];
+         */
+    }
      
 }
 
 - (void)dealloc {
+    [infoImage release];
     [list release];
     [super dealloc];
 }

@@ -12,6 +12,7 @@
 #import "MainCategoryListView.h"
 #import "SubCategoryListView.h"
 #import "SearchView.h"
+#import "WatchedView.h"
 
 
 
@@ -32,12 +33,15 @@
 
 - (void)progressBar:(NSNotification *)notif;
 {
-    float progress = [[notif object] floatValue] * 100;
-    NSLog(@"%f", progress);
+    float progress = [[notif object] floatValue];
+    NSLog(@"progress: %f", progress);
     NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
     for (int i = 0; i < progress; i++)
         [string appendString:@"=>"];
     NSLog(@"%@", string);
+     
+    [self.loadingView setLoadingProgress:progress];
+    //[self.loadingView performSelectorOnMainThread:@selector(setLoadingProgress:) withObject:[] waitUntilDone:NO];
 }
 
 - (void)dataDidLoad {
@@ -68,6 +72,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataDidNotLoad:) name:@"No connection" object:nil];
     
+    [self performSelectorInBackground:@selector(loadDataAsync) withObject:nil];
+}
+
+- (void)loadDataAsync {
     DataFetcher *dataFetcher = [DataFetcher sharedInstance];
     [dataFetcher updateData];
     [self dataDidLoad];
@@ -96,11 +104,14 @@
     */// ***
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
-    UIViewController *obserwowane = [[[UIViewController alloc] init] autorelease];
+    UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
     SearchView *search = [[[SearchView alloc] init] autorelease];
     
     _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
+    UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
     _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    obserwNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
     
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
@@ -111,19 +122,19 @@
     
     // Ustawiamy dla kazdego view buttona
     _nav.tabBarItem = item1;
-    obserwowane.tabBarItem = item2;
+    obserwNav.tabBarItem = item2;
     search.tabBarItem = item3;
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
     _nav.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
-    obserwowane.view.backgroundColor = [UIColor clearColor];
+    obserwNav.view.backgroundColor = [UIColor clearColor];
     search.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
     NSMutableArray *views = [[NSMutableArray alloc] init];
     [views addObject:_nav];
-    [views addObject:obserwowane];
+    [views addObject:obserwNav];
     [views addObject:search];
     
     [_tabBar setViewControllers:views];
