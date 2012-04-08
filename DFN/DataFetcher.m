@@ -180,6 +180,9 @@ BOOL showProgress = FALSE;
         ID = [event objectForKey:@"prowadzacy"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setLecturer:(NSString *)ID];
+        ID = [event objectForKey:@"zapisy"];
+        if ([ID isKindOfClass:[NSString class]])
+            [dbEvent setSubscription:(NSString *)ID];
         ID = [event objectForKey:@"prowadzacy_afiliacje"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setLecturersTitle:(NSString *)ID];
