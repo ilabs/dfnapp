@@ -294,7 +294,7 @@ BOOL showProgress = FALSE;
 }
 - (void)updateData
 {
-    NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    //NSLog(@"Jestem tu! %@", self.urlToMainJSON);
     if (![self checkConnection])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"No connection" object:nil];
