@@ -3,7 +3,7 @@
 //  DFN
 //
 //  Created by Marcin Raburski on 30.03.2012.
-//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
+//  Copyright (c) 2012 Pawel Nuzka. All rights reserved.
 //
 
 #import "SearchView.h"
