@@ -123,6 +123,7 @@
     request.predicate = predicate;
     
     NSArray *results = [context executeFetchRequest:request error:nil];
+
     [request release];
     if ((results != nil) && ([results count] == 0))
         results = nil;

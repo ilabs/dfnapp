@@ -40,7 +40,7 @@
         [string appendString:@"=>"];
     NSLog(@"%@", string);
      */
-    //[self.loadingView setLoadingProgress:progress];
+    [self.loadingView setLoadingProgress:progress];
     //[self.loadingView performSelectorOnMainThread:@selector(setLoadingProgress:) withObject:[] waitUntilDone:NO];
 }
 

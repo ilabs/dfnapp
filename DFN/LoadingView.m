@@ -12,6 +12,12 @@
 
 - (void)setLoadingProgress:(float)prog {
     dispatch_sync(dispatch_get_main_queue(), ^{
+        if([progressBar respondsToSelector:@selector(setProgress:animated:)])
+        {
+            [progressBar setProgress:prog animated:YES];
+        }else{
+            [progressBar setProgress:prog];
+        }
         if(progressBar.hidden){
             [progressBar setHidden:NO];
             [UIView beginAnimations:@"ProgBar" context:NULL];
@@ -21,7 +27,7 @@
             progressBar.alpha = 1.0;
             [UIView commitAnimations];
         }
-        [progressBar setProgress:prog animated:YES];
+        
     }
     );
 
