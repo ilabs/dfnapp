@@ -3,7 +3,7 @@
 //  DFN
 //
 //  Created by Radoslaw Wilczak on 17.03.2012.
-//  Copyright (c) 2012 Pawel Nuzka. All rights reserved.
+//  Copyright (c) 2012 Pawel.Nuzka@gmail.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,7 +3,7 @@
 //  DFN
 //
 //  Created by Pawel Nuzka on 4/6/12.
-//  Copyright (c) 2012 Pawel Nuzka. All rights reserved.
+//  Copyright (c) 2012 Pawel.Nuzka@gmail.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
