@@ -13,6 +13,7 @@
 #import "SubCategoryListView.h"
 #import "SearchView.h"
 #import "WatchedView.h"
+#import "AboutUsView.h"
 
 
 
@@ -20,7 +21,9 @@
 
 @synthesize window = _window;
 @synthesize tabBar = _tabBar;
-@synthesize navigationController = _nav;
+@synthesize navigationLectures = _navigationLectures;
+@synthesize navigationAboutUs = _navigationAboutUs;
+
 @synthesize loadingView = _loadingView;
 
 
@@ -106,12 +109,15 @@
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
     SearchView *search = [[[SearchView alloc] init] autorelease];
+    AboutUsView *aboutUsView = [[[AboutUsView alloc] initWithNibName:@"AboutUsView" bundle:nil] autorelease];  
     
-    _nav = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
+    _navigationLectures = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
-    _nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    _navigationLectures.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     obserwNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    
+        
+    _navigationAboutUs = [[[UINavigationController alloc] initWithRootViewController:aboutUsView] autorelease];
+    _navigationAboutUs.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
@@ -121,21 +127,25 @@
     UITabBarItem *item3 = [[[UITabBarItem alloc] initWithTitle:@"Szukaj" image:[UIImage imageNamed:@"logo2.png"] tag:2] autorelease];
     
     // Ustawiamy dla kazdego view buttona
-    _nav.tabBarItem = item1;
+    _navigationLectures.tabBarItem = item1;
     obserwNav.tabBarItem = item2;
-    search.tabBarItem = item3;
+    //search.tabBarItem = item3;
+    _navigationAboutUs.tabBarItem = item3;  //tylko do testowania AboutUs
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
-    _nav.view.backgroundColor = [UIColor clearColor];
+    _navigationLectures.view.backgroundColor = [UIColor clearColor];
+    _navigationAboutUs.view.backgroundColor = [UIColor clearColor];
+    aboutUsView.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
     obserwNav.view.backgroundColor = [UIColor clearColor];
     search.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
     NSMutableArray *views = [[[NSMutableArray alloc] init] autorelease];
-    [views addObject:_nav];
+    [views addObject:_navigationLectures];
     [views addObject:obserwNav];
-    [views addObject:search];
+    //[views addObject:search];
+    [views addObject:_navigationAboutUs];
     
     [_tabBar setViewControllers:views];
     
