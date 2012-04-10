@@ -3,7 +3,7 @@
 //  DFN
 //
 //  Created by Pawel Nuzka on 3/17/12.
-//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
+//  Copyright (c) 2012 Pawel.Nuzka@gmail.com. All rights reserved.
 //
 
 #import "DataFetcher.h"
@@ -294,7 +294,7 @@ BOOL showProgress = FALSE;
 }
 - (void)updateData
 {
-    NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    //NSLog(@"Jestem tu! %@", self.urlToMainJSON);
     if (![self checkConnection])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"No connection" object:nil];

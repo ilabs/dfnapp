@@ -37,12 +37,12 @@
 - (void)progressBar:(NSNotification *)notif;
 {
     float progress = [[notif object] floatValue];
-    NSLog(@"progress: %f", progress);
+    /*NSLog(@"progress: %f", progress);
     NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
     for (int i = 0; i < progress; i++)
         [string appendString:@"=>"];
     NSLog(@"%@", string);
-     
+     */
     [self.loadingView setLoadingProgress:progress];
     //[self.loadingView performSelectorOnMainThread:@selector(setLoadingProgress:) withObject:[] waitUntilDone:NO];
 }
@@ -73,15 +73,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(progressBar:) name:@"DownloadProgress" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(dataDidNotLoad:) name:@"No connection" object:nil];
+                                             selector:@selector(dataDidNotLoad) name:@"No connection" object:nil];
     
     [self performSelectorInBackground:@selector(loadDataAsync) withObject:nil];
 }
 
 - (void)loadDataAsync {
-    DataFetcher *dataFetcher = [DataFetcher sharedInstance];
-    [dataFetcher updateData];
-    [self dataDidLoad];
+    @autoreleasepool {
+        DataFetcher *dataFetcher = [DataFetcher sharedInstance];
+        [dataFetcher updateData];
+        [self dataDidLoad];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
