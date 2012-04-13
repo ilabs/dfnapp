@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutUsView : UIViewController
+{
+    IBOutlet UIView *subView;
+}
 
 @end

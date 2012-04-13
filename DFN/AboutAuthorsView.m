@@ -1,15 +1,14 @@
 //
-//  AboutUsView.m
+//  AboutAuthorsView.m
 //  DFN
 //
-//  Created by Radoslaw Wilczak on 09.04.2012.
+//  Created by Radoslaw Wilczak on 11.04.2012.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
-#import "AboutUsView.h"
 #import "AboutAuthorsView.h"
 
-@implementation AboutUsView
+@implementation AboutAuthorsView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -18,6 +17,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)setAuthor:(NSString*)description onButton:(UIButton*)button
+{
+    [button setTitle:description forState:UIControlStateNormal];
+    [button.titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [button.titleLabel setTextAlignment:UITextAlignmentCenter];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,10 +39,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"About Us";
-    [subView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:subView];
-    
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self setAuthor:@"Paweł Nużka\npawelqus@gmail.com" onButton:button1];
+    [self setAuthor:@"Radek Wilczak\nradekwilczak@gmail.com" onButton:button2];
+    [self setAuthor:@"Michał Jodko\nthe.kazior@gmail.com" onButton:button3];
+    [self setAuthor:@"Marcin Raburski\nvxc.phoenix@gmail.com" onButton:button4];
+    [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button5];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -51,12 +59,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (IBAction)oAutorachButtonClicked:(id)sender {
-    AboutAuthorsView *detailViewController = [[AboutAuthorsView alloc] initWithNibName:@"AboutAuthorsView" bundle:nil];
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
 }
 
 @end
