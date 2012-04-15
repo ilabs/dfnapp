@@ -111,16 +111,12 @@
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
     SearchView *search = [[[SearchView alloc] init] autorelease];
-    AboutUsView *aboutUsView = [[[AboutUsView alloc] initWithNibName:@"AboutUsView" bundle:nil] autorelease];  
-    
+       
     _navigationLectures = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
     _navigationLectures.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     obserwNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
         
-    _navigationAboutUs = [[[UINavigationController alloc] initWithRootViewController:aboutUsView] autorelease];
-    _navigationAboutUs.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
@@ -131,13 +127,10 @@
     // Ustawiamy dla kazdego view buttona
     _navigationLectures.tabBarItem = item1;
     obserwNav.tabBarItem = item2;
-    //search.tabBarItem = item3;
-    _navigationAboutUs.tabBarItem = item3;  //tylko do testowania AboutUs
+    search.tabBarItem = item3;
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
     _navigationLectures.view.backgroundColor = [UIColor clearColor];
-    _navigationAboutUs.view.backgroundColor = [UIColor clearColor];
-    aboutUsView.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
     obserwNav.view.backgroundColor = [UIColor clearColor];
     search.view.backgroundColor = [UIColor clearColor];
@@ -146,8 +139,7 @@
     NSMutableArray *views = [[[NSMutableArray alloc] init] autorelease];
     [views addObject:_navigationLectures];
     [views addObject:obserwNav];
-    //[views addObject:search];
-    [views addObject:_navigationAboutUs];
+    [views addObject:search];
         
     [_tabBar setViewControllers:views];
     

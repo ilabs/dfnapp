@@ -7,7 +7,6 @@
 //
 
 #import "AboutUsView.h"
-#import "AboutAuthorsView.h"
 
 @implementation AboutUsView
 
@@ -28,14 +27,29 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)setAuthor:(NSString*)description onButton:(UIButton*)button
+{
+    [button setTitle:description forState:UIControlStateNormal];
+    [button.titleLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [button.titleLabel setTextAlignment:UITextAlignmentCenter];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"About Us";
+    self.title = @"O nas";
+    scrollView.contentSize = subView.frame.size;
+    
     [subView setBackgroundColor:[UIColor clearColor]];
+    [self setAuthor:@"Paweł Nużka\npawelqus@gmail.com" onButton:button1];
+    [self setAuthor:@"Radek Wilczak\nradekwilczak@gmail.com" onButton:button2];
+    [self setAuthor:@"Michał Jodko\nthe.kazior@gmail.com" onButton:button3];
+    [self setAuthor:@"Marcin Raburski\nvxc.phoenix@gmail.com" onButton:button4];
+    [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button5];
     [self.view addSubview:subView];
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -53,10 +67,5 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)oAutorachButtonClicked:(id)sender {
-    AboutAuthorsView *detailViewController = [[AboutAuthorsView alloc] initWithNibName:@"AboutAuthorsView" bundle:nil];
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-}
 
 @end

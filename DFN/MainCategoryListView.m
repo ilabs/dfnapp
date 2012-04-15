@@ -7,6 +7,7 @@
 //
 
 #import "MainCategoryListView.h"
+#import "AboutUsView.h"
 
 @implementation MainCategoryListView
 
@@ -197,12 +198,11 @@
         subCategoryListView.view.backgroundColor = [UIColor clearColor];
         [subCategoryListView release];
     }else{ // About us
-        /* // wystarczy odkomentowac...
         AboutUsView *aboutUs = [[AboutUsView alloc] initWithNibName:@"AboutUsView" bundle:nil];
-        [self.navigationController pushViewController:abousUs animated:YES];
-        abousUs.view.backgroundColor = [UIColor clearColor];
+        [self.navigationController pushViewController:aboutUs animated:YES];
+        aboutUs.view.backgroundColor = [UIColor clearColor];
         [aboutUs release];
-         */
+        
     }
      
 }

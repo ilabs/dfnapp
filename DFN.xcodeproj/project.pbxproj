@@ -50,8 +50,6 @@
 		BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A85151510B5009F3628 /* LecturesListView.xib */; };
 		BFA3487A1533428800D0EBEE /* AboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA348781533428800D0EBEE /* AboutUsView.m */; };
 		BFA3487B1533428800D0EBEE /* AboutUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA348791533428800D0EBEE /* AboutUsView.xib */; };
-		BFDA1EC3153594EB00C216F8 /* AboutAuthorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDA1EC1153594EB00C216F8 /* AboutAuthorsView.m */; };
-		BFDA1EC4153594EB00C216F8 /* AboutAuthorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFDA1EC2153594EB00C216F8 /* AboutAuthorsView.xib */; };
 		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
 		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
 		E848BFCA15167672000640A3 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFC815167672000640A3 /* logo2.png */; };
@@ -154,9 +152,6 @@
 		BFA348771533428800D0EBEE /* AboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsView.h; sourceTree = "<group>"; };
 		BFA348781533428800D0EBEE /* AboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsView.m; sourceTree = "<group>"; };
 		BFA348791533428800D0EBEE /* AboutUsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsView.xib; sourceTree = "<group>"; };
-		BFDA1EC0153594EB00C216F8 /* AboutAuthorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutAuthorsView.h; sourceTree = "<group>"; };
-		BFDA1EC1153594EB00C216F8 /* AboutAuthorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAuthorsView.m; sourceTree = "<group>"; };
-		BFDA1EC2153594EB00C216F8 /* AboutAuthorsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAuthorsView.xib; sourceTree = "<group>"; };
 		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
 		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
 		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
@@ -405,20 +400,9 @@
 			name = AboutUsView;
 			sourceTree = "<group>";
 		};
-		BFA3487115333B5100D0EBEE /* OAutorachView */ = {
-			isa = PBXGroup;
-			children = (
-				BFDA1EC0153594EB00C216F8 /* AboutAuthorsView.h */,
-				BFDA1EC1153594EB00C216F8 /* AboutAuthorsView.m */,
-				BFDA1EC2153594EB00C216F8 /* AboutAuthorsView.xib */,
-			);
-			name = OAutorachView;
-			sourceTree = "<group>";
-		};
 		E80A804B15090F8E006C1E3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BFA3487115333B5100D0EBEE /* OAutorachView */,
 				BFA3486A153336FF00D0EBEE /* AboutUsView */,
 				BF094A8215151091009F3628 /* LecturesListView */,
 				BF094A7C1515106F009F3628 /* SubCategoryListView */,
@@ -579,7 +563,6 @@
 				E875C2D51531E1910077C0E8 /* info.png in Resources */,
 				E875C2D61531E1910077C0E8 /* info@2x.png in Resources */,
 				BFA3487B1533428800D0EBEE /* AboutUsView.xib in Resources */,
-				BFDA1EC4153594EB00C216F8 /* AboutAuthorsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,7 +600,6 @@
 				50AFF23A152E694200418C3F /* Model.xcdatamodeld in Sources */,
 				E8A1D71F1530C5250091DC5A /* WatchedView.m in Sources */,
 				BFA3487A1533428800D0EBEE /* AboutUsView.m in Sources */,
-				BFDA1EC3153594EB00C216F8 /* AboutAuthorsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

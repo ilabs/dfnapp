@@ -11,6 +11,10 @@
 @interface AboutUsView : UIViewController
 {
     IBOutlet UIView *subView;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIButton *button1, *button2, *button3, *button4, *button5; 
+    
 }
+- (void)setAuthor:(NSString*)description onButton:(UIButton*)button;
 
 @end
