@@ -57,10 +57,10 @@
 }
 
 - (void)dataDidNotLoad {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualizacja danych" message:@"Nie można było pobrać nowych danych." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualizacja danych" message:@"Nie można było pobrać nowych danych." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [alert release];
-    [self dataDidLoad];
+    */[self dataDidLoad];
 }
 
 - (void)removeLoadingScreen {
@@ -110,13 +110,15 @@
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
-    SearchView *search = [[[SearchView alloc] init] autorelease];
+    SearchView *search = [[[SearchView alloc] initWithNibName:@"SearchView" bundle:nil] autorelease];
        
     _navigationLectures = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
+    UINavigationController *searchNav = [[[UINavigationController alloc] initWithRootViewController:search] autorelease];
     _navigationLectures.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     obserwNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-        
+    searchNav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
     _tabBar = [[[UITabBarController alloc] init] autorelease];
     
     // Buttony na TabBar
@@ -127,19 +129,20 @@
     // Ustawiamy dla kazdego view buttona
     _navigationLectures.tabBarItem = item1;
     obserwNav.tabBarItem = item2;
-    search.tabBarItem = item3;
+    searchNav.tabBarItem = item3;
     
     // Zeby bylo widac tlo, ustawiamy odpowiednio background naszego widoku (mozna tez dac w viewDidLoad)
     _navigationLectures.view.backgroundColor = [UIColor clearColor];
     mainView.view.backgroundColor = [UIColor clearColor];
     obserwNav.view.backgroundColor = [UIColor clearColor];
+    searchNav.view.backgroundColor = [UIColor clearColor];
     search.view.backgroundColor = [UIColor clearColor];
     
     // Dodajemy widoki do listy
     NSMutableArray *views = [[[NSMutableArray alloc] init] autorelease];
     [views addObject:_navigationLectures];
     [views addObject:obserwNav];
-    [views addObject:search];
+    [views addObject:searchNav];
         
     [_tabBar setViewControllers:views];
     
@@ -152,12 +155,18 @@
     [self.window addSubview:[_tabBar view]];
     
     // Loading view commituje krotka animacja i wywoluje (void)loadData
-    _loadingView = [[LoadingView alloc] initWithNibName:@"LoadingView" bundle:nil];
-    [self.window addSubview:_loadingView.view];
+    [self showLoadingView:YES];
     
     // To co tu bylo jest teraz w -loadData!
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)showLoadingView:(BOOL)isStartup {
+    // Loading view commituje krotka animacja i wywoluje (void)loadData
+    _loadingView = [[LoadingView alloc] initWithNibName:@"LoadingView" bundle:nil];
+    _loadingView.animatedStart = isStartup;
+    [self.window addSubview:_loadingView.view];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -14,4 +14,5 @@
     UIImage *changed;
 }
 
+- (void)refreshData;
 @end

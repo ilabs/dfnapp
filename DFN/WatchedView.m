@@ -9,6 +9,7 @@
 #import "WatchedView.h"
 #import "DatabaseManager.h"
 #import "LectureView.h"
+#import "DFNAppDelegate.h"
 
 @implementation WatchedView
 
@@ -41,6 +42,12 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.editButtonItem.title = @"Edytuj";
     changed = nil;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
+}
+
+- (void)refreshData {
+    // Loading view commituje krotka animacja i wywoluje (void)loadData
+    [((DFNAppDelegate*)[UIApplication sharedApplication].delegate) showLoadingView:NO];
 }
 
 - (void)viewDidUnload

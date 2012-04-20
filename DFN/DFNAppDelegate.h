@@ -24,6 +24,6 @@
 - (void)removeLoadingScreen;
 - (void)dataDidLoad;
 - (void)dataDidNotLoad;
-
+- (void)showLoadingView:(BOOL)isStartup;
 
 @end

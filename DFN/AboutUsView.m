@@ -46,7 +46,7 @@
     [self setAuthor:@"Paweł Nużka\npawelqus@gmail.com" onButton:button1];
     [self setAuthor:@"Radek Wilczak\nradekwilczak@gmail.com" onButton:button2];
     [self setAuthor:@"Michał Jodko\nthe.kazior@gmail.com" onButton:button3];
-    [self setAuthor:@"Marcin Raburski\nvxc.phoenix@gmail.com" onButton:button4];
+    [self setAuthor:@"Marcin Raburski\nrabursky@gmail.com" onButton:button4];
     [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button5];
     [self.view addSubview:subView];
     

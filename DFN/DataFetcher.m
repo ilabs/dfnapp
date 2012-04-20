@@ -260,7 +260,7 @@ BOOL showProgress = FALSE;
                     [dbEvent setPlace:dbPlace];
                     [self notifyUpdatedEvent:dbEvent];
                 }
-                
+                ID = [eventDatesData objectForKey:@"lokalizacja"];
                 if (![dbPlace.address isEqualToString:(NSString *)ID])
                 {
                     [dbPlace setAddress:(NSString *)ID];
@@ -272,6 +272,7 @@ BOOL showProgress = FALSE;
                 {
                     if (![dbPlace.city isEqualToString:(NSString *)ID])
                     {
+                        
                         [dbPlace setCity:(NSString *)ID];
                         [self notifyUpdatedEvent:dbEvent];
                     }

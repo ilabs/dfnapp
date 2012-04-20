@@ -13,7 +13,6 @@
     IBOutlet UIView *viewBase;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UILabel *titleLabel;
-    IBOutlet UILabel *dateLabel;
     IBOutlet UILabel *placeLabel;
     IBOutlet UILabel *placeCityLabel;
     IBOutlet UILabel *organisationLabel;
@@ -23,7 +22,18 @@
     IBOutlet UIButton *signinButton;
     IBOutlet UIButton *watchButton;
     IBOutlet UILabel *dodanoLabel;
+    IBOutlet UITableView *tableView;
+    IBOutlet UITableView *datesTableView;
+    IBOutlet UIButton *tableViewBackground;
+    IBOutlet UIButton *datesTableViewBackground;
+    IBOutlet UILabel *signinLabel;
+    IBOutlet UIImageView *signinImage;
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *dateFormatterHour;
+    NSArray *lecturersList;
+    NSArray *dates;
     Event *event;
+    int selected;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event;

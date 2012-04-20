@@ -19,6 +19,8 @@
     NSArray *authors;
 }
 
+@property (assign) BOOL animatedStart; // czy ma być fadeOut loga DFN (obrazek na ladowanie apki)
+
 - (void)setLoadingProgress:(float)prog;
 //- (void)setLoadingProgress:(NSNumber*)prog;
 

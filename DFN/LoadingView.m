@@ -10,6 +10,8 @@
 
 @implementation LoadingView
 
+@synthesize animatedStart;
+
 - (void)setLoadingProgress:(float)prog {
     dispatch_sync(dispatch_get_main_queue(), ^{
         if([progressBar respondsToSelector:@selector(setProgress:animated:)])
@@ -38,6 +40,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        animatedStart = NO;
     }
     return self;
 }
@@ -66,19 +69,35 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     int randomIndex = arc4random() % [texts count];
     randomText.text = [texts objectAtIndex:randomIndex];
     authorLabel.text = [authors objectAtIndex:randomIndex];
+    if(!animatedStart){
+        defaultImage.alpha = 0.0;
+        backView.alpha = 0.0;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     [indicator startAnimating];
     self.view.backgroundColor = [UIColor clearColor];
-    [UIView beginAnimations:@"Intro" context:NULL];
-    [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
-    [UIView setAnimationDidStopSelector:@selector(loadData)];
-    [UIView setAnimationDuration:0.6];
-    defaultImage.alpha = 0.0;
-    backView.alpha = 0.7;
-    [UIView commitAnimations];
+    if(animatedStart){
+        [UIView beginAnimations:@"Intro" context:NULL];
+        [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
+        [UIView setAnimationDidStopSelector:@selector(loadData)];
+        [UIView setAnimationDuration:0.6];
+        defaultImage.alpha = 0.0;
+        backView.alpha = 0.7;
+        [UIView commitAnimations];
+    }else{
+        [UIView beginAnimations:@"Normal Fade" context:NULL];
+        [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
+        [UIView setAnimationDidStopSelector:@selector(loadData)];
+        [UIView setAnimationDuration:0.6];
+        backView.alpha = 0.7;
+        [UIView commitAnimations];
+    }
 }
 
 - (void)viewDidUnload
