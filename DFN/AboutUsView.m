@@ -66,6 +66,19 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
+- (IBAction)button1Clicked:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:pawelqus@gmail.com"]];
+}
+- (IBAction)button2Clicked:(id)sender {
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:radekwilczak@gmail.com"]];
+}
+- (IBAction)button3Clicked:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:the.kazior@gmail.com"]];
+}
+- (IBAction)button4Clicked:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:rabursk@gmail.com"]];
+}
+- (IBAction)button5Clicked:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:edzio27@gmail.com"]];
+}
 @end
