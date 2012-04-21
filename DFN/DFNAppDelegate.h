@@ -18,6 +18,9 @@
 @property (nonatomic, retain) IBOutlet LoadingView *loadingView;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationLectures;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationAboutUs;
+@property (readonly, retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, retain, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, retain, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)loadData;
 - (void)loadDataAsync;
@@ -25,5 +28,6 @@
 - (void)dataDidLoad;
 - (void)dataDidNotLoad;
 - (void)showLoadingView:(BOOL)isStartup;
-
+- (NSURL *)applicationDocumentsDirectory;
+- (void)saveContext;
 @end

@@ -22,7 +22,9 @@
     
 }
 //********************************************************************************************************
++(void)setUpDatabase:(NSPersistentStoreCoordinator *)_persistentStoreCoordinator;
 +(id)sharedInstance;
+-(void)refreshState;
 //********************************************************************************************************
 - (void)saveDatabase;
 - (NSString *) databasePath;

@@ -125,7 +125,10 @@
     list = [[[DatabaseManager sharedInstance] getAllWatched] retain];
     [tableView reloadData];
 }
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [list release];
+}
 - (void)dealloc{
     [list release];
     [changed release];

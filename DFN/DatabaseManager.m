@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 pawelqus@gmail.com. All rights reserved.
 //
 
+#import "DFNAppDelegate.h"
 #import "DatabaseManager.h"
 #import "WatchedEntities.h"
 #import "Update.h"
@@ -14,13 +15,26 @@
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 - (NSString *)applicationDocumentsDirectory;
 
 @end
 
 @implementation DatabaseManager
++(void)setUpDatabase:(NSPersistentStoreCoordinator *)_persistentStoreCoordinator
+{
+    static id master = nil;
+    
+    @synchronized(self)
+    {
+        if (master == nil)
+        {
+            master = [self new];
+            [master setPersistentStoreCoordinator:_persistentStoreCoordinator];
+        }   
+    }
 
+}
 + (id)sharedInstance
 {
     static id master = nil;
@@ -41,7 +55,16 @@
 {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
-
+-(void)refreshState
+{
+    [self saveDatabase];
+    [managedObjectContext release];
+}
+- (void)setManagedObjectContext:(NSManagedObjectContext *)_managedObjectContext
+{
+    [managedObjectContext release];
+    managedObjectContext = nil;
+}
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (managedObjectContext != nil)
@@ -68,6 +91,11 @@
     return managedObjectModel;
 }
 
+- (void)setPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)_persistentStoreCoordinator
+{
+    if (!persistentStoreCoordinator)
+        persistentStoreCoordinator = _persistentStoreCoordinator;
+}
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (persistentStoreCoordinator != nil)
@@ -115,41 +143,48 @@
 //*Fetching queries from database;
 - (NSArray *)fetchedManagedObjectsForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entity;
-    request.predicate = predicate;
-    
-    NSArray *results = [context executeFetchRequest:request error:nil];
+    @synchronized(self)
+    {
+        NSManagedObjectContext *context = [self managedObjectContext];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        request.entity = entity;
+        request.predicate = predicate;
+        
+        NSArray *results = [context executeFetchRequest:request error:nil];
 
-    [request release];
-    if ((results != nil) && ([results count] == 0))
-        results = nil;
-    return results;
+        [request release];
+        if ((results != nil) && ([results count] == 0))
+            results = nil;
+        return results;
+    }
 }
 - (NSArray *)fetchedManagedObjectsForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate withSortingByKey:(NSString *)key
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setSortDescriptors:sortDescriptors];
-    request.entity = entity;
-    
-    if(predicate != nil)
-        [request setPredicate:predicate];
-    
-    NSArray *results = [context executeFetchRequest:request error:nil];
-    [request release];
-    if ((results != nil) && ([results count] == 0))
-        results = nil;
-    [sortDescriptor autorelease];
-    [sortDescriptors autorelease];
-    return results;
+    @synchronized(self)
+    {
+
+        NSManagedObjectContext *context = [self managedObjectContext];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setSortDescriptors:sortDescriptors];
+        request.entity = entity;
+        
+        if(predicate != nil)
+            [request setPredicate:predicate];
+        
+        NSArray *results = [context executeFetchRequest:request error:nil];
+        [request release];
+        if ((results != nil) && ([results count] == 0))
+            results = nil;
+        [sortDescriptor autorelease];
+        [sortDescriptors autorelease];
+        return results;
+    }
 }
 
 -(NSManagedObject *) getEntity:(NSString *)entity withId:(NSString *)entityId
@@ -192,7 +227,9 @@
 }
 - (Event *)createEvent
 {
-    return (Event *)[self createEntity:@"Event" withID:nil];
+    Event * event = (Event *)[self createEntity:@"Event" withID:nil];
+    [event setShowAsUpdated:[NSNumber numberWithBool:NO]];
+    return event;
 }
 - (Category *)createCategoryWithId:(NSString *)ID
 {
@@ -510,7 +547,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-    NSLog(@"zapisuje checksume event %@", checksum);
+   // NSLog(@"zapisuje checksume event %@", checksum);
 }
 - (void)saveChecksum:(NSString *)md5 withEventsDatesNumber:(int)eventsDatesNumber
 {
@@ -527,7 +564,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-    NSLog(@"zapisuje checksume event date %@", checksum);
+   // NSLog(@"zapisuje checksume event date %@", checksum);
 }
 - (int)getNumberOfEventsChecksums
 {

@@ -18,5 +18,6 @@
 //@property (nonatomic, retain)UINavigationController *navigationController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(Category*)_category;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil events:(NSArray *)_events;
 
 @end

@@ -14,7 +14,7 @@
 #define DYNAMIC_JSON_PATH @"http://michaljodko.com/dfn/terminy.json"
 
 @implementation DataFetcher
-@synthesize urlToMainJSON, urlToEventsJSON, urlToEventsDatesJSON;
+@synthesize urlToMainJSON, urlToEventsJSON, urlToEventsDatesJSON, xsdDateTimeFormatter;
 
 BOOL showProgress = FALSE; 
 
@@ -30,6 +30,7 @@ BOOL showProgress = FALSE;
             [master setUrlToMainJSON:MAIN_JSON_PATH];
             [master setUrlToEventsJSON:STATIC_JSON_PATH];
             [master setUrlToEventsDatesJSON:DYNAMIC_JSON_PATH];
+            [master setXsdDateTimeFormatter:[[NSDateFormatter alloc] init]];
         }
     }
     return master;
@@ -41,43 +42,33 @@ BOOL showProgress = FALSE;
 
 -(NSDate *)jsonDateAndTimeToNSDate:(NSString *)dateTime
 {
-    NSDateFormatter *xsdDateTimeFormatter;
-    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
-    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    self.xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = nil;
-    date = [xsdDateTimeFormatter dateFromString: dateTime];
-    NSLog(@"skonwertowana data %@", date);
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
-    [xsdDateTimeFormatter autorelease];
+    date = [self.xsdDateTimeFormatter dateFromString: dateTime];
     return (date);
 }
 -(NSDate *)xsdDateToNSDate:(NSString *)dateTime {
-    NSDateFormatter *xsdDateTimeFormatter;
-    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
-    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
+     self.xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
     NSDate *date = nil;
-    date = [xsdDateTimeFormatter dateFromString: dateTime];
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
-    [xsdDateTimeFormatter autorelease];
+    date = [self.xsdDateTimeFormatter dateFromString: dateTime];
     return (date);
 }
 -(NSDate *)xsdDateTimeToNSDate:(NSString *)dateString andTime:(NSString *)time {
-    NSDateFormatter *xsdDateTimeFormatter;
     NSMutableString *datetime = [NSMutableString stringWithFormat:@"%@", dateString];
     [datetime appendFormat:@";"];
     [datetime appendString:time];
-    xsdDateTimeFormatter = [[NSDateFormatter alloc] init];
-    xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss";
+    self.xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd;HH:mm:ss";
     NSDate *date = nil;
-    date = [xsdDateTimeFormatter dateFromString: datetime];
-    // if (date==nil) NSLog(@"could not parse date '%@'", dateTime);
-    [xsdDateTimeFormatter autorelease];
+    date = [self.xsdDateTimeFormatter dateFromString: datetime];
     return (date);
 }
 - (void)notifyUpdatedEvent:(Event *)dbEvent
 {
     if ([[DatabaseManager sharedInstance] isWatched:dbEvent])
+    {
+        [dbEvent setShowAsUpdated:[NSNumber numberWithBool:YES]];
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Event updated" object:[dbEvent dbID]]];
+    }
 }
 - (void)updateEvent:(Event *)dbEvent withForm:(NSString *)form
 {
@@ -121,6 +112,7 @@ BOOL showProgress = FALSE;
     int all = [eventsData count];
     for (NSDictionary *event in eventsData)
     {
+        [dbManager refreshState];
         NSLog(@"%d %@",i, [event description] );
         i++;
         Event * dbEvent = [dbManager getEventWithId:[event objectForKey:@"id_imprezy"]];
@@ -154,9 +146,6 @@ BOOL showProgress = FALSE;
                 [self notifyUpdatedEvent:dbEvent];
             }
         }
-        ID = [event objectForKey:@"e_mail"];
-        if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setEmail:(NSString *)ID];
         ID = [event objectForKey:@"opis"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setDescriptionContent:(NSString *)ID];
@@ -191,9 +180,13 @@ BOOL showProgress = FALSE;
             [dbEvent setTitle:(NSString *)ID]; 
         
         if (i % (all/10) == 0 && showProgress)
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+        {
+            [dbManager saveDatabase];
+            [dbManager refreshState];
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
                                                                 object:[NSNumber numberWithFloat:i/(all*2.0)]];
-        
+        }
+
     }
 }
 - (void)updateEventsData
@@ -311,7 +304,6 @@ BOOL showProgress = FALSE;
     int numberOfEventsDates = [(NSString *)[checksums objectForKey:@"ile_terminow"] intValue];
     NSLog(@"# imprez - %d , # dat - %d", numberOfEvents, numberOfEventsDates);
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    
     if ([dbManager getNumberOfEventsChecksums] == 0)
     {
         showProgress = TRUE;
@@ -417,6 +409,7 @@ BOOL showProgress = FALSE;
     [self.urlToMainJSON release];
     [self.urlToEventsJSON release];
     [self.urlToEventsDatesJSON release];
+    [self.xsdDateTimeFormatter release];
     [super dealloc];
 }
 @end

@@ -15,13 +15,13 @@
 		50AFF21C152E670F00418C3F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF21B152E670F00418C3F /* Place.m */; };
 		50AFF21F152E670F00418C3F /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF21E152E670F00418C3F /* Category.m */; };
 		50AFF222152E670F00418C3F /* WatchedEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF221152E670F00418C3F /* WatchedEntities.m */; };
-		50AFF225152E670F00418C3F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF224152E670F00418C3F /* Event.m */; };
-		50AFF228152E670F00418C3F /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF227152E670F00418C3F /* EventDate.m */; };
 		50AFF22B152E673F00418C3F /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF22A152E673F00418C3F /* DatabaseManager.m */; };
 		50AFF230152E676200418C3F /* DataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF22D152E676200418C3F /* DataFetcher.m */; };
 		50AFF231152E676200418C3F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF22F152E676200418C3F /* Reachability.m */; };
 		50AFF237152E680F00418C3F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AFF236152E680F00418C3F /* SystemConfiguration.framework */; };
 		50AFF23A152E694200418C3F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF238152E694200418C3F /* Model.xcdatamodeld */; };
+		50B583C9154349F9001BCF06 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B583C8154349F9001BCF06 /* Event.m */; };
+		50B583CF15434A1A001BCF06 /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B583CE15434A1A001BCF06 /* EventDate.m */; };
 		50E4A49E151A5BAC00467B87 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 50E4A492151A5BAC00467B87 /* 1.png */; };
 		50E4A49F151A5BAC00467B87 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 50E4A493151A5BAC00467B87 /* 2.png */; };
 		50E4A4A0151A5BAC00467B87 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 50E4A494151A5BAC00467B87 /* 3.png */; };
@@ -109,10 +109,6 @@
 		50AFF21E152E670F00418C3F /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		50AFF220152E670F00418C3F /* WatchedEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchedEntities.h; sourceTree = "<group>"; };
 		50AFF221152E670F00418C3F /* WatchedEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchedEntities.m; sourceTree = "<group>"; };
-		50AFF223152E670F00418C3F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		50AFF224152E670F00418C3F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		50AFF226152E670F00418C3F /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
-		50AFF227152E670F00418C3F /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
 		50AFF229152E673F00418C3F /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
 		50AFF22A152E673F00418C3F /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 		50AFF22C152E676200418C3F /* DataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFetcher.h; sourceTree = "<group>"; };
@@ -121,6 +117,10 @@
 		50AFF22F152E676200418C3F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		50AFF236152E680F00418C3F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
 		50AFF239152E694200418C3F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		50B583C7154349F9001BCF06 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		50B583C8154349F9001BCF06 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		50B583CD15434A1A001BCF06 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
+		50B583CE15434A1A001BCF06 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
 		50E4A492151A5BAC00467B87 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		50E4A493151A5BAC00467B87 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		50E4A494151A5BAC00467B87 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -232,11 +232,11 @@
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
 				50AFF229152E673F00418C3F /* DatabaseManager.h */,
 				50AFF22A152E673F00418C3F /* DatabaseManager.m */,
+				50B583CD15434A1A001BCF06 /* EventDate.h */,
+				50B583CE15434A1A001BCF06 /* EventDate.m */,
+				50B583C7154349F9001BCF06 /* Event.h */,
+				50B583C8154349F9001BCF06 /* Event.m */,
 				50AFF20B152E670E00418C3F /* EventForm.h */,
-				50AFF226152E670F00418C3F /* EventDate.h */,
-				50AFF227152E670F00418C3F /* EventDate.m */,
-				50AFF223152E670F00418C3F /* Event.h */,
-				50AFF224152E670F00418C3F /* Event.m */,
 				50AFF220152E670F00418C3F /* WatchedEntities.h */,
 				50AFF221152E670F00418C3F /* WatchedEntities.m */,
 				50AFF21D152E670F00418C3F /* Category.h */,
@@ -617,8 +617,6 @@
 				50AFF21C152E670F00418C3F /* Place.m in Sources */,
 				50AFF21F152E670F00418C3F /* Category.m in Sources */,
 				50AFF222152E670F00418C3F /* WatchedEntities.m in Sources */,
-				50AFF225152E670F00418C3F /* Event.m in Sources */,
-				50AFF228152E670F00418C3F /* EventDate.m in Sources */,
 				50AFF22B152E673F00418C3F /* DatabaseManager.m in Sources */,
 				50AFF230152E676200418C3F /* DataFetcher.m in Sources */,
 				50AFF231152E676200418C3F /* Reachability.m in Sources */,
@@ -626,6 +624,8 @@
 				E8A1D71F1530C5250091DC5A /* WatchedView.m in Sources */,
 				BFA3487A1533428800D0EBEE /* AboutUsView.m in Sources */,
 				E8A3EEAB1541DF7600596388 /* SignInView.m in Sources */,
+				50B583C9154349F9001BCF06 /* Event.m in Sources */,
+				50B583CF15434A1A001BCF06 /* EventDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

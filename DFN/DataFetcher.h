@@ -17,6 +17,8 @@
     NSString * urlToEventsJSON;
     NSString * urlToEventsDatesJSON;
     JSONDecoder *jsonDecoder;
+    NSDateFormatter *xsdDateTimeFormatter;
+    
 }
 
 + (id)sharedInstance;
@@ -27,6 +29,7 @@
 @property (retain) NSString *urlToMainJSON;
 @property (retain) NSString *urlToEventsJSON;
 @property (retain) NSString *urlToEventsDatesJSON;
+@property (retain) NSDateFormatter *xsdDateTimeFormatter;
 @property (readonly) JSONDecoder *jsonDecoder;
 
 @end

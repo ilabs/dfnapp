@@ -80,11 +80,11 @@
          startDate, endDate];
     
     NSArray *events = [[DatabaseManager sharedInstance] fetchedManagedObjectsForEntity:@"Event" withPredicate:predicate];
-
     if(events) {
         LecturesListView *lecturesList = [[[LecturesListView alloc] initWithNibName:@"LecturesListView" bundle:nil events:events] autorelease];
         [self.navigationController pushViewController:lecturesList animated:YES];
     } else {
+        NSLog(@"not found");
         [[[[UIAlertView alloc] initWithTitle:@"Wyszukiwanie" message:@"Brak wyników wyszukiwania według ustalonych kryteriów!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
     }
 }

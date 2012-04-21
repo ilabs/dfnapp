@@ -16,12 +16,12 @@
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lecturer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lecturersTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="showAsUpdated" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="subscription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="events" inverseEntity="Category" syncable="YES"/>
@@ -29,6 +29,7 @@
         <relationship name="forms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventForm" inverseName="event" inverseEntity="EventForm" syncable="YES"/>
         <relationship name="organisation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Organisation" inverseName="events" inverseEntity="Organisation" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="event" inverseEntity="Place" syncable="YES"/>
+        <relationship name="subscribedDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventDate" inverseName="subscribeEvent" inverseEntity="EventDate" syncable="YES"/>
         <relationship name="watched" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WatchedEntities" inverseName="watched" inverseEntity="WatchedEntities" syncable="YES"/>
     </entity>
     <entity name="EventDate" representedClassName="EventDate" syncable="YES">
@@ -38,6 +39,7 @@
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="openingHour" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="dates" inverseEntity="Event" syncable="YES"/>
+        <relationship name="subscribeEvent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="subscribedDates" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="EventForm" representedClassName="EventForm" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>

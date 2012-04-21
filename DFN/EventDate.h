@@ -2,8 +2,8 @@
 //  EventDate.h
 //  DFN
 //
-//  Created by Pawel Nuzka on 4/6/12.
-//  Copyright (c) 2012 Pawel.Nuzka@gmail.com. All rights reserved.
+//  Created by Pawel Nuzka on 4/21/12.
+//  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSDate * lastUpdate;
 @property (nonatomic, retain) NSDate * openingHour;
 @property (nonatomic, retain) Event *event;
+@property (nonatomic, retain) Event *subscribeEvent;
 
 @end
