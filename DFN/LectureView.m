@@ -28,6 +28,7 @@
         [m addToWatchedEntities:event];
         [watchButton setEnabled:NO];
         [dodanoLabel setHidden:NO];
+        
     }
 }
 
@@ -187,13 +188,17 @@
         }
     }
     
-    if((event.subscription != nil && event.subscription.length>1) || [event.subscription rangeOfString:@""].location != NSNotFound ){
+    if((event.subscription != nil && event.subscription.length>1) || [event.subscription rangeOfString:@"grup powyżej"].location != NSNotFound ){
         [signinButton setEnabled:YES];
         [signinLabel setHidden:YES];
         [signinImage setHidden:NO];
         if([event.subscription rangeOfString:@"@"].location == NSNotFound)
         {
             [signinImage setImage:[UIImage imageNamed:@"phone@2x.png"]];
+        }
+    }else{
+        if([event.subscription rangeOfString:@"na bieżąco"].location != NSNotFound || [event.subscription rangeOfString:@"trakcie imprezy"].location){
+            [signinLabel setText:@"Zapisy w trakcie imprezy."];
         }
     }
     viewBase.backgroundColor = [UIColor clearColor];
@@ -249,6 +254,9 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kalendarz" message:@"Czy na pewno chcesz dodać to wydarzenie do kalendarza?" delegate:self cancelButtonTitle:@"Nie" otherButtonTitles:@"TAK", nil];
         [alert show];
         [alert release];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:indexPath.row] forKey:@"string"]];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
@@ -275,6 +283,8 @@
 }
 
 - (void)dealloc {
+    [dateFormatter release];
+    [dateFormatterHour release];
     [event release];
     [lecturersList release];
     [dates release];

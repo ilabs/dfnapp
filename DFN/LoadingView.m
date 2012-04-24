@@ -67,37 +67,26 @@
                 @"Galileusz",
                 @"Archimedes z Syrakuz", nil] retain];
     // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
     int randomIndex = arc4random() % [texts count];
     randomText.text = [texts objectAtIndex:randomIndex];
     authorLabel.text = [authors objectAtIndex:randomIndex];
+    self.view.backgroundColor = [UIColor clearColor];
     if(!animatedStart){
         defaultImage.alpha = 0.0;
         backView.alpha = 0.0;
     }
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
     [indicator startAnimating];
-    self.view.backgroundColor = [UIColor clearColor];
-    if(animatedStart){
-        [UIView beginAnimations:@"Intro" context:NULL];
-        [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
-        [UIView setAnimationDidStopSelector:@selector(loadData)];
-        [UIView setAnimationDuration:0.6];
-        defaultImage.alpha = 0.0;
-        backView.alpha = 0.7;
-        [UIView commitAnimations];
-    }else{
-        [UIView beginAnimations:@"Normal Fade" context:NULL];
-        [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
-        [UIView setAnimationDidStopSelector:@selector(loadData)];
-        [UIView setAnimationDuration:0.6];
-        backView.alpha = 0.7;
-        [UIView commitAnimations];
-    }
+    [UIView beginAnimations:@"Intro" context:NULL];
+    [UIView setAnimationDelegate:[UIApplication sharedApplication].delegate];
+    [UIView setAnimationDidStopSelector:@selector(loadData)];
+    [UIView setAnimationDuration:0.6];
+    defaultImage.alpha = 0.0;
+    backView.alpha = 0.7;
+    [UIView commitAnimations];
 }
 
 - (void)viewDidUnload

@@ -42,7 +42,7 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.editButtonItem.title = @"Edytuj";
     changed = nil;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)] autorelease];
 }
 
 - (void)refreshData {
@@ -86,12 +86,12 @@
     }
     
     [[cell textLabel] setText:((Event*)[list objectAtIndex:[indexPath row]]).title];
-    if(indexPath.row==1){ // TODO: zmienic na ifChanged
+    /*if(indexPath.row==1){ // TODO: zmienic na ifChanged
         if(changed==nil){
             changed = [[UIImage imageNamed:@"changed@2x.png"] retain];
         }
         cell.imageView.image = changed;
-    }
+    }*/
     return cell;
 }
  
@@ -130,7 +130,7 @@
     [list release];
 }
 - (void)dealloc{
-    [list release];
+    //[list release];
     [changed release];
     [super dealloc];
 }

@@ -14,7 +14,7 @@
 #import "SearchView.h"
 #import "WatchedView.h"
 #import "AboutUsView.h"
-
+#import "SimpleSearchView.h"
 
 
 @implementation DFNAppDelegate
@@ -118,7 +118,7 @@
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
-    SearchView *search = [[[SearchView alloc] initWithNibName:@"SearchView" bundle:nil] autorelease];
+    SimpleSearchView *search = [[[SimpleSearchView alloc] initWithNibName:@"SimpleSearchView" bundle:nil] autorelease];
        
     _navigationLectures = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
