@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SimpleSearchView.h"
 
-@interface PickDateView : UIViewController
+@interface PickDateView : UIViewController {
+    IBOutlet UIDatePicker *dateFrom, *dateTo;
+    IBOutlet UIView *conditionView, *lowerPart;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UISwitch *from, *to;
+}
+@property (assign) SimpleSearchView* parent;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(SimpleSearchView*)__parent;
+- (IBAction)toggleFromPicker:(id)sender;
+- (IBAction)toggleToPicker:(id)sender;
 
 @end

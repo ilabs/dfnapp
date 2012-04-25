@@ -17,11 +17,16 @@
 
 @implementation SimpleSearchView
 
+@synthesize fromDate = _fromDate;
+@synthesize toDate = _toDate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.fromDate = [NSDate distantPast];
+        self.toDate = [NSDate distantFuture];
     }
     return self;
 }
@@ -33,17 +38,15 @@
     self.title = @"Szukaj";
     tableView.backgroundColor = [UIColor clearColor];
     listEvents = [[NSArray alloc] init];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"według daty" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter daty" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)];
     timer = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSearch:) name:@"Search" object:nil];
+
 }
 
 - (void)pickDate {
-    PickDateView *pdv = [[[PickDateView alloc] initWithNibName:@"PickDateView" bundle:nil] autorelease];
-    //[self presentModalViewController:pdv animated:YES];
+    PickDateView *pdv = [[[PickDateView alloc] initWithNibName:@"PickDateView" bundle:nil parent:self] autorelease];
     [(UINavigationController*)self.parentViewController pushViewController:pdv animated:YES];
-    //[(UINavigationController*)self.parentViewController pre];
-    pdv.view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSearch:(NSNotification *) notification {
@@ -65,7 +68,7 @@
 }
 
 - (void)searchStart:(NSTimer*)theTimer {
-    NSDate *startDate = [NSDate distantPast], *endDate = [NSDate distantFuture];
+    
     timer = nil;
     NSString *searchText = [theTimer userInfo];
     if ([searchText length]>1) {
@@ -103,7 +106,7 @@
             [args addObjectsFromArray:[NSArray arrayWithObjects:[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word], nil]];
         }
         [predicate appendString:@") and !((none dates.day >= %@) or (none dates.day <= %@))"];
-        [args addObjectsFromArray:[NSArray arrayWithObjects:startDate,endDate, nil]];
+        [args addObjectsFromArray:[NSArray arrayWithObjects:self.fromDate,self.toDate, nil]];
         //[NSPredicate pre];
         NSArray *events = [[DatabaseManager sharedInstance] fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:predicate argumentArray:args]];
 
@@ -121,12 +124,17 @@
         [UIView setAnimationDuration:0.7];
         tableView.alpha = 0.5;
         [UIView commitAnimations];
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(searchStart:) userInfo:[NSMutableString stringWithString:searchText] repeats:NO];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(searchStart:) userInfo:searchText repeats:NO];
     }else{
         [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:0.7]];
         [(NSMutableString*)timer.userInfo setString:searchText];
     }
     
+}
+
+- (void)refreshSearch {
+    
+    [self searchBar:sBar textDidChange:sBar.text];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar

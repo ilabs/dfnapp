@@ -15,7 +15,11 @@
     NSTimer *timer;
 }
 
+@property (nonatomic,retain) NSDate *fromDate;
+@property (nonatomic,retain) NSDate *toDate;
+
 - (void)searchStart:(NSTimer*)theTimer;
 - (void)setSearch:(NSNotification *) notification;
+- (void)refreshSearch;
 
 @end
