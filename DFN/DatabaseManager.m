@@ -514,23 +514,23 @@
     else
         return FALSE;
 }
-- (BOOL)hasAlreadySubscribedAtDate:(NSDate *)date
+- (EventDate *)hasAlreadySubscribedAtDate:(NSDate *)date
 {
     NSArray *subscibedAtDate = [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:
                                 [NSPredicate predicateWithFormat:@"day == %@", date]];
     if ([subscibedAtDate count] > 0)
-        return TRUE;
+        return (EventDate *)[subscibedAtDate objectAtIndex:0];
     
-    return FALSE;
+    return nil;
 }
-- (BOOL)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour
+- (EventDate *)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour
 {
     NSArray *subscibedAtDate = [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:
                                 [NSPredicate predicateWithFormat:@"day == %@ AND openingHour == %@", day, openingHour]];
     if ([subscibedAtDate count] > 0)
-        return TRUE;
+        return (EventDate *)[subscibedAtDate objectAtIndex:0];
     
-    return FALSE;
+    return nil;
 }
 
 

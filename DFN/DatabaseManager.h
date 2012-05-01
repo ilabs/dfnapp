@@ -70,8 +70,8 @@
 - (void)removeFromSubscribedEntities:(EventDate *)eventDate;
 - (BOOL)isSubscribed:(Event *)event;
 - (BOOL)isEventDateSubscribed:(EventDate *)eventDate;
-- (BOOL)hasAlreadySubscribedAtDate:(NSDate *)date;
-- (BOOL)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour;
+- (EventDate *)hasAlreadySubscribedAtDate:(NSDate *)date;
+- (EventDate *)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour;
 //- (void)addEvent:(Event *)event toCategory:(Category *)category;
 //- (void)addPlace:(Place *)place toEvent:(Event *)event;
 //- (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
