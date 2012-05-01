@@ -33,7 +33,7 @@
             [master setPersistentStoreCoordinator:_persistentStoreCoordinator];
         }   
     }
-
+    
 }
 + (id)sharedInstance
 {
@@ -153,7 +153,7 @@
         request.predicate = predicate;
         
         NSArray *results = [context executeFetchRequest:request error:nil];
-
+        
         [request release];
         if ((results != nil) && ([results count] == 0))
             results = nil;
@@ -164,7 +164,7 @@
 {
     @synchronized(self)
     {
-
+        
         NSManagedObjectContext *context = [self managedObjectContext];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
         
@@ -192,11 +192,11 @@
     NSArray *foundEntity;
     if (entityId)
         foundEntity = [self fetchedManagedObjectsForEntity:entity 
-                                          withPredicate:[NSPredicate predicateWithFormat:@"dbID == %@", entityId]];
+                                             withPredicate:[NSPredicate predicateWithFormat:@"dbID == %@", entityId]];
     else
         foundEntity = [self fetchedManagedObjectsForEntity:entity 
                                              withPredicate:nil];
-        
+    
     NSManagedObject *result = nil;
     if (foundEntity != nil && [foundEntity count] > 0)
         result = [foundEntity objectAtIndex:0];
@@ -331,7 +331,7 @@
 - (NSArray *) getAllEventsForCity:(NSString *)city
 {
     Place * place = (Place *)[[self fetchedManagedObjectsForEntity:@"Place" 
-                                           withPredicate:[NSPredicate predicateWithFormat:@"city == %@", city]] objectAtIndex:0];
+                                                     withPredicate:[NSPredicate predicateWithFormat:@"city == %@", city]] objectAtIndex:0];
     return [self getAllEventsForPlace:place];
 }
 - (NSArray *) getAllEventsForPlace:(Place *)place
@@ -362,9 +362,23 @@
     WatchedEntities * watched = [self getWatchedEntities];
     return [[watched watched] allObjects];
 }
+- (NSArray *) getAllSubscribed
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (Event * event in [self getAllWatched])
+        [array addObjectsFromArray:[[event subscribedDates] allObjects]];
+    return array;
+}
 - (BOOL)isWatched:(Event *)event
 {
     if ([event watched])
+        return TRUE;
+    else
+        return FALSE;
+}
+- (BOOL)isSubscribed:(Event *)event
+{
+    if ([[event subscribedDates] count] > 0)
         return TRUE;
     else
         return FALSE;
@@ -479,6 +493,47 @@
     [watched removeWatchedObject:event];
     [self saveDatabase];
 }
+- (void)addToSubscribedEntities:(EventDate *)eventDate
+{
+    Event * event = [eventDate event];
+    [event addSubscribedDatesObject:eventDate];
+    [self addToWatchedEntities:event];
+    [self saveDatabase];
+}
+- (void)removeFromSubscribedEntities:(EventDate *)eventDate
+{
+    Event *event = [eventDate event];
+    [event removeSubscribedDatesObject:eventDate];
+    [self removeFromWatchedEntities:event];
+    [self saveDatabase];
+}
+- (BOOL)isEventDateSubscribed:(EventDate *)eventDate
+{
+    if ([eventDate subscribeEvent])
+        return TRUE;
+    else
+        return FALSE;
+}
+- (BOOL)hasAlreadySubscribedAtDate:(NSDate *)date
+{
+    NSArray *subscibedAtDate = [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:
+                                [NSPredicate predicateWithFormat:@"day == %@", date]];
+    if ([subscibedAtDate count] > 0)
+        return TRUE;
+    
+    return FALSE;
+}
+- (BOOL)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour
+{
+    NSArray *subscibedAtDate = [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:
+                                [NSPredicate predicateWithFormat:@"day == %@ AND openingHour == %@", day, openingHour]];
+    if ([subscibedAtDate count] > 0)
+        return TRUE;
+    
+    return FALSE;
+}
+
+
 - (Update *)getUpdate
 {
     Update *update = (Update *)[[self fetchedManagedObjectsForEntity:@"Update" withPredicate:nil] objectAtIndex:0];
@@ -528,8 +583,8 @@
 {
     Update * update = [self getUpdate];
     Checksum *checksum = [self getChecksumWithPredicate:
-                           [NSPredicate predicateWithFormat:@"((number == %d)) AND ((eventsDatesUpdate == %@))",
-                            eventDatesNumber, update]];
+                          [NSPredicate predicateWithFormat:@"((number == %d)) AND ((eventsDatesUpdate == %@))",
+                           eventDatesNumber, update]];
     return [checksum md5];
 }
 - (void)saveChecksum:(NSString *)md5 withEventsNumber:(int)eventsNumber
@@ -547,7 +602,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-   // NSLog(@"zapisuje checksume event %@", checksum);
+    // NSLog(@"zapisuje checksume event %@", checksum);
 }
 - (void)saveChecksum:(NSString *)md5 withEventsDatesNumber:(int)eventsDatesNumber
 {
@@ -564,7 +619,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-   // NSLog(@"zapisuje checksume event date %@", checksum);
+    // NSLog(@"zapisuje checksume event date %@", checksum);
 }
 - (int)getNumberOfEventsChecksums
 {

@@ -48,7 +48,7 @@ BOOL showProgress = FALSE;
     return (date);
 }
 -(NSDate *)xsdDateToNSDate:(NSString *)dateTime {
-     self.xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
+    self.xsdDateTimeFormatter.dateFormat = @"yyyy-MM-dd";
     NSDate *date = nil;
     date = [self.xsdDateTimeFormatter dateFromString: dateTime];
     return (date);
@@ -101,7 +101,7 @@ BOOL showProgress = FALSE;
             [self notifyUpdatedEvent:dbEvent];
         }
     }
-
+    
 }
 - (void)updateEvents
 {
@@ -112,7 +112,7 @@ BOOL showProgress = FALSE;
     int all = [eventsData count];
     for (NSDictionary *event in eventsData)
     {
-        [dbManager refreshState];
+        //     [dbManager refreshState];
         NSLog(@"%d %@",i, [event description] );
         i++;
         Event * dbEvent = [dbManager getEventWithId:[event objectForKey:@"id_imprezy"]];
@@ -125,7 +125,7 @@ BOOL showProgress = FALSE;
         ID = [event objectForKey:@"forma1"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
             [self updateEvent:dbEvent withForm:(NSString *)ID];
-
+        
         ID = [event objectForKey:@"forma2"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
             [self updateEvent:dbEvent withForm:(NSString *)ID];
@@ -181,19 +181,19 @@ BOOL showProgress = FALSE;
         
         if (i % (all/10) == 0 && showProgress)
         {
-            [dbManager saveDatabase];
-            [dbManager refreshState];
-           [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+            //       [dbManager saveDatabase];
+            //       [dbManager refreshState];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
                                                                 object:[NSNumber numberWithFloat:i/(all*2.0)]];
         }
-
+        
     }
 }
 - (void)updateEventsData
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
- //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
+    //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
     int all = [eventsDatesData count];
     for (NSDictionary *eventDatesData in eventsDatesData)
@@ -236,7 +236,7 @@ BOOL showProgress = FALSE;
             if (![previousDay isEqualToDate:dbDate.day] || ![previousOpeningHour isEqualToDate:dbDate.openingHour]
                 || ![previousClosingHour isEqualToDate:dbDate.closingHour])
                 [self notifyUpdatedEvent:dbEvent];
-
+            
             ID = [eventDatesData objectForKey:@"lokalizacja"];
             if ([ID isKindOfClass:[NSString class]])
             {
@@ -299,7 +299,7 @@ BOOL showProgress = FALSE;
     NSString *eventsChecksum = [checksums objectForKey:@"imprezy"];
     NSString *eventsDatesChecksum = [checksums objectForKey:@"terminy"];
     NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
-
+    
     int numberOfEvents = [(NSString *)[checksums objectForKey:@"ile_imprez"] intValue];
     int numberOfEventsDates = [(NSString *)[checksums objectForKey:@"ile_terminow"] intValue];
     NSLog(@"# imprez - %d , # dat - %d", numberOfEvents, numberOfEventsDates);
@@ -313,7 +313,7 @@ BOOL showProgress = FALSE;
         [dbManager removeAllEventsChecksums];
         for (int i =0; i < numberOfEvents; i++)
             [dbManager saveChecksum:[checksums objectForKey:[NSString stringWithFormat:@"impreza%d", i]]
-                    withEventsNumber:i];
+                   withEventsNumber:i];
         showProgress = FALSE;
     }
     
@@ -326,7 +326,7 @@ BOOL showProgress = FALSE;
         [dbManager removeAllEventDatesChecksums];
         for (int i =0; i < numberOfEventsDates; i++)
             [dbManager saveChecksum:[checksums objectForKey:[NSString stringWithFormat:@"termin%d", i]]
-                    withEventsDatesNumber:i];
+              withEventsDatesNumber:i];
         showProgress = FALSE;
     }
     

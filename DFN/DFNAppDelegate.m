@@ -23,19 +23,19 @@
 @synthesize tabBar = _tabBar;
 @synthesize navigationLectures = _navigationLectures;
 @synthesize navigationAboutUs = _navigationAboutUs;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize loadingView = _loadingView;
+//@synthesize managedObjectContext = __managedObjectContext;
+//@synthesize managedObjectModel = __managedObjectModel;
+//@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_window release];
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
+    //    [__managedObjectContext release];
+    //    [__managedObjectModel release];
+    //    [__persistentStoreCoordinator release];
     [super dealloc];
 }
 
@@ -43,10 +43,10 @@
 {
     float progress = [[notif object] floatValue];
     /*NSLog(@"progress: %f", progress);
-    NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
-    for (int i = 0; i < progress; i++)
-        [string appendString:@"=>"];
-    NSLog(@"%@", string);
+     NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
+     for (int i = 0; i < progress; i++)
+     [string appendString:@"=>"];
+     NSLog(@"%@", string);
      */
     [self.loadingView setLoadingProgress:progress];
     //[self.loadingView performSelectorOnMainThread:@selector(setLoadingProgress:) withObject:[] waitUntilDone:NO];
@@ -63,9 +63,9 @@
 
 - (void)dataDidNotLoad {
     /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aktualizacja danych" message:@"Nie można było pobrać nowych danych." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [alert release];
-    */[self dataDidLoad];
+     [alert show];
+     [alert release];
+     */[self dataDidLoad];
 }
 
 - (void)removeLoadingScreen {
@@ -75,22 +75,22 @@
 }
 
 - (void)loadData {
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(progressBar:) name:@"DownloadProgress" object:nil];
+    // [[NSNotificationCenter defaultCenter] addObserver:self 
+    //                                          selector:@selector(progressBar:) name:@"DownloadProgress" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataDidNotLoad) name:@"No connection" object:nil];
-    
-    [self performSelectorInBackground:@selector(loadDataAsync) withObject:nil];
+    [self loadDataAsync];
+    //   [self performSelectorInBackground:@selector(loadDataAsync) withObject:nil];
 }
 
 - (void)loadDataAsync {
     @autoreleasepool {
-        DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-        [dbManager refreshState];
+        //   DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+        //[dbManager refreshState];
         DataFetcher *dataFetcher = [DataFetcher sharedInstance];
         [dataFetcher updateData];
-        [self performSelectorOnMainThread:@selector(dataDidLoad) withObject:nil waitUntilDone:NO];
-        //[self dataDidLoad];
+        // [self performSelectorOnMainThread:@selector(dataDidLoad) withObject:nil waitUntilDone:NO];
+        [self dataDidLoad];
     }
 }
 
@@ -98,28 +98,28 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
-    [DatabaseManager setUpDatabase:self.persistentStoreCoordinator];
+    //[DatabaseManager setUpDatabase:self.persistentStoreCoordinator];
     // *** Tylko na czas debuggingu
     //DatabaseManager *m = [[DatabaseManager alloc] init];
     /*Event *e = [m createEvent];
-    e.title = @"NOWY WYKLAD";
-    e.lecturer = @"Ziemek, staszek, franek";
-    e.lecturersTitle = @"Ziemek ma inżyniera z biofizyki, a staszek i franek po doktorze w lekkoatletyce";
-    e.place = [m createPlace];
-    e.place.gpsCoordinates = @"51.844252,16.598943";
-    e.organisation = [m createOrganisation];
-    e.organisation.name = @"Wyższa Szkoła chuj\r\nI druga linijka jakby co";
-    e.place.address = @"ul. Kup mi buty za 5 złoty \r\nKoło starego baru mlecznego";
-    e.place.city = @"Zdżebłaszowykotywice";
-    //[e addDates:[[NSSet alloc] initWithObjects:[[NSDate alloc] initWithTimeIntervalSinceNow:0],[[NSDate alloc] initWithTimeIntervalSinceNow:12890], nil]];
-    e.place.numberOfFreePlaces = @"1267";
-    LectureView *obserwowane = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:e]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
-    */// ***
+     e.title = @"NOWY WYKLAD";
+     e.lecturer = @"Ziemek, staszek, franek";
+     e.lecturersTitle = @"Ziemek ma inżyniera z biofizyki, a staszek i franek po doktorze w lekkoatletyce";
+     e.place = [m createPlace];
+     e.place.gpsCoordinates = @"51.844252,16.598943";
+     e.organisation = [m createOrganisation];
+     e.organisation.name = @"Wyższa Szkoła chuj\r\nI druga linijka jakby co";
+     e.place.address = @"ul. Kup mi buty za 5 złoty \r\nKoło starego baru mlecznego";
+     e.place.city = @"Zdżebłaszowykotywice";
+     //[e addDates:[[NSSet alloc] initWithObjects:[[NSDate alloc] initWithTimeIntervalSinceNow:0],[[NSDate alloc] initWithTimeIntervalSinceNow:12890], nil]];
+     e.place.numberOfFreePlaces = @"1267";
+     LectureView *obserwowane = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:e]; // ofc to trzebaby bylo zwolnic, ale to tak na testy tylko
+     */// ***
     
     MainCategoryListView *mainView = [[[MainCategoryListView alloc] initWithNibName:@"MainCategoryListView" bundle:nil] autorelease];
     UIViewController *obserwowane = [[[WatchedView alloc] initWithNibName:@"WatchedView" bundle:nil] autorelease];
     SimpleSearchView *search = [[[SimpleSearchView alloc] initWithNibName:@"SimpleSearchView" bundle:nil] autorelease];
-       
+    
     _navigationLectures = [[[UINavigationController alloc] initWithRootViewController:mainView] autorelease];
     UINavigationController *obserwNav = [[[UINavigationController alloc] initWithRootViewController:obserwowane] autorelease];
     UINavigationController *searchNav = [[[UINavigationController alloc] initWithRootViewController:search] autorelease];
@@ -151,7 +151,7 @@
     [views addObject:_navigationLectures];
     [views addObject:obserwNav];
     [views addObject:searchNav];
-        
+    
     [_tabBar setViewControllers:views];
     
     // Customize TabBar
@@ -211,117 +211,117 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    //    [self saveContext];
 }
 
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil)
-    {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
-        {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
-}
+//- (void)saveContext
+//{
+//    NSError *error = nil;
+//    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+//    if (managedObjectContext != nil)
+//    {
+//        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
+//        {
+//            /*
+//             Replace this implementation with code to handle the error appropriately.
+//             
+//             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+//             */
+//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            abort();
+//        } 
+//    }
+//}
 
 #pragma mark - Core Data stack
 
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (__managedObjectContext != nil)
-    {
-        return __managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil)
-    {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return __managedObjectContext;
-}
-
-/**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created from the application's model.
- */
-- (NSManagedObjectModel *)managedObjectModel {
-    
-    if (__managedObjectModel != nil) {
-        return __managedObjectModel;
-    }
-    __managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
-    return __managedObjectModel;
-}
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (__persistentStoreCoordinator != nil)
-    {
-        return __persistentStoreCoordinator;
-    }
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DFN.sqlite"];
-    
-    NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
-         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
-    
-    return __persistentStoreCoordinator;
-}
+///**
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+// */
+//- (NSManagedObjectContext *)managedObjectContext
+//{
+//    if (__managedObjectContext != nil)
+//    {
+//        return __managedObjectContext;
+//    }
+//    
+//    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+//    if (coordinator != nil)
+//    {
+//        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+//        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+//    }
+//    return __managedObjectContext;
+//}
+//
+///**
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+// */
+//- (NSManagedObjectModel *)managedObjectModel {
+//    
+//    if (__managedObjectModel != nil) {
+//        return __managedObjectModel;
+//    }
+//    __managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+//    return __managedObjectModel;
+//}
+///**
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+// */
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+//{
+//    if (__persistentStoreCoordinator != nil)
+//    {
+//        return __persistentStoreCoordinator;
+//    }
+//    
+//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DFN.sqlite"];
+//    
+//    NSError *error = nil;
+//    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+//    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+//    {
+//        /*
+//         Replace this implementation with code to handle the error appropriately.
+//         
+//         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+//         
+//         Typical reasons for an error here include:
+//         * The persistent store is not accessible;
+//         * The schema for the persistent store is incompatible with current managed object model.
+//         Check the error message to determine what the actual problem was.
+//         
+//         
+//         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+//         
+//         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+//         * Simply deleting the existing store:
+//         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+//         
+//         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
+//         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+//         
+//         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+//         
+//         */
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }    
+//    
+//    return __persistentStoreCoordinator;
+//}
 
 #pragma mark - Application's Documents directory
 
 /**
  Returns the URL to the application's Documents directory.
  */
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
+//- (NSURL *)applicationDocumentsDirectory
+//{
+//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+//}
 
 @end

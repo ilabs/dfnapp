@@ -53,6 +53,7 @@
 - (NSArray *) getAllEventsForLecturer:(NSString *)lecturer;
 - (NSArray *) getAllEventsForAddress:(NSString *)address;
 - (NSArray *) getAllWatched;
+- (NSArray *)  getAllSubscribed;
 - (BOOL)isWatched:(Event *)event;
 
 //
@@ -65,6 +66,12 @@
 - (EventDate *) createEventDate;
 - (void)addToWatchedEntities:(Event *)event;
 - (void)removeFromWatchedEntities:(Event *)event;
+- (void)addToSubscribedEntities:(EventDate *)eventDate;
+- (void)removeFromSubscribedEntities:(EventDate *)eventDate;
+- (BOOL)isSubscribed:(Event *)event;
+- (BOOL)isEventDateSubscribed:(EventDate *)eventDate;
+- (BOOL)hasAlreadySubscribedAtDate:(NSDate *)date;
+- (BOOL)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour;
 //- (void)addEvent:(Event *)event toCategory:(Category *)category;
 //- (void)addPlace:(Place *)place toEvent:(Event *)event;
 //- (void)addOrganisation:(Organisation *)organisation toEvent:(Event *)event;
