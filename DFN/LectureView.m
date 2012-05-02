@@ -28,7 +28,7 @@
         [m addToWatchedEntities:event];
         [watchButton setEnabled:NO];
         [dodanoLabel setHidden:NO];
-        
+        [datesTableView reloadData];
     }
 }
 
@@ -151,7 +151,7 @@
         [watchButton setEnabled:NO];
         [dodanoLabel setHidden:NO];
     }
-    lecturersList = [[event.lecturer componentsSeparatedByString:@", "] retain];
+    lecturersList = [[event.lecturer componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",;|"]] retain];
     tableView.backgroundColor = [UIColor clearColor];
     UIView *obj;
     int secondPartTAG = 3; // po dostosowaniu do lecturers TAG view dolnych się zmieni
@@ -239,8 +239,12 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     if(tableView==datesTableView){
-        
-        [[cell textLabel] setText:[NSString stringWithFormat:@"%@, %@ - %@\r\n" ,[dateFormatter stringFromDate:((EventDate*)[dates objectAtIndex:indexPath.row]).day], [dateFormatterHour stringFromDate:((EventDate*)[dates objectAtIndex:indexPath.row]).openingHour], [dateFormatterHour stringFromDate:((EventDate*)[dates objectAtIndex:indexPath.row]).closingHour]] ];
+        EventDate *evdate = (EventDate*)[dates objectAtIndex:indexPath.row];
+        [[cell textLabel] setText:[NSString stringWithFormat:@"%@, %@ - %@\r\n" ,[dateFormatter stringFromDate:evdate.day], [dateFormatterHour stringFromDate:evdate.openingHour], [dateFormatterHour stringFromDate:evdate.closingHour]] ];
+        if ([[DatabaseManager sharedInstance] isEventDateSubscribed:evdate])
+        {
+            cell.textLabel.textColor = [UIColor colorWithRed:52.0/256 green:156.0/256 blue:0.0 alpha:1.0];
+        }
     }else{
         [[cell textLabel] setText:[lecturersList objectAtIndex:[indexPath row]]];
     }
@@ -249,30 +253,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    selected = [indexPath row];
     if(tableView==datesTableView){
-        selected = [indexPath row];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kalendarz" message:@"Czy na pewno chcesz dodać to wydarzenie do kalendarza?" delegate:self cancelButtonTitle:@"Nie" otherButtonTitles:@"TAK", nil];
         [alert show];
         [alert release];
     }else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:indexPath.row] forKey:@"string"]];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Prowadzący" message:@"Czy chcesz wyszukać inne wydarzenia prowadzone przez tego prowadzącego?" delegate:self cancelButtonTitle:@"Nie" otherButtonTitles:@"TAK", nil];
+        [alert show];
+        [alert release];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex==1){
-        EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
-        EKEvent *nevent  = [EKEvent eventWithEventStore:eventStore];
-        nevent.title     = event.title;
-        EventDate *evdate = [dates objectAtIndex:selected];
-        nevent.startDate = evdate.openingHour;
-        nevent.endDate   = evdate.closingHour;
-        [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
-        NSError *err;
-        [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];       
+    if([alertView.title isEqual:@"Kalendarz"])
+    {
+        if(buttonIndex==1){
+            EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
+            EKEvent *nevent  = [EKEvent eventWithEventStore:eventStore];
+            nevent.title     = event.title;
+            EventDate *evdate = [dates objectAtIndex:selected];
+            nevent.startDate = evdate.openingHour;
+            nevent.endDate   = evdate.closingHour;
+            [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
+            NSError *err;
+            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];       
+        }
+        [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
+    }else{ // Prowadzacy
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
+        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }
-    [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     
 }
 

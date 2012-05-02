@@ -7,6 +7,7 @@
 //
 
 #import "SignInView.h"
+#import "LectureView.h"
 
 @interface SignInView ()
 
@@ -63,22 +64,36 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = nil;
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     EventDate *date = [list objectAtIndex:[indexPath row]];
     NSString *val = [NSString stringWithFormat:@"%@, %@ - %@" ,[dateFormatter stringFromDate:date.day], [dateFormatterHour stringFromDate:date.openingHour], [dateFormatterHour stringFromDate:date.closingHour]];
     [[cell textLabel] setText:val];
-    
+    if ([[DatabaseManager sharedInstance] isEventDateSubscribed:date])
+    {
+        cell.textLabel.textColor = [UIColor colorWithRed:52.0/256 green:156.0/256 blue:0.0 alpha:1.0];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // tutaj DO Stuff
-    //NSLog(@"%@",self.parentViewController);
-    [self.parent addToWatched:nil];
+    EventDate *evDate = (EventDate*)[list objectAtIndex:indexPath.row];
+    //NSLog(@"evdate: %@",[[DatabaseManager sharedInstance] hasAlreadySubscribedAtDay:evDate.day andOpeningHour:evDate.openingHour]);
+    if ([[DatabaseManager sharedInstance] hasAlreadySubscribedAtDay:evDate.day andOpeningHour:evDate.openingHour])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ostrzeżenie" message:@"Jesteś już zapisany na inne wydarzenie w tym czasie!" delegate:self cancelButtonTitle:@"Rozumiem" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    [event addSubscribedDatesObject:evDate];
+    [(LectureView*)self.parent addToWatched:nil];
+    [tableView reloadData];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

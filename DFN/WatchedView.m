@@ -38,14 +38,17 @@
     // Do any additional setup after loading the view from its nib.
     tableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor clearColor];
+    nothingWatchedView.backgroundColor = [UIColor clearColor];
     self.title = @"Obserwowane";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.editButtonItem.title = @"Edytuj";
     changed = nil;
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)] autorelease];
+    
 }
 
 - (void)refreshData {
+    // Aktualizacja danych
     // Loading view commituje krotka animacja i wywoluje (void)loadData
     [((DFNAppDelegate*)[UIApplication sharedApplication].delegate) showLoadingView:NO];
 }
@@ -69,7 +72,6 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -86,22 +88,26 @@
     }
     
     [[cell textLabel] setText:((Event*)[list objectAtIndex:[indexPath row]]).title];
-    /*if(indexPath.row==1){ // TODO: zmienic na ifChanged
-        if(changed==nil){
+    if([((Event*)[list objectAtIndex:[indexPath row]]).showAsUpdated boolValue]){
+        // znika po nacisniciu cell'a
+        if(changed == nil){
             changed = [[UIImage imageNamed:@"changed@2x.png"] retain];
         }
         cell.imageView.image = changed;
-    }*/
+    }
     return cell;
 }
  
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    
-    LectureView *detailViewController = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:[list objectAtIndex:indexPath.row]];
+    Event *event = (Event*)[list objectAtIndex:indexPath.row];
+    LectureView *detailViewController = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:event];
     // ...
     // Pass the selected object to the new view controller.
+    if([event.showAsUpdated boolValue]){
+        [event setShowAsUpdated:[NSNumber numberWithBool:NO]];
+    }    
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
 }
@@ -115,15 +121,29 @@
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[DatabaseManager sharedInstance] removeFromWatchedEntities:[list objectAtIndex:indexPath.row]];
-        //[list removeObjectAtIndex:indexPath.row];
         list = [[[DatabaseManager sharedInstance] getAllWatched] retain];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if([list count]==0){
+            nothingWatchedView.alpha = 0.0;
+            [self.view addSubview:nothingWatchedView];
+            [UIView beginAnimations:@"nothingWatchedFade" context:NULL];
+            [UIView setAnimationDuration:0.7];
+            nothingWatchedView.alpha = 1.0;
+            [UIView commitAnimations];
+            [self setEditing:NO animated:YES];
+        }
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     list = [[[DatabaseManager sharedInstance] getAllWatched] retain];
     [tableView reloadData];
+    self.editing = NO;
+    if([list count]==0){
+        [self.view addSubview:nothingWatchedView];
+    }else {
+        [nothingWatchedView removeFromSuperview];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

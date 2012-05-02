@@ -12,6 +12,7 @@
     IBOutlet UITableView *tableView;
     NSArray *list;
     UIImage *changed;
+    IBOutlet UIView *nothingWatchedView;
 }
 
 - (void)refreshData;

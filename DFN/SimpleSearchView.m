@@ -38,7 +38,7 @@
     self.title = @"Szukaj";
     tableView.backgroundColor = [UIColor clearColor];
     listEvents = [[NSArray alloc] init];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter daty" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Ramy czasowe" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)];
     timer = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSearch:) name:@"Search" object:nil];
 
@@ -50,6 +50,7 @@
 }
 
 - (void)setSearch:(NSNotification *) notification {
+    
     [UIView beginAnimations:@"searchFade" context:NULL];
     [UIView setAnimationDuration:0.5];
     tableView.alpha = 0.5;
@@ -57,6 +58,7 @@
     [sBar setText:[[notification userInfo] objectForKey:@"string"]];
     [(UITabBarController*)self.parentViewController.parentViewController setSelectedIndex:2];
     [(UINavigationController*)self.parentViewController popToRootViewControllerAnimated:YES];
+    NSLog(@"PRE timer krash!");
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(searchStart:) userInfo:[[notification userInfo] objectForKey:@"string"] repeats:NO];
 }
 
@@ -72,20 +74,6 @@
     timer = nil;
     NSString *searchText = [theTimer userInfo];
     if ([searchText length]>1) {
-        /*if([conditionDateSwitch isOn]) {
-         NSCalendar *calendar = [NSCalendar currentCalendar];
-         NSDateComponents *dC;
-         dC = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:conditionDate.date];
-         dC.hour = 0;
-         dC.minute = 0;
-         dC.second = 0;
-         startDate = [calendar dateFromComponents:dC];
-         dC.hour = 23;
-         dC.minute = 59;
-         dC.second = 59;
-         endDate = [calendar dateFromComponents:dC];
-         }*/
-
 
         NSArray *words = [searchText componentsSeparatedByString:@" "];
         NSMutableString *predicate = [[[NSMutableString alloc] initWithString:@"("] autorelease];
@@ -94,20 +82,10 @@
             if([words indexOfObject:word]>0)
                 [predicate appendString:@" and "];
             [predicate appendString:@"((title like[cd] %@) or (descriptionContent like[cd] %@) or ((place.address like[cd] %@) or (place.city like[cd] %@)) or (lecturer.name like[cd] %@) or (organisation.name like[cd] %@) or (any forms.eventFormType.name like[cd] %@))"];
-            /*[predicate appendFormat:@"(title like[cd] %@) or (descriptionContent like[cd] %@) or ((place.address like[cd] %@) or (place.city like[cd] %@)) or (lecturer.name like[cd] %@) or (organisation.name like[cd] %@) or (any forms.eventFormType.name like[cd] %@)",
-             [NSString stringWithFormat:@"*%@*", word], 
-             [NSString stringWithFormat:@"*%@*", word],
-             [NSString stringWithFormat:@"*%@*", word],
-             [NSString stringWithFormat:@"*%@*", word],
-             [NSString stringWithFormat:@"*%@*", word],
-             [NSString stringWithFormat:@"*%@*", word],
-             [NSString stringWithFormat:@"*%@*", word]];
-             */
             [args addObjectsFromArray:[NSArray arrayWithObjects:[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word],[NSString stringWithFormat:@"*%@*", word], nil]];
         }
-        [predicate appendString:@") and !((none dates.day >= %@) or (none dates.day <= %@))"];
+        [predicate appendString:@") and ((any dates.day >= %@) and (any dates.day <= %@))"];
         [args addObjectsFromArray:[NSArray arrayWithObjects:self.fromDate,self.toDate, nil]];
-        //[NSPredicate pre];
         NSArray *events = [[DatabaseManager sharedInstance] fetchedManagedObjectsForEntity:@"Event" withPredicate:[NSPredicate predicateWithFormat:predicate argumentArray:args]];
 
         [listEvents autorelease];
@@ -163,6 +141,7 @@
     [searchBar resignFirstResponder];
 }
 
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([self tableView:tableView titleForHeaderInSection:section] != nil) {
         return 40;
@@ -171,7 +150,7 @@
         // If no section header title, no section header needed
         return 0;
     }
-}
+}*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
@@ -181,13 +160,12 @@
     
     // Create label with section title
     UILabel *label = [[[UILabel alloc] init] autorelease];
-    label.frame = CGRectMake(20, 6, 300, 30);
+    label.frame = CGRectMake(20, 0, 280, 30);
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
-    //label.shadowColor = [UIColor whiteColor];
-    //label.shadowOffset = CGSizeMake(0.0, 1.0);
     label.font = [UIFont boldSystemFontOfSize:16];
     label.text = sectionTitle;
+    label.textAlignment = UITextAlignmentCenter;
     
     // Create header view and add label as a subview
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -200,27 +178,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if([listEvents count]==0)
-        return 0;
-    return 3;
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return @"Wykłady";
-            break;
-        case 1:
-            return @"Kategorie";
-            break;    
-        case 2:
-            return @"Wykładowcy";
-            break; 
-        default:
-            break;
+    if([listEvents count]==0){
+            return @"Brak wyników";
+    } else {
+        return nil;
     }
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -259,6 +226,7 @@
     LectureView *detailViewController = [[LectureView alloc] initWithNibName:@"LectureView" bundle:nil lecture:[listEvents objectAtIndex:indexPath.row]];
     // ...
     // Pass the selected object to the new view controller.
+    [sBar resignFirstResponder];
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
