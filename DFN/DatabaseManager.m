@@ -526,7 +526,7 @@
 - (EventDate *)hasAlreadySubscribedAtDay:(NSDate *)day andOpeningHour:(NSDate *)openingHour
 {
     NSArray *subscibedAtDate = [self fetchedManagedObjectsForEntity:@"EventDate" withPredicate:
-                                [NSPredicate predicateWithFormat:@"day == %@ AND openingHour == %@ and subcriveEvent != nil", day, openingHour]];
+                                [NSPredicate predicateWithFormat:@"day == %@ AND openingHour == %@ and subscribeEvent != nil", day, openingHour]];
     if ([subscibedAtDate count] > 0)
         return (EventDate *)[subscibedAtDate objectAtIndex:0];
     
