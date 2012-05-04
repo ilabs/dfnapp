@@ -21,6 +21,7 @@
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *signinButton;
     IBOutlet UIButton *watchButton;
+    IBOutlet UIButton *descriptionButton;
     IBOutlet UILabel *dodanoLabel;
     IBOutlet UITableView *tableView;
     IBOutlet UITableView *datesTableView;
@@ -38,9 +39,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event;
 - (IBAction)showOnMap:(id)sender;
-- (IBAction)showLecturers:(id)sender;
+- (IBAction)showDescription:(id)sender;
 - (IBAction)signIn:(id)sender;
-- (IBAction)showCalendar:(id)sender;
 - (IBAction)addToWatched:(id)sender;
 
 @end

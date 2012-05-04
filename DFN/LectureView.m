@@ -11,6 +11,8 @@
 #import "LectureCalendarView.h"
 #import "SignInView.h"
 #import <EventKit/EventKit.h>
+#import "DescriptionView.h"
+
 
 @implementation LectureView
 
@@ -49,8 +51,8 @@
     /*LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
     [self.navigationController pushViewController:lview animated:YES];*/
 }
-- (IBAction)showLecturers:(id)sender {
-    LecturersView *lview = [[[LecturersView alloc] initWithNibName:@"LecturersView" bundle:nil lecture:event] autorelease];
+- (IBAction)showDescription:(id)sender {
+    DescriptionView *lview = [[[DescriptionView alloc] initWithNibName:@"DescriptionView" bundle:nil lecture:event] autorelease];
     [self.navigationController pushViewController:lview animated:YES];
 }
 - (IBAction)signIn:(id)sender {
@@ -58,11 +60,6 @@
     lview.parent = self;
     [self.navigationController pushViewController:lview animated:YES];
 }
-- (IBAction)showCalendar:(id)sender {
-    LectureCalendarView *lview = [[[LectureCalendarView alloc] initWithNibName:@"LectureCalendarView" bundle:nil lecture:event] autorelease];
-    [self.navigationController pushViewController:lview animated:YES];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -114,38 +111,7 @@
     dateFormatterHour = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
     [dateFormatterHour setDateFormat:@"HH:mm"];
-    
-    /*if(event.dates!=nil){
-        dateLabel.text = @"";
-        for(EventDate *date in event.dates)
-        {
-            dateLabel.text = [dateLabel.text stringByAppendingFormat:@"%@, %@ - %@\r\n" ,[dateFormatter stringFromDate:date.day], [dateFormatterHour stringFromDate:date.openingHour], [dateFormatterHour stringFromDate:date.closingHour]];
-        }
-        [dateFormatter release];
-        [dateFormatterHour release];
-        switch (event.dates.count) {
-            case 0:
-                dateLabel.text = @"Na razie nieznane";
-                break;
-            case 1:
-                dateLabel.font = [UIFont systemFontOfSize:23];
-                break;
-            case 2:
-                dateLabel.font = [UIFont systemFontOfSize:20];
-                break;
-            case 3:
-                dateLabel.font = [UIFont systemFontOfSize:16];
-                break;
-            case 4:
-                dateLabel.font = [UIFont systemFontOfSize:12];
-                break;
-            default:
-                dateLabel.font = [UIFont systemFontOfSize:12];
-                break;
-        }
-    }else{
-        dateLabel.text = @"Na razie nieznane";
-    }*/
+
     self.title = @"Impreza";
     if([[DatabaseManager sharedInstance] isWatched:event]){
         [watchButton setEnabled:NO];
@@ -201,6 +167,9 @@
             [signinLabel setText:@"Zapisy w trakcie imprezy."];
         }
     }
+    if (!([event.descriptionContent length]>1)) {
+        [descriptionButton setHidden:YES];
+    }
     viewBase.backgroundColor = [UIColor clearColor];
     datesTableView.backgroundColor = [UIColor clearColor];
     scrollView.contentSize = viewBase.frame.size;
@@ -246,7 +215,10 @@
             cell.textLabel.textColor = [UIColor colorWithRed:52.0/256 green:156.0/256 blue:0.0 alpha:1.0];
         }
     }else{
-        [[cell textLabel] setText:[lecturersList objectAtIndex:[indexPath row]]];
+        NSString *lecturer = [lecturersList objectAtIndex:[indexPath row]];
+        if([lecturer characterAtIndex:0]==' ')
+            lecturer = [lecturer substringFromIndex:1];
+        [[cell textLabel] setText:lecturer];
     }
     return cell;
 }

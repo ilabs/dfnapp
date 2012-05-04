@@ -52,6 +52,8 @@
 		BFA3487B1533428800D0EBEE /* AboutUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA348791533428800D0EBEE /* AboutUsView.xib */; };
 		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
 		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
+		E845B31215543AB700485C36 /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E845B31015543AB700485C36 /* DescriptionView.m */; };
+		E845B31315543AB700485C36 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E845B31115543AB700485C36 /* DescriptionView.xib */; };
 		E848BFCA15167672000640A3 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFC815167672000640A3 /* logo2.png */; };
 		E848BFCB15167672000640A3 /* logo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFC915167672000640A3 /* logo2@2x.png */; };
 		E848BFCE15167BCE000640A3 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFCC15167BCE000640A3 /* background.png */; };
@@ -165,6 +167,9 @@
 		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
 		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
 		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
+		E845B30F15543AB600485C36 /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
+		E845B31015543AB700485C36 /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
+		E845B31115543AB700485C36 /* DescriptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
 		E848BFC815167672000640A3 /* logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo2.png; sourceTree = "<group>"; };
 		E848BFC915167672000640A3 /* logo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo2@2x.png"; sourceTree = "<group>"; };
 		E848BFCC15167BCE000640A3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -382,6 +387,9 @@
 				E8A3EEA81541DF7600596388 /* SignInView.h */,
 				E8A3EEA91541DF7600596388 /* SignInView.m */,
 				E8A3EEAA1541DF7600596388 /* SignInView.xib */,
+				E845B30F15543AB600485C36 /* DescriptionView.h */,
+				E845B31015543AB700485C36 /* DescriptionView.m */,
+				E845B31115543AB700485C36 /* DescriptionView.xib */,
 			);
 			name = LectureView;
 			sourceTree = "<group>";
@@ -614,6 +622,7 @@
 				E8A3EEAC1541DF7600596388 /* SignInView.xib in Resources */,
 				E84B5E6915477276006E4227 /* PickDateView.xib in Resources */,
 				E84B5E6B15477276006E4227 /* SimpleSearchView.xib in Resources */,
+				E845B31315543AB700485C36 /* DescriptionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +663,7 @@
 				50B583CF15434A1A001BCF06 /* EventDate.m in Sources */,
 				E84B5E6815477276006E4227 /* PickDateView.m in Sources */,
 				E84B5E6A15477276006E4227 /* SimpleSearchView.m in Sources */,
+				E845B31215543AB700485C36 /* DescriptionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

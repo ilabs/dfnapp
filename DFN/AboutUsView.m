@@ -76,7 +76,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:the.kazior@gmail.com"]];
 }
 - (IBAction)button4Clicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:rabursk@gmail.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:rabursky@gmail.com"]];
 }
 - (IBAction)button5Clicked:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:edzio27@gmail.com"]];
