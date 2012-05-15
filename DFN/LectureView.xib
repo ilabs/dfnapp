@@ -45,7 +45,6 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:190</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -551,29 +550,6 @@
 						<reference key="IBUIFontDescription" ref="411163363"/>
 						<reference key="IBUIFont" ref="79861289"/>
 					</object>
-					<object class="IBUIButton" id="207102666">
-						<reference key="NSNextResponder" ref="361054765"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 811}, {280, 40}}</string>
-						<reference key="NSSuperview" ref="361054765"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="655450829"/>
-						<string key="NSReuseIdentifierKey">_NS:225</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">3</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIEnabled">NO</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{1, 1}</string>
-						<string key="IBUINormalTitle">Zapisz się</string>
-						<reference key="IBUIHighlightedTitleColor" ref="63226890"/>
-						<reference key="IBUINormalTitleColor" ref="63226890"/>
-						<reference key="IBUINormalTitleShadowColor" ref="141968327"/>
-						<reference key="IBUINormalBackgroundImage" ref="1031545837"/>
-						<reference key="IBUIFontDescription" ref="135870294"/>
-						<reference key="IBUIFont" ref="811700924"/>
-					</object>
 					<object class="IBUIButton" id="37545517">
 						<reference key="NSNextResponder" ref="361054765"/>
 						<int key="NSvFlags">-2147483356</int>
@@ -645,6 +621,26 @@
 						<int key="IBUILineBreakMode">0</int>
 						<reference key="IBUIFontDescription" ref="411163363"/>
 						<reference key="IBUIFont" ref="79861289"/>
+					</object>
+					<object class="IBUITableView" id="702624350">
+						<reference key="NSNextResponder" ref="361054765"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrame">{{10, 459}, {298, 38}}</string>
+						<reference key="NSSuperview" ref="361054765"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="722862629"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<reference key="IBUIBackgroundColor" ref="63226890"/>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUITag">2</int>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIAlwaysBounceVertical">YES</bool>
+						<int key="IBUIIndicatorStyle">2</int>
+						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
+						<float key="IBUIRowHeight">30</float>
+						<float key="IBUISectionHeaderHeight">2</float>
+						<float key="IBUISectionFooterHeight">2</float>
 					</object>
 					<object class="IBUILabel" id="270859311">
 						<reference key="NSNextResponder" ref="361054765"/>
@@ -744,7 +740,6 @@
 						<string key="NSFrame">{{20, 850}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="361054765"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -812,6 +807,29 @@
 						<reference key="IBUIFontDescription" ref="50293386"/>
 						<reference key="IBUIFont" ref="816195427"/>
 					</object>
+					<object class="IBUIButton" id="207102666">
+						<reference key="NSNextResponder" ref="361054765"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 811}, {280, 40}}</string>
+						<reference key="NSSuperview" ref="361054765"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="655450829"/>
+						<string key="NSReuseIdentifierKey">_NS:225</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">3</int>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIEnabled">NO</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{1, 1}</string>
+						<string key="IBUINormalTitle">Zapisz się</string>
+						<reference key="IBUIHighlightedTitleColor" ref="63226890"/>
+						<reference key="IBUINormalTitleColor" ref="63226890"/>
+						<reference key="IBUINormalTitleShadowColor" ref="141968327"/>
+						<reference key="IBUINormalBackgroundImage" ref="1031545837"/>
+						<reference key="IBUIFontDescription" ref="135870294"/>
+						<reference key="IBUIFont" ref="811700924"/>
+					</object>
 					<object class="IBUIImageView" id="655450829">
 						<reference key="NSNextResponder" ref="361054765"/>
 						<int key="NSvFlags">-2147483356</int>
@@ -827,26 +845,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">mail@2x.png</string>
 						</object>
-					</object>
-					<object class="IBUITableView" id="702624350">
-						<reference key="NSNextResponder" ref="361054765"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{10, 459}, {298, 38}}</string>
-						<reference key="NSSuperview" ref="361054765"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="722862629"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="63226890"/>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUITag">2</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIAlwaysBounceVertical">YES</bool>
-						<int key="IBUIIndicatorStyle">2</int>
-						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-						<float key="IBUIRowHeight">30</float>
-						<float key="IBUISectionHeaderHeight">2</float>
-						<float key="IBUISectionFooterHeight">2</float>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 919}</string>
@@ -1142,7 +1140,6 @@
 							<reference ref="346253700"/>
 							<reference ref="270859311"/>
 							<reference ref="729125166"/>
-							<reference ref="207102666"/>
 							<reference ref="343486892"/>
 							<reference ref="682770889"/>
 							<reference ref="725390173"/>
@@ -1150,6 +1147,7 @@
 							<reference ref="138959644"/>
 							<reference ref="261655017"/>
 							<reference ref="348314720"/>
+							<reference ref="207102666"/>
 							<reference ref="655450829"/>
 							<reference ref="702624350"/>
 							<reference ref="722862629"/>

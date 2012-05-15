@@ -249,14 +249,25 @@
             nevent.endDate   = evdate.closingHour;
             [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
             NSError *err;
-            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];       
+            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];
+            if(err!=nil && err!=NULL){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dodano" message:@"Dodano wydarzenie do kalendarza." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+            }else{
+                NSLog(@"Error while adding event to calendar: %@",err.description);
+            }
+            [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
         }
-        [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
+        
     }else{ // Prowadzacy
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
+        if(buttonIndex==1){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
+            [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
+        }
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }
-    
+   
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
