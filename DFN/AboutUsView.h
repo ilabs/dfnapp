@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageUI/MFMailComposeViewController.h"
 
 @interface AboutUsView : UIViewController
+<MFMailComposeViewControllerDelegate, UINavigationControllerDelegate>
 {
     IBOutlet UIView *subView;
     IBOutlet UIScrollView *scrollView;

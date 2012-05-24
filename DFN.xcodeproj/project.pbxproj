@@ -50,8 +50,12 @@
 		BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A85151510B5009F3628 /* LecturesListView.xib */; };
 		BFA3487A1533428800D0EBEE /* AboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA348781533428800D0EBEE /* AboutUsView.m */; };
 		BFA3487B1533428800D0EBEE /* AboutUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA348791533428800D0EBEE /* AboutUsView.xib */; };
+		CE083890156D5B1400A1DB29 /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE08388F156D5B1400A1DB29 /* LectureView.xib */; };
+		CE7FFEB81560544A00BC13EC /* LectureRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7FFEB71560544A00BC13EC /* LectureRecordView.m */; };
+		CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */; };
+		CE7FFEC01560667A00BC13EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7FFEBF1560667A00BC13EC /* MessageUI.framework */; };
+		CE9393211563F598005F216A /* imiona.csv in Resources */ = {isa = PBXBuildFile; fileRef = CE9393201563F598005F216A /* imiona.csv */; };
 		E80A804F15090FC0006C1E3D /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A804D15090FC0006C1E3D /* LectureView.m */; };
-		E80A805015090FC0006C1E3D /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80A804E15090FC0006C1E3D /* LectureView.xib */; };
 		E845B31215543AB700485C36 /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E845B31015543AB700485C36 /* DescriptionView.m */; };
 		E845B31315543AB700485C36 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E845B31115543AB700485C36 /* DescriptionView.xib */; };
 		E848BFCA15167672000640A3 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFC815167672000640A3 /* logo2.png */; };
@@ -164,9 +168,14 @@
 		BFA348771533428800D0EBEE /* AboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsView.h; sourceTree = "<group>"; };
 		BFA348781533428800D0EBEE /* AboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsView.m; sourceTree = "<group>"; };
 		BFA348791533428800D0EBEE /* AboutUsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsView.xib; sourceTree = "<group>"; };
+		CE08388F156D5B1400A1DB29 /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
+		CE7FFEB61560544A00BC13EC /* LectureRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureRecordView.h; sourceTree = "<group>"; };
+		CE7FFEB71560544A00BC13EC /* LectureRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureRecordView.m; sourceTree = "<group>"; };
+		CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureRecordView.xib; sourceTree = "<group>"; };
+		CE7FFEBF1560667A00BC13EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CE9393201563F598005F216A /* imiona.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imiona.csv; sourceTree = "<group>"; };
 		E80A804C15090FC0006C1E3D /* LectureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureView.h; sourceTree = "<group>"; };
 		E80A804D15090FC0006C1E3D /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
-		E80A804E15090FC0006C1E3D /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
 		E845B30F15543AB600485C36 /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
 		E845B31015543AB700485C36 /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
 		E845B31115543AB700485C36 /* DescriptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
@@ -228,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7FFEC01560667A00BC13EC /* MessageUI.framework in Frameworks */,
 				E8554AF815262069000655FC /* EventKit.framework in Frameworks */,
 				E848BFD915168A2B000640A3 /* QuartzCore.framework in Frameworks */,
 				B57D6BB214AA480300A4D201 /* UIKit.framework in Frameworks */,
@@ -316,6 +326,7 @@
 		B57D6BA214AA480300A4D201 = {
 			isa = PBXGroup;
 			children = (
+				CE9393201563F598005F216A /* imiona.csv */,
 				E88299711525EB100067B941 /* Icon@2x.png */,
 				E882996F1525EB090067B941 /* Icon.png */,
 				B57D6BB914AA480300A4D201 /* DFN */,
@@ -335,6 +346,7 @@
 		B57D6BB014AA480300A4D201 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE7FFEBF1560667A00BC13EC /* MessageUI.framework */,
 				50AFF236152E680F00418C3F /* SystemConfiguration.framework */,
 				E8554AF715262068000655FC /* EventKit.framework */,
 				E87552E1151E2AD40009F89E /* MapKit.framework */,
@@ -375,9 +387,9 @@
 		BF094A7415151020009F3628 /* LectureView */ = {
 			isa = PBXGroup;
 			children = (
+				CE08388F156D5B1400A1DB29 /* LectureView.xib */,
 				E80A804C15090FC0006C1E3D /* LectureView.h */,
 				E80A804D15090FC0006C1E3D /* LectureView.m */,
-				E80A804E15090FC0006C1E3D /* LectureView.xib */,
 				E8CE897F151E15F6004265D3 /* LecturersView.h */,
 				E8CE8980151E15F6004265D3 /* LecturersView.m */,
 				E8CE8981151E15F6004265D3 /* LecturersView.xib */,
@@ -434,9 +446,20 @@
 			name = AboutUsView;
 			sourceTree = "<group>";
 		};
+		CE6F2565155D1B1100C59A82 /* LectureRecordView */ = {
+			isa = PBXGroup;
+			children = (
+				CE7FFEB61560544A00BC13EC /* LectureRecordView.h */,
+				CE7FFEB71560544A00BC13EC /* LectureRecordView.m */,
+				CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */,
+			);
+			name = LectureRecordView;
+			sourceTree = "<group>";
+		};
 		E80A804B15090F8E006C1E3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE6F2565155D1B1100C59A82 /* LectureRecordView */,
 				BFA3486A153336FF00D0EBEE /* AboutUsView */,
 				BF094A8215151091009F3628 /* LecturesListView */,
 				BF094A7C1515106F009F3628 /* SubCategoryListView */,
@@ -573,7 +596,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57D6BBE14AA480300A4D201 /* InfoPlist.strings in Resources */,
-				E80A805015090FC0006C1E3D /* LectureView.xib in Resources */,
 				BF094A7B15151064009F3628 /* MainCategoryListView.xib in Resources */,
 				BF094A811515108C009F3628 /* SubCategoryListView.xib in Resources */,
 				BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */,
@@ -623,6 +645,9 @@
 				E84B5E6915477276006E4227 /* PickDateView.xib in Resources */,
 				E84B5E6B15477276006E4227 /* SimpleSearchView.xib in Resources */,
 				E845B31315543AB700485C36 /* DescriptionView.xib in Resources */,
+				CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */,
+				CE9393211563F598005F216A /* imiona.csv in Resources */,
+				CE083890156D5B1400A1DB29 /* LectureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +689,7 @@
 				E84B5E6815477276006E4227 /* PickDateView.m in Sources */,
 				E84B5E6A15477276006E4227 /* SimpleSearchView.m in Sources */,
 				E845B31215543AB700485C36 /* DescriptionView.m in Sources */,
+				CE7FFEB81560544A00BC13EC /* LectureRecordView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,11 +753,9 @@
 		B57D6BCB14AA480300A4D201 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcin Raburski (58X5GB3KCK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcin Raburski (58X5GB3KCK)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SDKROOT)/Developer/Library/Frameworks/**",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
@@ -739,8 +763,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -748,11 +770,9 @@
 		B57D6BCC14AA480300A4D201 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcin Raburski (58X5GB3KCK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcin Raburski (58X5GB3KCK)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SDKROOT)/Developer/Library/Frameworks/**",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
@@ -760,8 +780,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

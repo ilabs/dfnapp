@@ -7,6 +7,7 @@
 //
 
 #import "AboutUsView.h"
+#import "MessageUI/MFMailComposeViewController.h"
 
 @implementation AboutUsView
 
@@ -32,6 +33,25 @@
     [button setTitle:description forState:UIControlStateNormal];
     [button.titleLabel setLineBreakMode:UILineBreakModeWordWrap];
     [button.titleLabel setTextAlignment:UITextAlignmentCenter];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    if (result == MFMailComposeResultSent) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wysłano wiadomość!" message:@"Twoja wiadomość została wysłana, dziękujemy!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [self dismissModalViewControllerAnimated:YES];
+    } 
+    if (result == MFMailComposeResultFailed) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nie wysłano wiadomości!" message:@"Niestety Twoja wiadomość nie została wysłana!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    if (result == MFMailComposeResultCancelled) {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -67,18 +87,58 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 - (IBAction)button1Clicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:pawelqus@gmail.com"]];
+    NSArray *array = [NSArray arrayWithObjects:@"pawelqus@gmail.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }     
 }
 - (IBAction)button2Clicked:(id)sender {
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:radekwilczak@gmail.com"]];
+    NSArray *array = [NSArray arrayWithObjects:@"radekwilczak@gmail.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }     
 }
 - (IBAction)button3Clicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:the.kazior@gmail.com"]];
+    NSArray *array = [NSArray arrayWithObjects:@"the.kazior@gmail.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }    
 }
-- (IBAction)button4Clicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:rabursky@gmail.com"]];
+- (IBAction)button4Clicked:(id)sender {    
+    NSArray *array = [NSArray arrayWithObjects:@"rabursky@gmail.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }
 }
 - (IBAction)button5Clicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"mailto:edzio27@gmail.com"]];
+    NSArray *array = [NSArray arrayWithObjects:@"edzio27@gmail.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }
 }
 @end

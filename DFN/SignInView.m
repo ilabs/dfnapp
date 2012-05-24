@@ -7,6 +7,7 @@
 //
 
 #import "SignInView.h"
+#import "LectureRecordView.h"
 #import "LectureView.h"
 
 @interface SignInView ()
@@ -89,6 +90,14 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ostrzeżenie" message:@"Jesteś już zapisany na inne wydarzenie w tym czasie!" delegate:self cancelButtonTitle:@"Rozumiem" otherButtonTitles:nil];
         [alert show];
         [alert release];
+    }
+    else {
+        LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
+        [self.navigationController pushViewController:lectureRecord animated:YES];
+        lectureRecord.view.backgroundColor = [UIColor clearColor];
+        [lectureRecord setEventName:event.title];
+        [lectureRecord setEventData:evDate];
+        [lectureRecord release];
     }
     [event addSubscribedDatesObject:evDate];
     [(LectureView*)self.parent addToWatched:nil];

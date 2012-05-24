@@ -49,7 +49,7 @@
     }
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     /*LectureMapView *lview = [[[LectureMapView alloc] initWithNibName:@"LectureMapView" bundle:nil lecture:event] autorelease];
-    [self.navigationController pushViewController:lview animated:YES];*/
+     [self.navigationController pushViewController:lview animated:YES];*/
 }
 - (IBAction)showDescription:(id)sender {
     DescriptionView *lview = [[[DescriptionView alloc] initWithNibName:@"DescriptionView" bundle:nil lecture:event] autorelease];
@@ -86,7 +86,7 @@
     scrollView.frame = CGRectMake(0, 20, 320, 460);
     
     dates = [[[DatabaseManager sharedInstance] getAllDatesForEvent:event] retain];
-
+    
     [titleLabel setText:event.title];
     [placeLabel setText:[event.place.address stringByReplacingOccurrencesOfString:@", " withString:@"\r\n"]];
     [placeCityLabel setText:event.place.city];
@@ -94,7 +94,7 @@
         [numberOfPlacesLabel setText:event.place.numberOfFreePlaces];
     }else{
         [numberOfPlacesLabel setText:@"∞"];
-         numberOfPlacesLabel.font = [UIFont systemFontOfSize:32];
+        numberOfPlacesLabel.font = [UIFont systemFontOfSize:32];
     }
     [organisationLabel setText:event.organisation.name];
     
@@ -106,12 +106,12 @@
         [tekst appendString: [((EventFormType*) form.eventFormType) name]];
     }
     [eventFormLabel setText:tekst];
-
+    
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatterHour = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
     [dateFormatterHour setDateFormat:@"HH:mm"];
-
+    
     self.title = @"Impreza";
     if([[DatabaseManager sharedInstance] isWatched:event]){
         [watchButton setEnabled:NO];
@@ -249,25 +249,14 @@
             nevent.endDate   = evdate.closingHour;
             [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
             NSError *err;
-            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];
-            if(err!=nil && err!=NULL){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dodano" message:@"Dodano wydarzenie do kalendarza." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                [alert release];
-            }else{
-                NSLog(@"Error while adding event to calendar: %@",err.description);
-            }
-            [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
+            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];       
         }
-        
+        [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }else{ // Prowadzacy
-        if(buttonIndex==1){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
-            [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
-        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }
-   
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
