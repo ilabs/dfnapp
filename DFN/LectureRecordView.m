@@ -105,10 +105,10 @@
 {
     sex = [sex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ( [sex isEqualToString:@"K"] ){
-        return [NSString stringWithFormat:@"Droga %@ %@. \n\nTo już ostatni krok to zatwierdzenia Twojego udziału w wydarzeniu \"%@\", które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiamy Dolnośląski Festiwal Nauk.", name, surname, event, data, time];
+        return [NSString stringWithFormat:@"Szanowny Panie\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, name, surname];
     }
     else {
-        return [NSString stringWithFormat:@"Drogi %@ %@. \n\nTo już ostatni krok to zatwierdzenia Twojego udziału w wydarzeniu \"%@\", które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiamy Dolnośląski Festiwal Nauk.", name, surname, event, data, time];
+        return [NSString stringWithFormat:@"Szanowna Pani\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, name, surname];
     }
 }
 
