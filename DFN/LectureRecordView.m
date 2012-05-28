@@ -9,7 +9,7 @@
 #import "LectureRecordView.h"
 #import "MessageUI/MFMailComposeViewController.h"
 #import "MainCategoryListView.h"
-
+#import "DatabaseManager.h"
 @interface LectureRecordView ()
 
 @end
@@ -23,7 +23,7 @@
     arrayWithNames = [fileContent componentsSeparatedByString:@"\n"];
     NSString *temporaryName = myName.text;
     NSString *surname = mySurname.text;
-    NSString *email = myEmail.text;
+    NSString *email = myEmail;
     NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isValidEmail = [emailTest evaluateWithObject:email];
@@ -50,7 +50,8 @@
 
         NSString *emailContent, *convertedName, *sex;
         NSInteger i = [self getPositionName:temporaryName]; 
-
+        DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+        [dbManager createUserWithName:myName.text withSurname:mySurname.text];
 
         if ( i != -1 ) {
             convertedName = [ self getName:i];
@@ -150,6 +151,11 @@
     event = eventName;
 }
 
+- (void) setMyEmail:(NSString *)email
+{
+    myEmail = email;
+}
+
 - (void) setEventData:(EventDate *)eventData
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -170,7 +176,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }

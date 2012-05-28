@@ -14,6 +14,7 @@
 #import "Organisation.h"
 #import "EventDate.h"
 #import "EventFormType.h"
+#import "User.h"
 
 @interface DatabaseManager : NSObject {
     NSManagedObjectContext *managedObjectContext;
@@ -55,7 +56,10 @@
 - (NSArray *) getAllWatched;
 - (NSArray *)  getAllSubscribed;
 - (BOOL)isWatched:(Event *)event;
-
+- (BOOL)isUserSet;
+- (NSString *)userName;
+- (NSString *)userSurname;
+- (void)createUserWithName:(NSString *)name withSurname:(NSString *)surname;
 //
 - (Event *) createEvent;
 - (EventForm *) createEventForm;

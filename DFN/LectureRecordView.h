@@ -13,9 +13,9 @@
 @interface LectureRecordView : UIViewController
 <MFMailComposeViewControllerDelegate, UINavigationControllerDelegate>
 {
-    IBOutlet UITextField *myName, *mySurname, *myEmail;
+    IBOutlet UITextField *myName, *mySurname;
     NSArray *arrayWithNames;
-    NSString *event, *data, *time, *filePath, *fileContent;
+    NSString *event, *data, *time, *filePath, *fileContent, *myEmail;
     
 }
 - (IBAction)confirmData:(id)sender;
@@ -24,6 +24,7 @@
 - (NSString *) getSex: (int) positionOfName;
 - (void) setEventName:(NSString *) eventName;
 - (void) setEventData:(EventDate *) eventData;
+- (void) setMyEmail:(NSString *)email;
 - (NSString *) generateMail: (NSString *) sex andName:(NSString *) name andSurname:(NSString *) surname;
 - (void) sendEmail: (NSString *) email andEmailContent:(NSString *) emailContent;
 @end

@@ -73,6 +73,11 @@
         <relationship name="eventsChecksum" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checksum" inverseName="eventsUpdate" inverseEntity="Checksum" syncable="YES"/>
         <relationship name="eventsDatesChecksum" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checksum" inverseName="eventsDatesUpdate" inverseEntity="Checksum" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="isSet" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="WatchedEntities" representedClassName="WatchedEntities" syncable="YES">
         <relationship name="watched" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="watched" inverseEntity="Event" syncable="YES"/>
     </entity>
@@ -87,5 +92,6 @@
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
         <element name="Update" positionX="457" positionY="27" width="128" height="135"/>
         <element name="WatchedEntities" positionX="358" positionY="189" width="128" height="60"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

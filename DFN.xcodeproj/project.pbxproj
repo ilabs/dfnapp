@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
+		5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0081572E6F300880C34 /* SubscriptionMaker.m */; };
 		50AFF20D152E670E00418C3F /* EventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20C152E670E00418C3F /* EventForm.m */; };
 		50AFF210152E670E00418C3F /* EventFormType.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20F152E670E00418C3F /* EventFormType.m */; };
 		50AFF213152E670F00418C3F /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF212152E670F00418C3F /* Update.m */; };
@@ -103,6 +105,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5019C0081572E6F300880C34 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionMaker.m; sourceTree = "<group>"; };
+		5019C0091572E6F300880C34 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
 		50AFF20B152E670E00418C3F /* EventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventForm.h; sourceTree = "<group>"; };
 		50AFF20C152E670E00418C3F /* EventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventForm.m; sourceTree = "<group>"; };
 		50AFF20E152E670E00418C3F /* EventFormType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFormType.h; sourceTree = "<group>"; };
@@ -255,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
+				5019C0011572E4AC00880C34 /* User.h */,
+				5019C0021572E4AC00880C34 /* User.m */,
 				50AFF229152E673F00418C3F /* DatabaseManager.h */,
 				50AFF22A152E673F00418C3F /* DatabaseManager.m */,
 				50B583CD15434A1A001BCF06 /* EventDate.h */,
@@ -446,20 +454,22 @@
 			name = AboutUsView;
 			sourceTree = "<group>";
 		};
-		CE6F2565155D1B1100C59A82 /* LectureRecordView */ = {
+		CE6F2565155D1B1100C59A82 /* SubscriptionView */ = {
 			isa = PBXGroup;
 			children = (
+				5019C0081572E6F300880C34 /* SubscriptionMaker.m */,
+				5019C0091572E6F300880C34 /* SubscriptionMaker.h */,
 				CE7FFEB61560544A00BC13EC /* LectureRecordView.h */,
 				CE7FFEB71560544A00BC13EC /* LectureRecordView.m */,
 				CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */,
 			);
-			name = LectureRecordView;
+			name = SubscriptionView;
 			sourceTree = "<group>";
 		};
 		E80A804B15090F8E006C1E3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CE6F2565155D1B1100C59A82 /* LectureRecordView */,
+				CE6F2565155D1B1100C59A82 /* SubscriptionView */,
 				BFA3486A153336FF00D0EBEE /* AboutUsView */,
 				BF094A8215151091009F3628 /* LecturesListView */,
 				BF094A7C1515106F009F3628 /* SubCategoryListView */,
@@ -690,6 +700,8 @@
 				E84B5E6A15477276006E4227 /* SimpleSearchView.m in Sources */,
 				E845B31215543AB700485C36 /* DescriptionView.m in Sources */,
 				CE7FFEB81560544A00BC13EC /* LectureRecordView.m in Sources */,
+				5019C0031572E4AC00880C34 /* User.m in Sources */,
+				5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

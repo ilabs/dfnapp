@@ -9,6 +9,7 @@
 #import "SignInView.h"
 #import "LectureRecordView.h"
 #import "LectureView.h"
+#import "SubscriptionMaker.h"
 
 @interface SignInView ()
 
@@ -92,12 +93,15 @@
         [alert release];
     }
     else {
-        LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
-        [self.navigationController pushViewController:lectureRecord animated:YES];
-        lectureRecord.view.backgroundColor = [UIColor clearColor];
-        [lectureRecord setEventName:event.title];
-        [lectureRecord setEventData:evDate];
-        [lectureRecord release];
+//        LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
+//        [self.navigationController pushViewController:lectureRecord animated:YES];
+//        lectureRecord.view.backgroundColor = [UIColor clearColor];
+//        [lectureRecord setEventName:event.title];
+//        [lectureRecord setEventData:evDate];
+//        [lectureRecord release];
+        SubscriptionMaker *subMaker = [[SubscriptionMaker alloc] init];
+        [subMaker subscribeWithSubscripiton:event.subscription withDate:evDate withTitle:event.title andNavigationView:self.navigationController];
+        [subMaker release];
     }
     [event addSubscribedDatesObject:evDate];
     [(LectureView*)self.parent addToWatched:nil];

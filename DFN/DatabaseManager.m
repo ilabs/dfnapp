@@ -424,6 +424,37 @@
         res = [self createCategoryWithId:ID];
     return res;
 }
+
+- (BOOL)isUserSet
+{
+    User * user = (User *)[self getEntity:@"User" withId:nil];
+    if (!user)
+        return NO;
+    return YES;
+}
+- (NSString *)userName
+{
+    User * user = (User *)[self getEntity:@"User" withId:nil];
+    return [user name];
+
+}
+- (NSString *)userSurname
+{
+    User * user = (User *)[self getEntity:@"User" withId:nil];
+    return [user surname];
+}
+- (void)createUserWithName:(NSString *)name withSurname:(NSString *)surname
+{
+    [self createEntity:@"User" withID:nil];
+    [self saveDatabase];
+    User *user = (User *) [self getEntity:@"User" withId:nil];
+    [user setName:name];
+    [user setSurname:surname];
+    [self saveDatabase];
+}
+
+
+
 //
 - (void)removeEvent:(Event *)event
 {
