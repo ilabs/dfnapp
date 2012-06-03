@@ -7,8 +7,6 @@
 //
 
 #import "LectureView.h"
-#import "LecturersView.h"
-#import "LectureCalendarView.h"
 #import "SignInView.h"
 #import <EventKit/EventKit.h>
 #import "DescriptionView.h"

@@ -11,7 +11,6 @@
 #import "DataFetcher.h"
 #import "MainCategoryListView.h"
 #import "SubCategoryListView.h"
-#import "SearchView.h"
 #import "WatchedView.h"
 #import "AboutUsView.h"
 #import "SimpleSearchView.h"

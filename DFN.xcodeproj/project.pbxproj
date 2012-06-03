@@ -75,11 +75,7 @@
 		E84B5E6915477276006E4227 /* PickDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B5E6415477276006E4227 /* PickDateView.xib */; };
 		E84B5E6A15477276006E4227 /* SimpleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B5E6615477276006E4227 /* SimpleSearchView.m */; };
 		E84B5E6B15477276006E4227 /* SimpleSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B5E6715477276006E4227 /* SimpleSearchView.xib */; };
-		E8554AF5152611C8000655FC /* LectureCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8554AF3152611C7000655FC /* LectureCalendarView.m */; };
-		E8554AF6152611C8000655FC /* LectureCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8554AF4152611C7000655FC /* LectureCalendarView.xib */; };
 		E8554AF815262069000655FC /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8554AF715262068000655FC /* EventKit.framework */; };
-		E8554AFC15262C2C000655FC /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8554AFA15262C2B000655FC /* SearchView.m */; };
-		E8554AFD15262C2C000655FC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8554AFB15262C2C000655FC /* SearchView.xib */; };
 		E87552D9151E248B0009F89E /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = E87552D7151E248B0009F89E /* search.png */; };
 		E87552DA151E248B0009F89E /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87552D8151E248B0009F89E /* search@2x.png */; };
 		E875C2D01531DD2E0077C0E8 /* changed.png in Resources */ = {isa = PBXBuildFile; fileRef = E875C2CE1531DD2D0077C0E8 /* changed.png */; };
@@ -98,8 +94,6 @@
 		E8A3EEA61541DB5500596388 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3EEA21541DB5500596388 /* phone@2x.png */; };
 		E8A3EEAB1541DF7600596388 /* SignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3EEA91541DF7600596388 /* SignInView.m */; };
 		E8A3EEAC1541DF7600596388 /* SignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A3EEAA1541DF7600596388 /* SignInView.xib */; };
-		E8CE8982151E15F6004265D3 /* LecturersView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CE8980151E15F6004265D3 /* LecturersView.m */; };
-		E8CE8983151E15F6004265D3 /* LecturersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CE8981151E15F6004265D3 /* LecturersView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,13 +195,7 @@
 		E84B5E6515477276006E4227 /* SimpleSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleSearchView.h; sourceTree = "<group>"; };
 		E84B5E6615477276006E4227 /* SimpleSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSearchView.m; sourceTree = "<group>"; };
 		E84B5E6715477276006E4227 /* SimpleSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleSearchView.xib; sourceTree = "<group>"; };
-		E8554AF2152611C7000655FC /* LectureCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureCalendarView.h; sourceTree = "<group>"; };
-		E8554AF3152611C7000655FC /* LectureCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureCalendarView.m; sourceTree = "<group>"; };
-		E8554AF4152611C7000655FC /* LectureCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureCalendarView.xib; sourceTree = "<group>"; };
 		E8554AF715262068000655FC /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		E8554AF915262C2A000655FC /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
-		E8554AFA15262C2B000655FC /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
-		E8554AFB15262C2C000655FC /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		E87552D7151E248B0009F89E /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		E87552D8151E248B0009F89E /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		E87552E1151E2AD40009F89E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -230,9 +218,6 @@
 		E8A3EEA81541DF7600596388 /* SignInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInView.h; sourceTree = "<group>"; };
 		E8A3EEA91541DF7600596388 /* SignInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInView.m; sourceTree = "<group>"; };
 		E8A3EEAA1541DF7600596388 /* SignInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInView.xib; sourceTree = "<group>"; };
-		E8CE897F151E15F6004265D3 /* LecturersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LecturersView.h; sourceTree = "<group>"; };
-		E8CE8980151E15F6004265D3 /* LecturersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LecturersView.m; sourceTree = "<group>"; };
-		E8CE8981151E15F6004265D3 /* LecturersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LecturersView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,12 +379,6 @@
 				CE08388F156D5B1400A1DB29 /* LectureView.xib */,
 				E80A804C15090FC0006C1E3D /* LectureView.h */,
 				E80A804D15090FC0006C1E3D /* LectureView.m */,
-				E8CE897F151E15F6004265D3 /* LecturersView.h */,
-				E8CE8980151E15F6004265D3 /* LecturersView.m */,
-				E8CE8981151E15F6004265D3 /* LecturersView.xib */,
-				E8554AF2152611C7000655FC /* LectureCalendarView.h */,
-				E8554AF3152611C7000655FC /* LectureCalendarView.m */,
-				E8554AF4152611C7000655FC /* LectureCalendarView.xib */,
 				E8A3EEA81541DF7600596388 /* SignInView.h */,
 				E8A3EEA91541DF7600596388 /* SignInView.m */,
 				E8A3EEAA1541DF7600596388 /* SignInView.xib */,
@@ -473,7 +452,6 @@
 				BF094A7415151020009F3628 /* LectureView */,
 				E882996E1525D0490067B941 /* LoadingView */,
 				E84B5E6D1547727E006E4227 /* SimpleSearchView */,
-				E8554AFF15262C38000655FC /* SearchView */,
 				E8A1D7221530C52C0091DC5A /* WatchedView */,
 			);
 			name = Views;
@@ -518,16 +496,6 @@
 				E84B5E6715477276006E4227 /* SimpleSearchView.xib */,
 			);
 			name = SimpleSearchView;
-			sourceTree = "<group>";
-		};
-		E8554AFF15262C38000655FC /* SearchView */ = {
-			isa = PBXGroup;
-			children = (
-				E8554AF915262C2A000655FC /* SearchView.h */,
-				E8554AFA15262C2B000655FC /* SearchView.m */,
-				E8554AFB15262C2C000655FC /* SearchView.xib */,
-			);
-			name = SearchView;
 			sourceTree = "<group>";
 		};
 		E882996E1525D0490067B941 /* LoadingView */ = {
@@ -626,14 +594,11 @@
 				50E4A4A5151A5BAC00467B87 /* 8.png in Resources */,
 				50E4A4A6151A5BAC00467B87 /* 9.png in Resources */,
 				50E4A4A7151A5BAC00467B87 /* 10.png in Resources */,
-				E8CE8983151E15F6004265D3 /* LecturersView.xib in Resources */,
 				E87552D9151E248B0009F89E /* search.png in Resources */,
 				E87552DA151E248B0009F89E /* search@2x.png in Resources */,
 				E882996C1525D0410067B941 /* LoadingView.xib in Resources */,
 				E88299701525EB090067B941 /* Icon.png in Resources */,
 				E88299721525EB100067B941 /* Icon@2x.png in Resources */,
-				E8554AF6152611C8000655FC /* LectureCalendarView.xib in Resources */,
-				E8554AFD15262C2C000655FC /* SearchView.xib in Resources */,
 				E8A1D7201530C5250091DC5A /* WatchedView.xib in Resources */,
 				E875C2D01531DD2E0077C0E8 /* changed.png in Resources */,
 				E875C2D11531DD2E0077C0E8 /* changed@2x.png in Resources */,
@@ -668,10 +633,7 @@
 				BF094A7A15151064009F3628 /* MainCategoryListView.m in Sources */,
 				BF094A801515108C009F3628 /* SubCategoryListView.m in Sources */,
 				BF094A86151510B5009F3628 /* LecturesListView.m in Sources */,
-				E8CE8982151E15F6004265D3 /* LecturersView.m in Sources */,
 				E882996B1525D0410067B941 /* LoadingView.m in Sources */,
-				E8554AF5152611C8000655FC /* LectureCalendarView.m in Sources */,
-				E8554AFC15262C2C000655FC /* SearchView.m in Sources */,
 				50AFF20D152E670E00418C3F /* EventForm.m in Sources */,
 				50AFF210152E670E00418C3F /* EventFormType.m in Sources */,
 				50AFF213152E670F00418C3F /* Update.m in Sources */,
