@@ -47,7 +47,7 @@
         [alert release];
     }    
     else {
-
+        
         NSString *emailContent, *convertedName, *sex;
         NSInteger i = [self getPositionName:temporaryName]; 
         DatabaseManager *dbManager = [DatabaseManager sharedInstance];
@@ -183,8 +183,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Wypełnij dane";
+    self.title = @"Zapisy";
 	// Do any additional setup after loading the view.
+    [myName becomeFirstResponder];
 }
 
 - (void)viewDidUnload
