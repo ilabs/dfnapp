@@ -12,5 +12,7 @@
 @interface SubCategoryListView : UITableViewController
 {
     NSMutableArray *list;
+    Section *section;
 }
+@property (nonatomic, retain) Section *section;
 @end

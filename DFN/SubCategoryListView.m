@@ -10,10 +10,10 @@
 #import "LecturesListView.h"
 
 @implementation SubCategoryListView
-
+@synthesize section;
 - (void)loadData
 {
-    list = [[NSMutableArray alloc] initWithArray:[[DatabaseManager sharedInstance] getAllCategories]];
+    list = [[NSMutableArray alloc] initWithArray:[[DatabaseManager sharedInstance] getAllCategoriesForSection:section]];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style

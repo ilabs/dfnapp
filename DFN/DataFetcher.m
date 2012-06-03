@@ -8,10 +8,10 @@
 
 #import "DataFetcher.h"
 
-#define JSONS_PATH @"http://michaljodko.com/dfn/"
-#define MAIN_JSON_PATH @"http://michaljodko.com/dfn/checksums.json"
-#define STATIC_JSON_PATH @"http://michaljodko.com/dfn/imprezy.json"
-#define DYNAMIC_JSON_PATH @"http://michaljodko.com/dfn/terminy.json"
+#define JSONS_PATH @"http://dfn.coijak.pwr.wroc.pl/iphone/"
+#define MAIN_JSON_PATH @"http://dfn.coijak.pwr.wroc.pl/iphone/checksums.json"
+#define STATIC_JSON_PATH @"http://dfn.coijak.pwr.wroc.pl/iphone/imprezy.json"
+#define DYNAMIC_JSON_PATH @"http://dfn.coijak.pwr.wroc.pl/iphone/terminy.json"
 
 @implementation DataFetcher
 @synthesize urlToMainJSON, urlToEventsJSON, urlToEventsDatesJSON, xsdDateTimeFormatter;
@@ -145,7 +145,22 @@ BOOL showProgress = FALSE;
                 [dbEvent setCategory:dbCategory];
                 [self notifyUpdatedEvent:dbEvent];
             }
+            ID = [event objectForKey:@"panel_id"];
+            if ([ID isKindOfClass:[NSString class]] && ![ID isEqualToString:@"11"] && ![ID isEqualToString:@"5"])
+            {
+                Section * dbSection = [dbManager getSectionWithId:(NSString *)ID];
+                ID = [event objectForKey:@"panel"];
+                NSArray *listItems = [(NSString *)ID componentsSeparatedByString:@"/"];
+                if (dbCategory.section != dbSection || ![dbSection.name isEqualToString:(NSString *)ID])
+                {
+                    [dbSection setName:[listItems objectAtIndex:0]];
+                    [dbCategory setSection:dbSection];
+                    [dbSection addCategoriesObject:dbCategory];
+                    [self notifyUpdatedEvent:dbEvent];
+                }
+            }
         }
+        
         ID = [event objectForKey:@"opis"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setDescriptionContent:(NSString *)ID];
@@ -177,7 +192,7 @@ BOOL showProgress = FALSE;
             [dbEvent setLecturersTitle:(NSString *)ID];
         ID = [event objectForKey:@"tytul_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setTitle:(NSString *)ID]; 
+            [dbEvent setTitle:[(NSString *)ID stringByReplacingOccurrencesOfString:@"\\&quot;" withString:@"\""]]; 
         
         if (i % (all/10) == 0 && showProgress)
         {

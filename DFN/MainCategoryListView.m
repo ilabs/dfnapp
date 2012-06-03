@@ -8,36 +8,40 @@
 
 #import "MainCategoryListView.h"
 #import "AboutUsView.h"
-
+#import "DatabaseManager.h"
 @implementation MainCategoryListView
 
 //@synthesize navigationController;
 
 - (void)loadData
 {
-    list = [[NSMutableArray alloc] init];
-    [list addObject:@"Imprezy wiodące XIV DFN"];   
-    [list addObject:@"Nauki humanistyczne"];
-    [list addObject:@"Obszary sztuki"];
-    [list addObject:@"Człowiek i społeczeństwo"];
-    [list addObject:@"Medycyna i zdrowie"];
-    [list addObject:@"Ścieżkami biologii"];
-    [list addObject:@"Niezwykły świat chemii"];
-    [list addObject:@"Nauki o Ziemii"];
-    [list addObject:@"Matematyka, fizyka, astronomia - trzy siostry"];
-    [list addObject:@"Technika i technologia"];
+//    list = [[NSMutableArray alloc] init];
+    list = [[NSMutableArray alloc] initWithArray:[[DatabaseManager sharedInstance] getAllSections]];
+//    [list addObject:@"Imprezy wiodące XIV DFN"];   
+//    [list addObject:@"Nauki humanistyczne"];
+//    [list addObject:@"Obszary sztuki"];
+//    [list addObject:@"Człowiek i społeczeństwo"];
+//    [list addObject:@"Medycyna i zdrowie"];
+//    [list addObject:@"Ścieżkami biologii"];
+//    [list addObject:@"Niezwykły świat chemii"];
+//    [list addObject:@"Nauki o Ziemii"];
+//    [list addObject:@"Matematyka, fizyka, astronomia - trzy siostry"];
+//    [list addObject:@"Technika i technologia"];
     
     iconList = [[NSMutableArray alloc] init];
-    [iconList addObject:[UIImage imageNamed:@"8.png"]];
-    [iconList addObject:[UIImage imageNamed:@"2.png"]];
-    [iconList addObject:[UIImage imageNamed:@"1.png"]];
-    [iconList addObject:[UIImage imageNamed:@"10.png"]];
-    [iconList addObject:[UIImage imageNamed:@"3.png"]];
-    [iconList addObject:[UIImage imageNamed:@"11.png"]];
-    [iconList addObject:[UIImage imageNamed:@"4.png"]];
-    [iconList addObject:[UIImage imageNamed:@"5.png"]];
-    [iconList addObject:[UIImage imageNamed:@"6.png"]];
-    [iconList addObject:[UIImage imageNamed:@"12.png"]];
+    for (Section * section in list)
+    {
+        [iconList addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", section.dbID]]];
+    }
+//    [iconList addObject:[UIImage imageNamed:@"2.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"1.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"10.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"3.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"11.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"4.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"5.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"6.png"]];
+//    [iconList addObject:[UIImage imageNamed:@"12.png"]];
 }
 
 
@@ -134,7 +138,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     if(indexPath.section==0){
-        [[cell textLabel] setText:[list objectAtIndex:[indexPath row]]];
+        [[cell textLabel] setText:[(Section *)[list objectAtIndex:[indexPath row]] name]];
         [cell.imageView setImage:[iconList objectAtIndex:[indexPath row]]];
     }else{
         [[cell textLabel] setText:@"O nas..."];
@@ -193,6 +197,7 @@
         SubCategoryListView *subCategoryListView = [[SubCategoryListView alloc] initWithNibName:@"SubCategoryListView" bundle:nil];
          // ...
          // Pass the selected object to the new view controller.
+        [subCategoryListView setSection:[list objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:subCategoryListView animated:YES];
        // subCategoryListView.navigationController = self.navigationController;
         subCategoryListView.view.backgroundColor = [UIColor clearColor];

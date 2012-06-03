@@ -235,6 +235,10 @@
 {
     return (Category *)[self createEntity:@"Category" withID:ID];
 }
+- (Section *)createSectionWithId:(NSString *)ID
+{
+    return (Section *)[self createEntity:@"Section" withID:ID];
+}
 - (EventForm *)createEventForm
 {
     return (EventForm *)[self createEntity:@"EventForm" withID:nil];
@@ -251,6 +255,11 @@
 - (Category *)createCategory
 {
     return (Category *)[self createEntity:@"Category" withID:nil];
+}
+
+- (Section *)createSection
+{
+    return (Section *)[self createEntity:@"Section" withID:nil];
 }
 
 - (Place *)createPlace
@@ -270,6 +279,11 @@
     return (Checksum *)[self createEntity:@"Checksum" withID:nil];
 }
 //
+
+- (NSInteger) getCategoriesCountForSection:(Section *)section
+{
+    return [section.categories count];
+}
 
 - (NSInteger) getEventsCountForCategory:(Category *)category
 {
@@ -296,6 +310,10 @@
     return [event.dates count];
 }
 //
+- (NSArray *) getAllSections
+{
+    return [self fetchedManagedObjectsForEntity:@"Section" withPredicate:nil];
+}
 - (NSArray *) getAllCategories
 {
     return [self fetchedManagedObjectsForEntity:@"Category" withPredicate:nil];
@@ -311,6 +329,11 @@
 - (NSArray *) getAllEventForms
 {
     return [self fetchedManagedObjectsForEntity:@"EventForm" withPredicate:nil];
+}
+
+- (NSArray *) getAllCategoriesForSection:(Section *)section
+{
+    return [NSArray arrayWithArray:[[section categories] allObjects]];
 }
 - (NSArray *) getAllEventsForCategory:(Category *)category
 {
@@ -425,6 +448,15 @@
     return res;
 }
 
+- (Section *)getSectionWithId:(NSString *)ID
+{
+    Section * res = (Section *)[self getEntity:@"Section" withId:ID];
+    if (!res)
+        res = [self createSectionWithId:ID];
+    return res;
+}
+    
+
 - (BOOL)isUserSet
 {
     User * user = (User *)[self getEntity:@"User" withId:nil];
@@ -503,6 +535,10 @@
 - (void)removeEventDateWithId:(NSString *)ID
 {
     [self removeEntity:[self getEventDateWithId:ID]];
+}
+- (void)removeSection:(Section *)section
+{
+    [self removeEntity:section];
 }
 - (void)removeCategory:(Category *)category
 {

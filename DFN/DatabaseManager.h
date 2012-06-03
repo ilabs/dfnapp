@@ -15,6 +15,7 @@
 #import "EventDate.h"
 #import "EventFormType.h"
 #import "User.h"
+#import "Section.h"
 
 @interface DatabaseManager : NSObject {
     NSManagedObjectContext *managedObjectContext;
@@ -40,8 +41,11 @@
 - (NSInteger) getEventFormsCount;
 - (NSInteger) getPlacesCount;
 - (NSInteger) getEventDatesCountForEvent:(Event *)event;
+- (NSInteger) getCategoriesCountForSection:(Section *)section;
 //
+- (NSArray *) getAllSections;
 - (NSArray *) getAllCategories;
+- (NSArray *) getAllCategoriesForSection:(Section *)section;
 - (NSArray *) getAllOrganisations;
 - (NSArray *) getAllPlaces;
 - (NSArray *) getAllEventForms;
@@ -65,6 +69,7 @@
 - (EventForm *) createEventForm;
 - (EventFormType *) createEventFormType;
 - (Category *)createCategory;
+- (Section *)createSection;
 - (Place *) createPlace;
 - (Organisation *) createOrganisation;
 - (EventDate *) createEventDate;
@@ -89,6 +94,7 @@
 - (EventForm *)getEventFormWithId:(NSString *)ID;
 - (EventFormType *)getEventFormTypeWithId:(NSString *)ID;
 - (Category *)getCategoryWithId:(NSString *)ID;
+- (Section *)getSectionWithId:(NSString *)ID;
 //
 - (void)removeEvent:(Event *)event;
 - (void)removeEventWithId:(NSString *)ID;
@@ -102,7 +108,9 @@
 - (void)removeEventDate:(EventDate *)date;
 - (void)removeEventDateWithId:(NSString *)ID;
 - (void)removeCategory:(Category *)category;
+- (void)removeSection:(Section *)section;
 - (void)removeCategoryWithId:(NSString *)ID;
+- (void)removeSectionWithId:(NSString *)ID;
 //
 - (int)getNumberOfEventsChecksums;
 - (int)getNumberOfEventsDatesChecksums;

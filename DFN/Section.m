@@ -1,22 +1,19 @@
 //
-//  Category.m
+//  Section.m
 //  DFN
 //
 //  Created by Pawel Nuzka on 6/3/12.
 //  Copyright (c) 2012 pawel.jankowski@me.com. All rights reserved.
 //
 
+#import "Section.h"
 #import "Category.h"
-#import "Event.h"
 
 
-@implementation Category
+@implementation Section
 
 @dynamic dbID;
-@dynamic lastUpdate;
 @dynamic name;
-@dynamic year;
-@dynamic events;
-@dynamic section;
+@dynamic categories;
 
 @end
