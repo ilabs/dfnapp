@@ -214,7 +214,7 @@
         }
     }else{
         NSString *lecturer = [lecturersList objectAtIndex:[indexPath row]];
-        if([lecturer characterAtIndex:0]==' ')
+        if([lecturer length] > 1 && [lecturer characterAtIndex:0]==' ')
             lecturer = [lecturer substringFromIndex:1];
         [[cell textLabel] setText:lecturer];
     }
@@ -251,7 +251,11 @@
         }
         [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }else{ // Prowadzacy
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:[NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
+        if (buttonIndex == 1)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:
+                    [NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
+        }
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }
     

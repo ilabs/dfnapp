@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5009D894157D36E0009F4D72 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5009D893157D36E0009F4D72 /* DFN.sqlite */; };
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
 		5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0081572E6F300880C34 /* SubscriptionMaker.m */; };
+		502EC848157D4B09007CAEAA /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 502EC847157D4B09007CAEAA /* DFN.sqlite */; };
 		50AFF20D152E670E00418C3F /* EventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20C152E670E00418C3F /* EventForm.m */; };
 		50AFF210152E670E00418C3F /* EventFormType.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20F152E670E00418C3F /* EventFormType.m */; };
 		50AFF213152E670F00418C3F /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF212152E670F00418C3F /* Update.m */; };
@@ -98,11 +98,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5009D893157D36E0009F4D72 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5019C0081572E6F300880C34 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionMaker.m; sourceTree = "<group>"; };
 		5019C0091572E6F300880C34 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
+		502EC847157D4B09007CAEAA /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		50AFF20B152E670E00418C3F /* EventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventForm.h; sourceTree = "<group>"; };
 		50AFF20C152E670E00418C3F /* EventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventForm.m; sourceTree = "<group>"; };
 		50AFF20E152E670E00418C3F /* EventFormType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFormType.h; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 		502C2ECE14DB460600EB8E34 /* Database Model */ = {
 			isa = PBXGroup;
 			children = (
+				502EC847157D4B09007CAEAA /* DFN.sqlite */,
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
-				5009D893157D36E0009F4D72 /* DFN.sqlite */,
 				50F16A34157BD92B00DDE90D /* Section.h */,
 				50F16A35157BD92B00DDE90D /* Section.m */,
 				50F16A2A157BD92B00DDE90D /* Category.h */,
@@ -619,7 +619,7 @@
 				CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */,
 				CE9393211563F598005F216A /* imiona.csv in Resources */,
 				CE083890156D5B1400A1DB29 /* LectureView.xib in Resources */,
-				5009D894157D36E0009F4D72 /* DFN.sqlite in Resources */,
+				502EC848157D4B09007CAEAA /* DFN.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +702,10 @@
 		5009D892157D31CE009F4D72 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -712,6 +716,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc Distribution";

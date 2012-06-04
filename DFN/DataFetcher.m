@@ -163,7 +163,7 @@ BOOL showProgress = FALSE;
         
         ID = [event objectForKey:@"opis"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setDescriptionContent:(NSString *)ID];
+            [dbEvent setDescriptionContent:[(NSString *)ID stringByReplacingOccurrencesOfString:@"\\&quot;" withString:@"\""]]; 
         ID = [event objectForKey:@"organizacja"];
         if ([ID isKindOfClass:[NSString class]])
         {
@@ -183,7 +183,7 @@ BOOL showProgress = FALSE;
         }
         ID = [event objectForKey:@"prowadzacy"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setLecturer:(NSString *)ID];
+            [dbEvent setLecturer:[(NSString *)ID stringByReplacingOccurrencesOfString:@"\\&quot;" withString:@"\""]]; 
         ID = [event objectForKey:@"zapisy"];
         if ([ID isKindOfClass:[NSString class]])
             [dbEvent setSubscription:(NSString *)ID];
