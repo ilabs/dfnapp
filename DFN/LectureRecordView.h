@@ -15,7 +15,7 @@
 {
     IBOutlet UITextField *myName, *mySurname;
     NSArray *arrayWithNames;
-    NSString *event, *data, *time, *filePath, *fileContent, *myEmail;
+    NSString *event, *data, *time, *filePath, *fileContent, *myEmail, *address;
 }
 
 @property (nonatomic, retain) NSString *myEmail;
@@ -25,6 +25,7 @@
 - (NSString *) getName: (int) positionOfName;
 - (NSString *) getSex: (int) positionOfName;
 - (void) setEventName:(NSString *) eventName;
+- (void) setAddress:(NSString *)address;
 - (void) setEventData:(EventDate *) eventData;
 - (void) setMyEmail:(NSString *)email;
 - (NSString *) generateMail: (NSString *) sex andName:(NSString *) name andSurname:(NSString *) surname;

@@ -141,4 +141,9 @@
         [self presentModalViewController:controller animated:YES];   
     }
 }
+- (IBAction)iLabsClicked:(id)sender
+{
+    [[UIApplication sharedApplication] 
+                openURL:[NSURL URLWithString: @"http://ilabs.pwr.wroc.pl/"]];
+}
 @end

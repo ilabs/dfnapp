@@ -17,6 +17,8 @@
 
 @implementation SignInView
 
+int lastChosenIndex;
+
 @synthesize parent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil lecture:(Event*)_event {
@@ -47,6 +49,9 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     tableView.backgroundColor = [UIColor clearColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(successfullySubscribed) name:@"Subscribed" object:nil];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -81,6 +86,16 @@
     return cell;
 }
 
+
+
+- (void)successfullySubscribed
+{
+    EventDate *evDate = (EventDate*)[list objectAtIndex:lastChosenIndex];
+    [event addSubscribedDatesObject:evDate];
+    [(LectureView*)self.parent addToWatched:nil];
+    [tableView reloadData];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // tutaj DO Stuff
@@ -103,10 +118,8 @@
         [subMaker subscribeWithSubscripiton:event.subscription withDate:evDate withTitle:event.title andNavigationView:self.navigationController];
         [subMaker release];
     }
-    [event addSubscribedDatesObject:evDate];
-    [(LectureView*)self.parent addToWatched:nil];
     [tableView reloadData];
-    
+    lastChosenIndex = indexPath.row;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -115,6 +128,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [dateFormatter release];
     [dateFormatterHour release];
     [list release];

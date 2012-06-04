@@ -15,7 +15,6 @@
     NSArray *list;
     NSDateFormatter *dateFormatter;
     NSDateFormatter *dateFormatterHour;
-
 }
 
 @property (assign) id parent;

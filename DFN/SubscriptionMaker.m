@@ -94,9 +94,14 @@
         DatabaseManager *dbManager = [DatabaseManager sharedInstance];
         if ([dbManager isUserSet])
         {
-            LectureRecordView *lectureRecord = [[LectureRecordView alloc] init];
+            LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
             [lectureRecord setEventName:title];
             [lectureRecord setEventData:date];
+            [lectureRecord setMyEmail:email];
+            [lectureRecord setAddress:[[[date event] place] address]];
+            lectureRecord.view.backgroundColor = [UIColor clearColor];
+            [lectureRecord.view setAlpha:0.0];
+            [navController pushViewController:lectureRecord animated:YES];
             NSString * emailContent = [lectureRecord generateMail:@"M" andName:[dbManager userName] andSurname:[dbManager userSurname]];
             [lectureRecord sendEmail:email andEmailContent:emailContent];
             [lectureRecord release];
@@ -107,6 +112,7 @@
             [lectureRecord setEventName:title];
             [lectureRecord setEventData:date];
             [lectureRecord setMyEmail:email];
+            [lectureRecord setAddress:[[[date event] place] address]];
             [navController pushViewController:lectureRecord animated:YES];
             lectureRecord.view.backgroundColor = [UIColor clearColor];
             [lectureRecord release];

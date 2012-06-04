@@ -101,10 +101,10 @@
 {
     sex = [sex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ( [sex isEqualToString:@"K"] ){
-        return [NSString stringWithFormat:@"Szanowny Panie\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, name, surname];
+        return [NSString stringWithFormat:@"Szanowny Panie\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
     }
     else {
-        return [NSString stringWithFormat:@"Szanowna Pani\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, name, surname];
+        return [NSString stringWithFormat:@"Szanowna Pani\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
     }
 }
 
@@ -130,6 +130,7 @@
         [alert show];
         [alert release];
         [self dismissModalViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Subscribed" object:nil]];
     } 
     if (result == MFMailComposeResultFailed) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nie wysłano wiadomości!" message:@"Niestety Twoja wiadomość nie została wysłana!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -140,6 +141,7 @@
     if (result == MFMailComposeResultCancelled) {
         [self dismissModalViewControllerAnimated:YES];
     }
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void) setEventName:(NSString *)eventName
@@ -151,6 +153,11 @@
 {
     myEmail = [[[NSString alloc] initWithString:email] copy];
     NSLog(@"myEmail %@", myEmail);    
+}
+
+- (void)setAddress:(NSString *)location
+{
+    address = [[[NSString alloc] initWithString:location] copy];
 }
 
 - (void) setEventData:(EventDate *)eventData
