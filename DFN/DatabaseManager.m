@@ -103,12 +103,24 @@
         return persistentStoreCoordinator;
     }
     
-    NSString *path = [self databasePath];
-    NSURL *storeURL = [NSURL fileURLWithPath:path];
+    
+    NSString *storePath = [[self applicationDocumentsDirectory] 
+                           stringByAppendingPathComponent: @"DFN.sqlite"];
+    NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
+    
+    // Put down default db if it doesn't already exist
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:storePath]) {
+        NSString *defaultStorePath = [[NSBundle mainBundle] 
+                                      pathForResource:@"DFN" ofType:@"sqlite"];
+        if (defaultStorePath) {
+            [fileManager copyItemAtPath:defaultStorePath toPath:storePath error:NULL];
+        }
+    }
     
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
