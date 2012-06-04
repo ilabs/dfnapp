@@ -6,7 +6,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
-        <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" syncable="YES"/>
+        <relationship name="section" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="categories" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="Checksum" representedClassName="Checksum" syncable="YES">
         <attribute name="md5" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,7 +69,7 @@
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="dbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="section" inverseEntity="Category" syncable="YES"/>
     </entity>
     <entity name="Update" representedClassName="Update" syncable="YES">
         <attribute name="dynamicChecksum" optional="YES" attributeType="String" syncable="YES"/>
@@ -88,7 +88,7 @@
         <relationship name="watched" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="watched" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="225" positionY="45" width="128" height="120"/>
+        <element name="Category" positionX="225" positionY="45" width="128" height="135"/>
         <element name="Checksum" positionX="666" positionY="147" width="128" height="105"/>
         <element name="Event" positionX="72" positionY="78" width="128" height="255"/>
         <element name="EventDate" positionX="70" positionY="360" width="128" height="135"/>
@@ -96,9 +96,9 @@
         <element name="EventFormType" positionX="-108" positionY="-81" width="128" height="90"/>
         <element name="Organisation" positionX="288" positionY="309" width="128" height="90"/>
         <element name="Place" positionX="-99" positionY="123" width="128" height="150"/>
+        <element name="Section" positionX="108" positionY="189" width="128" height="90"/>
         <element name="Update" positionX="457" positionY="27" width="128" height="135"/>
         <element name="User" positionX="160" positionY="192" width="128" height="90"/>
         <element name="WatchedEntities" positionX="358" positionY="189" width="128" height="60"/>
-        <element name="Section" positionX="108" positionY="189" width="128" height="90"/>
     </elements>
 </model>
