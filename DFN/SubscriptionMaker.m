@@ -102,7 +102,7 @@
             [lectureRecord release];
         }
         else
-        {
+        {NSLog(@"else");
             LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
             [lectureRecord setEventName:title];
             [lectureRecord setEventData:date];

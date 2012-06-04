@@ -434,8 +434,8 @@
 			children = (
 				5019C0081572E6F300880C34 /* SubscriptionMaker.m */,
 				5019C0091572E6F300880C34 /* SubscriptionMaker.h */,
-				CE7FFEB61560544A00BC13EC /* LectureRecordView.h */,
 				CE7FFEB71560544A00BC13EC /* LectureRecordView.m */,
+				CE7FFEB61560544A00BC13EC /* LectureRecordView.h */,
 				CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */,
 			);
 			name = SubscriptionView;

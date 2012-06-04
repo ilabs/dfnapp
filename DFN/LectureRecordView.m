@@ -16,6 +16,8 @@
 
 @implementation LectureRecordView
 
+@synthesize myEmail;
+
 - (IBAction)confirmData:(id)sender
 {
     filePath = [[NSBundle mainBundle] pathForResource:@"imiona" ofType:@"csv"];
@@ -24,9 +26,8 @@
     NSString *temporaryName = myName.text;
     NSString *surname = mySurname.text;
     NSString *email = myEmail;
-    NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isValidEmail = [emailTest evaluateWithObject:email];
+    NSLog(@"email: %@", myEmail);
+
     
     if(temporaryName.length < 3)
     {
@@ -40,12 +41,7 @@
         [alert show];
         [alert release];
     }
-    else if(!isValidEmail)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Niepoprawny adres mailowy!" message:@"Prosimy, podaj email jeszcze raz" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }    
+  
     else {
         
         NSString *emailContent, *convertedName, *sex;
@@ -153,7 +149,8 @@
 
 - (void) setMyEmail:(NSString *)email
 {
-    myEmail = email;
+    myEmail = [[[NSString alloc] initWithString:email] copy];
+    NSLog(@"myEmail %@", myEmail);    
 }
 
 - (void) setEventData:(EventDate *)eventData

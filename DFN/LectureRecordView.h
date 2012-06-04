@@ -16,8 +16,10 @@
     IBOutlet UITextField *myName, *mySurname;
     NSArray *arrayWithNames;
     NSString *event, *data, *time, *filePath, *fileContent, *myEmail;
-    
 }
+
+@property (nonatomic, retain) NSString *myEmail;
+
 - (IBAction)confirmData:(id)sender;
 - (NSInteger) getPositionName:(NSString *) name;
 - (NSString *) getName: (int) positionOfName;
