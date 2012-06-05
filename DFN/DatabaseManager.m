@@ -117,7 +117,7 @@
             [fileManager copyItemAtPath:defaultStorePath toPath:storePath error:NULL];
         }
     }
-    
+//    
 //    NSString *path = [self databasePath];
 //    NSURL *storeUrl = [NSURL fileURLWithPath:path];
 
@@ -327,7 +327,9 @@
 //
 - (NSArray *) getAllSections
 {
-    return [self fetchedManagedObjectsForEntity:@"Section" withPredicate:nil];
+    NSMutableArray * array = [NSMutableArray arrayWithArray:[self fetchedManagedObjectsForEntity:@"Section" withPredicate:[NSPredicate predicateWithFormat:@"dbID != %d", 11]]];
+    [array insertObject:[self getSectionWithId:@"11"] atIndex:0];
+    return array;
 }
 - (NSArray *) getAllCategories
 {

@@ -146,7 +146,7 @@ BOOL showProgress = FALSE;
                 [self notifyUpdatedEvent:dbEvent];
             }
             ID = [event objectForKey:@"panel_id"];
-            if ([ID isKindOfClass:[NSString class]] && ![ID isEqualToString:@"11"] && ![ID isEqualToString:@"5"])
+            if ([ID isKindOfClass:[NSString class]] && ![ID isEqualToString:@"5"])
             {
                 Section * dbSection = [dbManager getSectionWithId:(NSString *)ID];
                 ID = [event objectForKey:@"panel"];

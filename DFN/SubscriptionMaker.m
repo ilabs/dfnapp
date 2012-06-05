@@ -121,6 +121,7 @@
    else if (phone)
    {
        //sprawdz date !
+       [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Subscribed" object:nil]];
        [self makeCall:phone];
    }
    
