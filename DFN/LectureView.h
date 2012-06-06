@@ -23,7 +23,7 @@
     IBOutlet UIButton *watchButton;
     IBOutlet UIButton *descriptionButton;
     IBOutlet UILabel *dodanoLabel;
-    IBOutlet UITableView *lecturesTableView;
+    IBOutlet UITableView *tableView;
     IBOutlet UITableView *datesTableView;
     IBOutlet UIButton *tableViewBackground;
     IBOutlet UIButton *datesTableViewBackground;

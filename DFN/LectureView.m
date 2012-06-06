@@ -116,13 +116,13 @@
         [dodanoLabel setHidden:NO];
     }
     lecturersList = [[event.lecturer componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",;|"]] retain];
-    lecturesTableView.backgroundColor = [UIColor clearColor];
+    tableView.backgroundColor = [UIColor clearColor];
     UIView *obj;
     int secondPartTAG = 3; // po dostosowaniu do lecturers TAG view dolnych się zmieni
     int rowHeight = 30;
     if([lecturersList count]>1){ // dostosowanie polozenia innych VIEW do ilosci wykladowcow
         secondPartTAG = 1;
-        lecturesTableView.frame = CGRectMake(lecturesTableView.frame.origin.x, lecturesTableView.frame.origin.y, lecturesTableView.frame.size.width, lecturesTableView.frame.size.height+rowHeight*(lecturersList.count-1));
+        tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, tableView.frame.size.height+rowHeight*(lecturersList.count-1));
         tableViewBackground.frame = CGRectMake(tableViewBackground.frame.origin.x, tableViewBackground.frame.origin.y, tableViewBackground.frame.size.width, tableViewBackground.frame.size.height+rowHeight*(lecturersList.count-1));
         viewBase.frame = CGRectMake(viewBase.frame.origin.x, viewBase.frame.origin.y, viewBase.frame.size.width, viewBase.frame.size.height+rowHeight*(lecturersList.count-1));
         obj = nil;
@@ -256,7 +256,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Search" object:nil userInfo:
                     [NSDictionary dictionaryWithObject:[lecturersList objectAtIndex:selected] forKey:@"string"]];
         }
-        [lecturesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
+        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }
     
 }
