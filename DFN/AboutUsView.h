@@ -18,5 +18,6 @@
     
 }
 - (void)setAuthor:(NSString*)description onButton:(UIButton*)button;
+- (IBAction)callForTaxi:(id)sender;
 
 @end

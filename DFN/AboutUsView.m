@@ -86,6 +86,12 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (IBAction)callForTaxi:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://taxi5.pl/"]];
+}
+
 - (IBAction)button1Clicked:(id)sender {
     NSArray *array = [NSArray arrayWithObjects:@"pawelqus@gmail.com", nil];
     MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
