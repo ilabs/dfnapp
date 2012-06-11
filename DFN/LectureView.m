@@ -50,8 +50,11 @@
      [self.navigationController pushViewController:lview animated:YES];*/
 }
 - (IBAction)showDescription:(id)sender {
-    DescriptionView *lview = [[[DescriptionView alloc] initWithNibName:@"DescriptionView" bundle:nil lecture:event] autorelease];
-    [self.navigationController pushViewController:lview animated:YES];
+    if ([descriptionButton isHidden] == NO)
+    {
+        DescriptionView *lview = [[[DescriptionView alloc] initWithNibName:@"DescriptionView" bundle:nil lecture:event] autorelease];
+        [self.navigationController pushViewController:lview animated:YES];
+    }
 }
 - (IBAction)signIn:(id)sender {
     SignInView *lview = [[[SignInView alloc] initWithNibName:@"SignInView" bundle:nil lecture:event] autorelease];
@@ -165,9 +168,12 @@
             [signinLabel setText:@"Zapisy w trakcie imprezy."];
         }
     }
-    if (!([event.descriptionContent length]>1)) {
+    [descriptionButton setHidden:NO];
+    if ([event.descriptionContent length]<=0 || ![event.descriptionContent isKindOfClass:[NSString class]]) {
         [descriptionButton setHidden:YES];
+        NSLog(@"warunek spelniony %@\n", descriptionButton);
     }
+    NSLog(@"desc content %@\n", event.descriptionContent);
     viewBase.backgroundColor = [UIColor clearColor];
     datesTableView.backgroundColor = [UIColor clearColor];
     scrollView.contentSize = viewBase.frame.size;

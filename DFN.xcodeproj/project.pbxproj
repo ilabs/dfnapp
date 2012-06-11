@@ -10,7 +10,6 @@
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
 		5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0081572E6F300880C34 /* SubscriptionMaker.m */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
-		506E3F62158014D000A355B7 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F61158014D000A355B7 /* DFN.sqlite */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
 		506E3F71158017DE00A355B7 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F66158017DE00A355B7 /* 2.png */; };
 		506E3F72158017DE00A355B7 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F67158017DE00A355B7 /* 3.png */; };
@@ -25,6 +24,7 @@
 		506E3F7E15801B4D00A355B7 /* LectureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 506E3F7C15801B4D00A355B7 /* LectureView.m */; };
 		506E3F7F15801B4D00A355B7 /* LectureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F7D15801B4D00A355B7 /* LectureView.xib */; };
 		5094AE6B158643A9002CC5B6 /* logo_taxi5_270x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5094AE6A158643A9002CC5B6 /* logo_taxi5_270x114.png */; };
+		5094AE6E15867F92002CC5B6 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5094AE6D15867F92002CC5B6 /* DFN.sqlite */; };
 		50AFF20D152E670E00418C3F /* EventForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20C152E670E00418C3F /* EventForm.m */; };
 		50AFF210152E670E00418C3F /* EventFormType.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF20F152E670E00418C3F /* EventFormType.m */; };
 		50AFF213152E670F00418C3F /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF212152E670F00418C3F /* Update.m */; };
@@ -107,7 +107,6 @@
 		5019C0081572E6F300880C34 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionMaker.m; sourceTree = "<group>"; };
 		5019C0091572E6F300880C34 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoTaxi.png; sourceTree = "<group>"; };
-		506E3F61158014D000A355B7 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		506E3F65158017DE00A355B7 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		506E3F66158017DE00A355B7 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		506E3F67158017DE00A355B7 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		506E3F7C15801B4D00A355B7 /* LectureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureView.m; sourceTree = "<group>"; };
 		506E3F7D15801B4D00A355B7 /* LectureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureView.xib; sourceTree = "<group>"; };
 		5094AE6A158643A9002CC5B6 /* logo_taxi5_270x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_taxi5_270x114.png; sourceTree = "<group>"; };
+		5094AE6D15867F92002CC5B6 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		50AFF20B152E670E00418C3F /* EventForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventForm.h; sourceTree = "<group>"; };
 		50AFF20C152E670E00418C3F /* EventForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventForm.m; sourceTree = "<group>"; };
 		50AFF20E152E670E00418C3F /* EventFormType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFormType.h; sourceTree = "<group>"; };
@@ -253,12 +253,12 @@
 			isa = PBXGroup;
 			children = (
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
-				506E3F61158014D000A355B7 /* DFN.sqlite */,
 				50F16A34157BD92B00DDE90D /* Section.h */,
 				50F16A35157BD92B00DDE90D /* Section.m */,
 				50F16A2A157BD92B00DDE90D /* Category.h */,
 				50F16A2B157BD92B00DDE90D /* Category.m */,
 				5019C0011572E4AC00880C34 /* User.h */,
+				5094AE6D15867F92002CC5B6 /* DFN.sqlite */,
 				5019C0021572E4AC00880C34 /* User.m */,
 				50AFF229152E673F00418C3F /* DatabaseManager.h */,
 				50AFF22A152E673F00418C3F /* DatabaseManager.m */,
@@ -622,7 +622,6 @@
 				CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */,
 				CE9393211563F598005F216A /* imiona.csv in Resources */,
 				506E3F601580084900A355B7 /* logoTaxi.png in Resources */,
-				506E3F62158014D000A355B7 /* DFN.sqlite in Resources */,
 				506E3F70158017DE00A355B7 /* 1.png in Resources */,
 				506E3F71158017DE00A355B7 /* 2.png in Resources */,
 				506E3F72158017DE00A355B7 /* 3.png in Resources */,
@@ -636,6 +635,7 @@
 				506E3F7A158017DE00A355B7 /* 11.png in Resources */,
 				506E3F7F15801B4D00A355B7 /* LectureView.xib in Resources */,
 				5094AE6B158643A9002CC5B6 /* logo_taxi5_270x114.png in Resources */,
+				5094AE6E15867F92002CC5B6 /* DFN.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
