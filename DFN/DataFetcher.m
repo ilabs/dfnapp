@@ -103,6 +103,14 @@ BOOL showProgress = FALSE;
     }
     
 }
+- (NSString *)replaceAmpersInString:(NSString *)input
+{
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\&amp\\;\\#(\\d)+;" options:NSRegularExpressionCaseInsensitive error:&error];
+	// create the new string by replacing the matching of the regex pattern with the template pattern(whitespace)
+	NSString *newSearchString = [regex stringByReplacingMatchesInString:input options:0 range:NSMakeRange(0, [input length]) withTemplate:@"'"];
+    return newSearchString;
+}
 - (void)updateEvents
 {
     NSDictionary *eventsData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsJSON]];
@@ -163,7 +171,7 @@ BOOL showProgress = FALSE;
         
         ID = [event objectForKey:@"opis"];
         if ([ID isKindOfClass:[NSString class]])
-            [dbEvent setDescriptionContent:[(NSString *)ID stringByReplacingOccurrencesOfString:@"\\&quot;" withString:@"\""]]; 
+            [dbEvent setDescriptionContent:[self replaceAmpersInString:[(NSString *)ID stringByReplacingOccurrencesOfString:@"\\&quot;" withString:@"\""]]]; 
         ID = [event objectForKey:@"organizacja"];
         if ([ID isKindOfClass:[NSString class]])
         {
