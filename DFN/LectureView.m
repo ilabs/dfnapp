@@ -163,7 +163,9 @@
         {
             [signinImage setImage:[UIImage imageNamed:@"phone@2x.png"]];
         }
+        NSLog(@"zapisy sa dostepne");
     }else{
+        NSLog(@"zapisy sa niedostepne");
         if([event.subscription rangeOfString:@"na bieżąco"].location != NSNotFound || [event.subscription rangeOfString:@"trakcie imprezy"].location){
             [signinLabel setText:@"Zapisy w trakcie imprezy."];
         }
@@ -171,9 +173,7 @@
     [descriptionButton setHidden:NO];
     if ([event.descriptionContent length]<=0 || ![event.descriptionContent isKindOfClass:[NSString class]]) {
         [descriptionButton setHidden:YES];
-        NSLog(@"warunek spelniony %@\n", descriptionButton);
     }
-    NSLog(@"desc content %@\n", event.descriptionContent);
     viewBase.backgroundColor = [UIColor clearColor];
     datesTableView.backgroundColor = [UIColor clearColor];
     scrollView.contentSize = viewBase.frame.size;
