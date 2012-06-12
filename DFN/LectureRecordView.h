@@ -15,19 +15,20 @@
 {
     IBOutlet UITextField *myName, *mySurname;
     NSArray *arrayWithNames;
-    NSString *event, *data, *time, *filePath, *fileContent, *myEmail, *address;
+    NSString *event, *data, *time, *filePath, *fileContent, *myEmail, *address, *lecturer, *name, *surname, *UserName, *UserSurname;
 }
 
-@property (nonatomic, retain) NSString *myEmail;
+@property (nonatomic, retain) NSString *myEmail, *data, *time;
 
+- (void) mainFunction;
 - (IBAction)confirmData:(id)sender;
 - (NSInteger) getPositionName:(NSString *) name;
-- (NSString *) getName: (int) positionOfName;
 - (NSString *) getSex: (int) positionOfName;
 - (void) setEventName:(NSString *) eventName;
 - (void) setAddress:(NSString *)address;
 - (void) setEventData:(EventDate *) eventData;
 - (void) setMyEmail:(NSString *)email;
+- (void) setLecturerName:(NSString *) lecturerName;
 - (NSString *) generateMail: (NSString *) sex andName:(NSString *) name andSurname:(NSString *) surname;
 - (void) sendEmail: (NSString *) email andEmailContent:(NSString *) emailContent;
 @end

@@ -83,11 +83,10 @@
 	[[UIApplication sharedApplication] openURL:telURL];
 }
 
--(void)subscribeWithSubscripiton:(NSString *)subscription withDate:(EventDate *)date withTitle:(NSString *)title andNavigationView:(UINavigationController *)navController
+-(void)subscribeWithSubscripiton:(NSString *)subscription withDate:(EventDate *)date withTitle:(NSString *)title withLecturer:(NSString *)lecturer andNavigationView:(UINavigationController *)navController
 {
     NSString * email = [self emailRegex:subscription];
     NSString * phone = [self phoneRegex:subscription];
-    NSString * subDate = [self dateRegex:subscription];
     
     if (email)
     {
@@ -95,24 +94,27 @@
         if ([dbManager isUserSet])
         {
             LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
+            [lectureRecord setLecturerName:lecturer];
             [lectureRecord setEventName:title];
             [lectureRecord setEventData:date];
             [lectureRecord setMyEmail:email];
             [lectureRecord setAddress:[[[date event] place] address]];
+            [lectureRecord mainFunction];
             lectureRecord.view.backgroundColor = [UIColor clearColor];
             [lectureRecord.view setAlpha:0.0];
             [navController pushViewController:lectureRecord animated:YES];
-            NSString * emailContent = [lectureRecord generateMail:@"M" andName:[dbManager userName] andSurname:[dbManager userSurname]];
+            NSString * emailContent = [lectureRecord generateMail:[lectureRecord getSex:[lectureRecord getPositionName:lecturer]] andName:[dbManager userName] andSurname:[dbManager userSurname]];
             [lectureRecord sendEmail:email andEmailContent:emailContent];
             [lectureRecord release];
         }
         else
-        {NSLog(@"else");
+        {
             LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
             [lectureRecord setEventName:title];
             [lectureRecord setEventData:date];
             [lectureRecord setMyEmail:email];
             [lectureRecord setAddress:[[[date event] place] address]];
+            [lectureRecord setLecturerName:lecturer];
             [navController pushViewController:lectureRecord animated:YES];
             lectureRecord.view.backgroundColor = [UIColor clearColor];
             [lectureRecord release];
@@ -127,6 +129,5 @@
    
    
 }
-
 
 @end

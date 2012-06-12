@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
-		5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0081572E6F300880C34 /* SubscriptionMaker.m */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
 		506E3F71158017DE00A355B7 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F66158017DE00A355B7 /* 2.png */; };
@@ -57,10 +56,11 @@
 		BF094A87151510B5009F3628 /* LecturesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF094A85151510B5009F3628 /* LecturesListView.xib */; };
 		BFA3487A1533428800D0EBEE /* AboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA348781533428800D0EBEE /* AboutUsView.m */; };
 		BFA3487B1533428800D0EBEE /* AboutUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA348791533428800D0EBEE /* AboutUsView.xib */; };
-		CE7FFEB81560544A00BC13EC /* LectureRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7FFEB71560544A00BC13EC /* LectureRecordView.m */; };
 		CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */; };
 		CE7FFEC01560667A00BC13EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7FFEBF1560667A00BC13EC /* MessageUI.framework */; };
 		CE9393211563F598005F216A /* imiona.csv in Resources */ = {isa = PBXBuildFile; fileRef = CE9393201563F598005F216A /* imiona.csv */; };
+		DBED5CD2158697A400321265 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = DBED5CCE158697A400321265 /* SubscriptionMaker.m */; };
+		DBED5CD3158697A400321265 /* LectureRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBED5CD0158697A400321265 /* LectureRecordView.m */; };
 		E845B31215543AB700485C36 /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E845B31015543AB700485C36 /* DescriptionView.m */; };
 		E845B31315543AB700485C36 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E845B31115543AB700485C36 /* DescriptionView.xib */; };
 		E848BFCA15167672000640A3 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E848BFC815167672000640A3 /* logo2.png */; };
@@ -104,8 +104,6 @@
 /* Begin PBXFileReference section */
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		5019C0081572E6F300880C34 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionMaker.m; sourceTree = "<group>"; };
-		5019C0091572E6F300880C34 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoTaxi.png; sourceTree = "<group>"; };
 		506E3F65158017DE00A355B7 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		506E3F66158017DE00A355B7 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -178,11 +176,13 @@
 		BFA348771533428800D0EBEE /* AboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsView.h; sourceTree = "<group>"; };
 		BFA348781533428800D0EBEE /* AboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsView.m; sourceTree = "<group>"; };
 		BFA348791533428800D0EBEE /* AboutUsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsView.xib; sourceTree = "<group>"; };
-		CE7FFEB61560544A00BC13EC /* LectureRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureRecordView.h; sourceTree = "<group>"; };
-		CE7FFEB71560544A00BC13EC /* LectureRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureRecordView.m; sourceTree = "<group>"; };
 		CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureRecordView.xib; sourceTree = "<group>"; };
 		CE7FFEBF1560667A00BC13EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE9393201563F598005F216A /* imiona.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imiona.csv; sourceTree = "<group>"; };
+		DBED5CCE158697A400321265 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionMaker.m; sourceTree = "<group>"; };
+		DBED5CCF158697A400321265 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
+		DBED5CD0158697A400321265 /* LectureRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureRecordView.m; sourceTree = "<group>"; };
+		DBED5CD1158697A400321265 /* LectureRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureRecordView.h; sourceTree = "<group>"; };
 		E845B30F15543AB600485C36 /* DescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionView.h; sourceTree = "<group>"; };
 		E845B31015543AB700485C36 /* DescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionView.m; sourceTree = "<group>"; };
 		E845B31115543AB700485C36 /* DescriptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
@@ -447,10 +447,10 @@
 		CE6F2565155D1B1100C59A82 /* SubscriptionView */ = {
 			isa = PBXGroup;
 			children = (
-				5019C0081572E6F300880C34 /* SubscriptionMaker.m */,
-				5019C0091572E6F300880C34 /* SubscriptionMaker.h */,
-				CE7FFEB71560544A00BC13EC /* LectureRecordView.m */,
-				CE7FFEB61560544A00BC13EC /* LectureRecordView.h */,
+				DBED5CCE158697A400321265 /* SubscriptionMaker.m */,
+				DBED5CCF158697A400321265 /* SubscriptionMaker.h */,
+				DBED5CD0158697A400321265 /* LectureRecordView.m */,
+				DBED5CD1158697A400321265 /* LectureRecordView.h */,
 				CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */,
 			);
 			name = SubscriptionView;
@@ -672,12 +672,12 @@
 				E84B5E6815477276006E4227 /* PickDateView.m in Sources */,
 				E84B5E6A15477276006E4227 /* SimpleSearchView.m in Sources */,
 				E845B31215543AB700485C36 /* DescriptionView.m in Sources */,
-				CE7FFEB81560544A00BC13EC /* LectureRecordView.m in Sources */,
 				5019C0031572E4AC00880C34 /* User.m in Sources */,
-				5019C00A1572E6F300880C34 /* SubscriptionMaker.m in Sources */,
 				50F16A2C157BD92B00DDE90D /* Category.m in Sources */,
 				50F16A36157BD92B00DDE90D /* Section.m in Sources */,
 				506E3F7E15801B4D00A355B7 /* LectureView.m in Sources */,
+				DBED5CD2158697A400321265 /* SubscriptionMaker.m in Sources */,
+				DBED5CD3158697A400321265 /* LectureRecordView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +802,7 @@
 		B57D6BCC14AA480300A4D201 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -812,6 +813,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

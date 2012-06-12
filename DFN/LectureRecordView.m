@@ -16,7 +16,7 @@
 
 @implementation LectureRecordView
 
-@synthesize myEmail;
+@synthesize myEmail, data, time;
 
 - (IBAction)confirmData:(id)sender
 {
@@ -26,8 +26,6 @@
     NSString *temporaryName = myName.text;
     NSString *surname = mySurname.text;
     NSString *email = myEmail;
-    NSLog(@"email: %@", myEmail);
-
     
     if(temporaryName.length < 3)
     {
@@ -41,28 +39,36 @@
         [alert show];
         [alert release];
     }
-  
+    
     else {
-        
-        NSString *emailContent, *convertedName, *sex;
-        NSInteger i = [self getPositionName:temporaryName]; 
+        NSString *emailContent, *sex;
+        NSInteger i = [self getPositionName:lecturer]; 
         DatabaseManager *dbManager = [DatabaseManager sharedInstance];
         [dbManager createUserWithName:myName.text withSurname:mySurname.text];
-
         if ( i != -1 ) {
-            convertedName = [ self getName:i];
             sex = [self getSex:i];
         }
         else {
-            convertedName = temporaryName;
-            UniChar lastLetter = [temporaryName characterAtIndex:[temporaryName length] - 1];
-            sex = ( lastLetter == 'a' || lastLetter == 'A')  ? (@"K") : (@"M");
+            sex = @"U";
         }
-    
-        emailContent = [self generateMail:sex andName:convertedName andSurname:surname];
+        emailContent = [self generateMail:sex andName:temporaryName andSurname:surname];
         [self sendEmail:email andEmailContent:emailContent];
+        
         [self viewDidLoad];
     }
+}
+
+- (void) mainFunction
+{
+    filePath = [[NSBundle mainBundle] pathForResource:@"imiona" ofType:@"csv"];
+    fileContent = [NSString stringWithContentsOfFile:filePath encoding: NSUTF8StringEncoding error:nil];
+    arrayWithNames = [fileContent componentsSeparatedByString:@"\n"];        
+    [self viewDidLoad];
+}
+
+- (void) setLecturerName:(NSString *)lecturerName
+{
+    lecturer = lecturerName;
 }
 
 - (NSInteger) getPositionName:(NSString *)name
@@ -70,48 +76,50 @@
     for (int i = 0; i < [arrayWithNames count]; i++)
     {
         NSArray *temporaryArray = [[arrayWithNames objectAtIndex:i] componentsSeparatedByString:@";"];
-        NSCharacterSet *charToTrim = [NSCharacterSet characterSetWithCharactersInString:@"\""];
-        NSString *temporaryString = [[temporaryArray objectAtIndex:0] stringByTrimmingCharactersInSet:charToTrim];
-        if ( [name isEqualToString:temporaryString] )
+        NSArray *nameArray = [name componentsSeparatedByString:@" "];
+        for(int j = 0; j < [nameArray count]; j++)
         {
-            return i;
+            if ( [[nameArray objectAtIndex:j] isEqualToString:[temporaryArray objectAtIndex:0]])
+            {
+                return i;
+            }
         }
     }
     return -1;
 }
 
-- (NSString *) getName:(int)positionOfName
-{
-    NSArray *temporaryArray = [[arrayWithNames objectAtIndex:positionOfName] componentsSeparatedByString:@";"];
-    NSCharacterSet *charToTrim = [NSCharacterSet characterSetWithCharactersInString:@"\""];
-    NSString *temporaryString = [[temporaryArray objectAtIndex:1] stringByTrimmingCharactersInSet:charToTrim];
-    return temporaryString;
-}
-
 - (NSString *) getSex:(int)positionOfName
 {
-    NSArray *temporaryArray = [[arrayWithNames objectAtIndex:positionOfName] componentsSeparatedByString:@";"];
-    NSCharacterSet *charToTrim = [NSCharacterSet characterSetWithCharactersInString:@"\""];
-    NSString *temporaryString = [[temporaryArray objectAtIndex:2] stringByTrimmingCharactersInSet:charToTrim];    
-    return temporaryString;
-    
+    if ( positionOfName != -1 ) {
+        NSArray *temporaryArray = [[arrayWithNames objectAtIndex:positionOfName] componentsSeparatedByString:@";"];
+        NSCharacterSet *charToTrim = [NSCharacterSet characterSetWithCharactersInString:@"\""];
+        NSString *temporaryString = [[temporaryArray objectAtIndex:2] stringByTrimmingCharactersInSet:charToTrim];   
+        return temporaryString;
+    }
+    else {
+        return @"U";
+    }
 }
 
 - (NSString *) generateMail:(NSString *)sex andName:(NSString *)name andSurname:(NSString *)surname
 {
     sex = [sex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ( [sex isEqualToString:@"K"] ){
-        return [NSString stringWithFormat:@"Szanowny Panie\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+        return [NSString stringWithFormat:@"Szanowna Pani\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+    }
+    if ( [sex isEqualToString:@"M"] ){
+        return [NSString stringWithFormat:@"Szanowny Panie\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
     }
     else {
-        return [NSString stringWithFormat:@"Szanowna Pani\n\nChce wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+        return [NSString stringWithFormat:@"Szanowni Państwo\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
     }
 }
 
 - (void) sendEmail:(NSString *)email andEmailContent:(NSString *)emailContent 
 {
-    NSArray *array = [NSArray arrayWithObjects:email, nil];
+    NSArray *array = [NSArray arrayWithObjects:myEmail, nil];
     MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    [controller autorelease];
     controller.mailComposeDelegate = self;
     
     if([MFMailComposeViewController canSendMail])
@@ -141,6 +149,14 @@
     if (result == MFMailComposeResultCancelled) {
         [self dismissModalViewControllerAnimated:YES];
     }
+    if (result == MFMailComposeResultSaved )
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Zachowano wiadomość!" message:@"Twoja wiadomość została zapisana!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    [self dismissModalViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:NO];
 }
 
@@ -151,8 +167,8 @@
 
 - (void) setMyEmail:(NSString *)email
 {
-    myEmail = [[[NSString alloc] initWithString:email] copy];
-    NSLog(@"myEmail %@", myEmail);    
+    myEmail = [[[NSString alloc] initWithString:email] copy];  
+    [myEmail autorelease];
 }
 
 - (void)setAddress:(NSString *)location
@@ -169,8 +185,10 @@
     [timeFormat setDateFormat:@"HH:mm:ss"];
     NSString *tmp_data = [dateFormat stringFromDate:eventData.openingHour];
     data = [tmp_data mutableCopy];
+    //[data autorelease];
     NSString *tmp_time = [timeFormat stringFromDate:eventData.openingHour];
     time = [tmp_time mutableCopy];
+    //[time autorelease];
     [dateFormat release];
     [timeFormat release];
 

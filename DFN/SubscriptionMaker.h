@@ -13,7 +13,7 @@
 @property(nonatomic, retain) NSString *event;
 
 
--(void)subscribeWithSubscripiton:(NSString *)subscription withDate:(EventDate *)date withTitle:(NSString *)title andNavigationView:(UINavigationController *)navController; 
+-(void)subscribeWithSubscripiton:(NSString *)subscription withDate:(EventDate *)date withTitle:(NSString *)title withLecturer:(NSString *)lecturer andNavigationView:(UINavigationController *)navController; 
 -(NSString*) emailRegex:(NSString*) eventString ;
 -(NSString*) phoneRegex:(NSString*) eventString ;
 -(NSString*) dateRegex:(NSString*) eventString ;

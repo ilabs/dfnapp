@@ -108,27 +108,12 @@ int lastChosenIndex;
         [alert release];
     }
     else {
-//        LectureRecordView *lectureRecord = [[LectureRecordView alloc] initWithNibName:@"LectureRecordView" bundle:nil];
-//        [self.navigationController pushViewController:lectureRecord animated:YES];
-//        lectureRecord.view.backgroundColor = [UIColor clearColor];
-//        [lectureRecord setEventName:event.title];
-//        [lectureRecord setEventData:evDate];
-//        [lectureRecord release];
         SubscriptionMaker *subMaker = [[SubscriptionMaker alloc] init];
-        [subMaker subscribeWithSubscripiton:event.subscription withDate:evDate withTitle:event.title andNavigationView:self.navigationController];
+        [subMaker subscribeWithSubscripiton:event.subscription withDate:evDate withTitle:event.title withLecturer:event.lecturer andNavigationView:self.navigationController];
         [subMaker release];
     }
     [tableView reloadData];
     lastChosenIndex = indexPath.row;
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"alert");
-    EventDate *evDate = (EventDate*)[list objectAtIndex:lastChosenIndex];
-    SubscriptionMaker *subMaker = [[SubscriptionMaker alloc] init];
-    [subMaker subscribeWithSubscripiton:event.subscription withDate:evDate withTitle:event.title andNavigationView:self.navigationController];
-    [subMaker release];
-    [tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
