@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 pawel.nuzka@gmail.com. All rights reserved.
 //
 
+
 #import "SubscriptionMaker.h"
 #import "LectureRecordView.h"
 

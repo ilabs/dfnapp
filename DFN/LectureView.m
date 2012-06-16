@@ -6,10 +6,13 @@
 //  Copyright (c) 2012 rabursky@gmail.com. All rights reserved.
 //
 
+
+
 #import "LectureView.h"
 #import "SignInView.h"
 #import <EventKit/EventKit.h>
 #import "DescriptionView.h"
+
 
 
 @implementation LectureView
@@ -57,6 +60,7 @@
     }
 }
 - (IBAction)signIn:(id)sender {
+    NSLog(@"wcisnieta zapisz sie");
     SignInView *lview = [[[SignInView alloc] initWithNibName:@"SignInView" bundle:nil lecture:event] autorelease];
     lview.parent = self;
     [self.navigationController pushViewController:lview animated:YES];
@@ -174,7 +178,12 @@
     if ([event.descriptionContent length]<=0 || ![event.descriptionContent isKindOfClass:[NSString class]]) {
         [descriptionButton setHidden:YES];
     }
+    
     viewBase.backgroundColor = [UIColor clearColor];
+    [viewBase addSubview:signinButton];
+    [viewBase addSubview:signinImage];
+    [viewBase addSubview:signinLabel];
+    [viewBase addSubview:watchButton];
     datesTableView.backgroundColor = [UIColor clearColor];
     scrollView.contentSize = viewBase.frame.size;
     [scrollView addSubview:viewBase];

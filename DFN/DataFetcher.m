@@ -206,8 +206,8 @@ BOOL showProgress = FALSE;
         {
             //       [dbManager saveDatabase];
             //       [dbManager refreshState];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
-                                                                object:[NSNumber numberWithFloat:i/(all*2.0)]];
+          //  [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
+          //                                                      object:[NSNumber numberWithFloat:i/(all*2.0)]];
         }
         
     }
@@ -304,9 +304,9 @@ BOOL showProgress = FALSE;
                 }
             }
         }
-        if (i % (all/10) == 0 && showProgress)
+     /*   if (i % (all/10) == 0 && showProgress)
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
-                                                                object:[NSNumber numberWithFloat:0.5+i/(all*2.0)]];
+                                                                object:[NSNumber numberWithFloat:0.5+i/(all*2.0)]];*/
     }
 }
 - (void)updateData
