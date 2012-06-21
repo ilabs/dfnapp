@@ -156,7 +156,7 @@
     [_tabBar setViewControllers:views];
     
     // Customize TabBar
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background@2x.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     [_tabBar.view insertSubview:imageView atIndex:0];
     [imageView release];
     

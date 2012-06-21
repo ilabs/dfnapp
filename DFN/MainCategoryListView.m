@@ -70,7 +70,7 @@
     [super viewDidLoad];
     [self loadData];
     self.title = @"Działy";
-    infoImage = [[UIImage imageNamed:@"info@2x.png"] retain];
+    infoImage = [[UIImage imageNamed:@"info.png"] retain];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

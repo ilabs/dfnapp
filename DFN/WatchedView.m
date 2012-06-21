@@ -91,7 +91,7 @@
     if([((Event*)[list objectAtIndex:[indexPath row]]).showAsUpdated boolValue]){
         // znika po nacisniciu cell'a
         if(changed == nil){
-            changed = [[UIImage imageNamed:@"changed@2x.png"] retain];
+            changed = [[UIImage imageNamed:@"changed.png"] retain];
         }
         cell.imageView.image = changed;
     }

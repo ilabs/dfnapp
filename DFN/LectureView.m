@@ -165,7 +165,7 @@
         [signinImage setHidden:NO];
         if([event.subscription rangeOfString:@"@"].location == NSNotFound)
         {
-            [signinImage setImage:[UIImage imageNamed:@"phone@2x.png"]];
+            [signinImage setImage:[UIImage imageNamed:@"phone.png"]];
         }
         NSLog(@"zapisy sa dostepne");
     }else{
