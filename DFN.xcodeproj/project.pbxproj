@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50137A33158D078F007E64BA /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 50137A32158D078F007E64BA /* DFN.sqlite */; };
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
@@ -38,6 +37,10 @@
 		50AFF23A152E694200418C3F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF238152E694200418C3F /* Model.xcdatamodeld */; };
 		50B583C9154349F9001BCF06 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B583C8154349F9001BCF06 /* Event.m */; };
 		50B583CF15434A1A001BCF06 /* EventDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B583CE15434A1A001BCF06 /* EventDate.m */; };
+		50BAA0691593068500C59FD1 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BAA0681593068500C59FD1 /* search@2x.png */; };
+		50BAA06D159306E500C59FD1 /* eye3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BAA06B159306E500C59FD1 /* eye3@2x.png */; };
+		50BAA06E159306E500C59FD1 /* eye3.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BAA06C159306E500C59FD1 /* eye3.png */; };
+		50BAA070159308D900C59FD1 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 50BAA06F159308D900C59FD1 /* DFN.sqlite */; };
 		50F16A2C157BD92B00DDE90D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F16A2B157BD92B00DDE90D /* Category.m */; };
 		50F16A36157BD92B00DDE90D /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F16A35157BD92B00DDE90D /* Section.m */; };
 		50F294DE1514BCEA003CBF8B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F294DD1514BCEA003CBF8B /* JSONKit.m */; };
@@ -82,7 +85,6 @@
 		E84B5E6B15477276006E4227 /* SimpleSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B5E6715477276006E4227 /* SimpleSearchView.xib */; };
 		E8554AF815262069000655FC /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8554AF715262068000655FC /* EventKit.framework */; };
 		E87552D9151E248B0009F89E /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = E87552D7151E248B0009F89E /* search.png */; };
-		E87552DA151E248B0009F89E /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87552D8151E248B0009F89E /* search@2x.png */; };
 		E875C2D01531DD2E0077C0E8 /* changed.png in Resources */ = {isa = PBXBuildFile; fileRef = E875C2CE1531DD2D0077C0E8 /* changed.png */; };
 		E875C2D11531DD2E0077C0E8 /* changed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E875C2CF1531DD2D0077C0E8 /* changed@2x.png */; };
 		E875C2D51531E1910077C0E8 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = E875C2D31531E1910077C0E8 /* info.png */; };
@@ -102,7 +104,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50137A32158D078F007E64BA /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoTaxi.png; sourceTree = "<group>"; };
@@ -147,6 +148,10 @@
 		50B583C8154349F9001BCF06 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		50B583CD15434A1A001BCF06 /* EventDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDate.h; sourceTree = "<group>"; };
 		50B583CE15434A1A001BCF06 /* EventDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDate.m; sourceTree = "<group>"; };
+		50BAA0681593068500C59FD1 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		50BAA06B159306E500C59FD1 /* eye3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye3@2x.png"; sourceTree = "<group>"; };
+		50BAA06C159306E500C59FD1 /* eye3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye3.png; sourceTree = "<group>"; };
+		50BAA06F159308D900C59FD1 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		50F16A2A157BD92B00DDE90D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		50F16A2B157BD92B00DDE90D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		50F16A34157BD92B00DDE90D /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -207,7 +212,6 @@
 		E84B5E6715477276006E4227 /* SimpleSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleSearchView.xib; sourceTree = "<group>"; };
 		E8554AF715262068000655FC /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		E87552D7151E248B0009F89E /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		E87552D8151E248B0009F89E /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		E87552E1151E2AD40009F89E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E875C2CE1531DD2D0077C0E8 /* changed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = changed.png; sourceTree = "<group>"; };
 		E875C2CF1531DD2D0077C0E8 /* changed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changed@2x.png"; sourceTree = "<group>"; };
@@ -253,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
-				50137A32158D078F007E64BA /* DFN.sqlite */,
+				50BAA06F159308D900C59FD1 /* DFN.sqlite */,
 				50F16A34157BD92B00DDE90D /* Section.h */,
 				50F16A35157BD92B00DDE90D /* Section.m */,
 				50F16A2A157BD92B00DDE90D /* Category.h */,
@@ -475,6 +479,7 @@
 		E848BFC715167672000640A3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				50BAA0681593068500C59FD1 /* search@2x.png */,
 				E8A3EE9F1541DB5500596388 /* mail.png */,
 				E8A3EEA01541DB5500596388 /* mail@2x.png */,
 				E8A3EEA11541DB5500596388 /* phone.png */,
@@ -482,7 +487,8 @@
 				E875C2CE1531DD2D0077C0E8 /* changed.png */,
 				E875C2CF1531DD2D0077C0E8 /* changed@2x.png */,
 				E87552D7151E248B0009F89E /* search.png */,
-				E87552D8151E248B0009F89E /* search@2x.png */,
+				50BAA06B159306E500C59FD1 /* eye3@2x.png */,
+				50BAA06C159306E500C59FD1 /* eye3.png */,
 				50E4A491151A5BAC00467B87 /* icons */,
 				E848BFDA151696E2000640A3 /* dfnLogo.png */,
 				E848BFDB151696E2000640A3 /* dfnLogo@2x.png */,
@@ -601,7 +607,6 @@
 				E848BFE3151696FB000640A3 /* Default@2x.png in Resources */,
 				E848BFE515169703000640A3 /* Default.png in Resources */,
 				E87552D9151E248B0009F89E /* search.png in Resources */,
-				E87552DA151E248B0009F89E /* search@2x.png in Resources */,
 				E882996C1525D0410067B941 /* LoadingView.xib in Resources */,
 				E88299701525EB090067B941 /* Icon.png in Resources */,
 				E88299721525EB100067B941 /* Icon@2x.png in Resources */,
@@ -635,7 +640,10 @@
 				506E3F7A158017DE00A355B7 /* 11.png in Resources */,
 				506E3F7F15801B4D00A355B7 /* LectureView.xib in Resources */,
 				5094AE6B158643A9002CC5B6 /* logo_taxi5_270x114.png in Resources */,
-				50137A33158D078F007E64BA /* DFN.sqlite in Resources */,
+				50BAA0691593068500C59FD1 /* search@2x.png in Resources */,
+				50BAA06D159306E500C59FD1 /* eye3@2x.png in Resources */,
+				50BAA06E159306E500C59FD1 /* eye3.png in Resources */,
+				50BAA070159308D900C59FD1 /* DFN.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

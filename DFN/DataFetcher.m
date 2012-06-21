@@ -311,15 +311,16 @@ BOOL showProgress = FALSE;
 }
 - (void)updateData
 {
-    //NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    NSLog(@"Jestem tu! %@", self.urlToMainJSON);
     if (![self checkConnection])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"No connection" object:nil];
         return;
     }
     NSDictionary * checksums = [self decodeFromJSON:[self downloadDataFromURL:self.urlToMainJSON]];
-    
     NSString *eventsChecksum = [checksums objectForKey:@"imprezy"];
+    if (!eventsChecksum)
+        return;
     NSString *eventsDatesChecksum = [checksums objectForKey:@"terminy"];
     NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
     

@@ -565,6 +565,10 @@
 {
     [self removeEntity:[self getEventWithId:ID]];
 }
+- (void)removeSectionWithId:(NSString *)ID
+{
+    [self removeEntity:[self getSectionWithId:ID]];
+}
 - (void)addToWatchedEntities:(Event *)event
 {
     WatchedEntities * watched = [self getWatchedEntities];

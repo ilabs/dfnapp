@@ -131,6 +131,8 @@
     // Buttony na TabBar
     UITabBarItem *item1 = [[[UITabBarItem alloc] initWithTitle:@"Wykłady" image:[UIImage imageNamed:@"logo2.png"] tag:0] autorelease];
     UITabBarItem *item2 = [[[UITabBarItem alloc] initWithTitle:@"Obserwowane" image:[UIImage imageNamed:@"logo2.png"] tag:1] autorelease];
+    
+    
     UITabBarItem *item3 = [[[UITabBarItem alloc] initWithTitle:@"Szukaj" image:[UIImage imageNamed:@"logo2.png"] tag:2] autorelease];
     
     // Ustawiamy dla kazdego view buttona
