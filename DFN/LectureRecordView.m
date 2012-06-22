@@ -11,13 +11,13 @@
 #import "MessageUI/MFMailComposeViewController.h"
 #import "MainCategoryListView.h"
 #import "DatabaseManager.h"
-@interface LectureRecordView ()
-
-@end
 
 @implementation LectureRecordView
 
-@synthesize myEmail, data, time;
+@synthesize myEmail = _myEmail;
+@synthesize address = _address;
+@synthesize data    = _data;
+@synthesize time    = _time;
 
 - (IBAction)confirmData:(id)sender
 {
@@ -26,7 +26,7 @@
     arrayWithNames = [fileContent componentsSeparatedByString:@"\n"];
     NSString *temporaryName = myName.text;
     NSString *surname = mySurname.text;
-    NSString *email = myEmail;
+    NSString *email = self.myEmail;
     
     if(temporaryName.length < 3)
     {
@@ -106,19 +106,19 @@
 {
     sex = [sex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ( [sex isEqualToString:@"K"] ){
-        return [NSString stringWithFormat:@"Szanowna Pani\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+        return [NSString stringWithFormat:@"Szanowna Pani\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, self.data, self.time, self.address, name, surname];
     }
     if ( [sex isEqualToString:@"M"] ){
-        return [NSString stringWithFormat:@"Szanowny Panie\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+        return [NSString stringWithFormat:@"Szanowny Panie\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, self.data, self.time, self.address, name, surname];
     }
     else {
-        return [NSString stringWithFormat:@"Szanowni Państwo\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, data, time, address, name, surname];
+        return [NSString stringWithFormat:@"Szanowni Państwo\n\nChcę wziąć udział w wydarzeniu %@, które odbędzie się:\ndnia: %@ \no godzinie: %@\nw: %@\n\nPozdrawiam %@ %@\n\nMail został automatycznie wygenerowany za pomocą oficjalnej aplikacji Dolnośląskiego Festiwalu Nauki na urządzenia mobilne.", event, self.data, self.time, self.address, name, surname];
     }
 }
 
 - (void) sendEmail:(NSString *)email andEmailContent:(NSString *)emailContent 
 {
-    NSArray *array = [NSArray arrayWithObjects:myEmail, nil];
+    NSArray *array = [NSArray arrayWithObjects:self.myEmail, nil];
     MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
     [controller autorelease];
     controller.mailComposeDelegate = self;
@@ -166,33 +166,16 @@
     event = eventName;
 }
 
-- (void) setMyEmail:(NSString *)email
-{
-    myEmail = [[[NSString alloc] initWithString:email] copy];  
-    [myEmail autorelease];
-}
-
-- (void)setAddress:(NSString *)location
-{
-    address = [[[NSString alloc] initWithString:location] copy];
-}
-
 - (void) setEventData:(EventDate *)eventData
 {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *timeFormat = [[[NSDateFormatter alloc] init] autorelease];
     
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     [timeFormat setDateFormat:@"HH:mm:ss"];
-    NSString *tmp_data = [dateFormat stringFromDate:eventData.openingHour];
-    data = [tmp_data mutableCopy];
-    //[data autorelease];
-    NSString *tmp_time = [timeFormat stringFromDate:eventData.openingHour];
-    time = [tmp_time mutableCopy];
-    //[time autorelease];
-    [dateFormat release];
-    [timeFormat release];
-
+    
+    self.data = [dateFormat stringFromDate:eventData.openingHour];
+    self.time = [timeFormat stringFromDate:eventData.openingHour];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

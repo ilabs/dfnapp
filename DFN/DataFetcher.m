@@ -14,27 +14,50 @@
 #define DYNAMIC_JSON_PATH @"http://dfn.coijak.pwr.wroc.pl/iphone/terminy.json"
 
 @implementation DataFetcher
+
 @synthesize urlToMainJSON, urlToEventsJSON, urlToEventsDatesJSON, xsdDateTimeFormatter;
 
 BOOL showProgress = FALSE; 
 
+static DataFetcher *sharedInstance;
+
 + (id)sharedInstance
 {
-    static id master = nil;
-    
-    @synchronized(self)
-    {
-        if (master == nil)
-        {
-            master = [self new];
-            [master setUrlToMainJSON:MAIN_JSON_PATH];
-            [master setUrlToEventsJSON:STATIC_JSON_PATH];
-            [master setUrlToEventsDatesJSON:DYNAMIC_JSON_PATH];
-            [master setXsdDateTimeFormatter:[[NSDateFormatter alloc] init]];
+    if ( sharedInstance == nil ) {
+        @synchronized (self) {
+            if ( sharedInstance == nil ) {
+                sharedInstance = [[DataFetcher alloc] init];
+            }
         }
-    }
-    return master;
+    } 
+    
+    return sharedInstance;
 }
+
+- (id)init
+{
+    self = [super init];
+    if ( self ) {
+        [self setUrlToMainJSON:MAIN_JSON_PATH];
+        [self setUrlToEventsJSON:STATIC_JSON_PATH];
+        [self setUrlToEventsDatesJSON:DYNAMIC_JSON_PATH];
+        [self setXsdDateTimeFormatter:[[[NSDateFormatter alloc] init] autorelease]];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    self.urlToMainJSON = nil;
+    self.urlToEventsJSON = nil;
+    self.urlToEventsDatesJSON = nil;
+    self.xsdDateTimeFormatter = nil;
+    
+    [super dealloc];
+}
+
+
 - (JSONDecoder *)jsonDecoder
 {
     return [JSONDecoder decoder];
@@ -130,7 +153,6 @@ BOOL showProgress = FALSE;
             [dbEvent setDbID:[event objectForKey:@"id_imprezy"]];
         }
         id ID = [event objectForKey:@"forma1"];
-        ID = [event objectForKey:@"forma1"];
         if ([ID isKindOfClass:[NSString class]] && ![[ID description] isEqualToString:@"<null>"])
             [self updateEvent:dbEvent withForm:(NSString *)ID];
         
@@ -218,7 +240,6 @@ BOOL showProgress = FALSE;
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
-    int all = [eventsDatesData count];
     for (NSDictionary *eventDatesData in eventsDatesData)
     {
         NSLog(@"%d %@",i, [eventDatesData description] );
@@ -380,9 +401,10 @@ BOOL showProgress = FALSE;
                 [self updateEvents];
                 [dbManager saveChecksum:eventChecksumFromJSON withEventsNumber:i];
             }
-            if (i % (numberOfEvents/10) == 0)
+            if ( numberOfEvents != 0 && i % ( numberOfEvents/10 ) == 0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
                                                                     object:[NSNumber numberWithFloat:i/(numberOfEvents*2.0)]];
+            }
         }
         [dbManager setLastEventsChecksum:eventsChecksum];
         [dbManager setNumberOfEventsChecksums:numberOfEvents];
@@ -390,7 +412,8 @@ BOOL showProgress = FALSE;
     if (![eventsDatesChecksum isEqualToString:[dbManager getLastEventsDatesChecksum]])
     {
         for (int i = 0; i < numberOfEventsDates; i++)
-        {                        NSString *eventDatesChecksumFromJSON = [checksums objectForKey:[NSString stringWithFormat:@"termin%d", i]];
+        {          
+            NSString *eventDatesChecksumFromJSON = [checksums objectForKey:[NSString stringWithFormat:@"termin%d", i]];
             NSString *eventDatesChecksumFromDB = [dbManager getChecksumWithEventDatesNumber:i];
             if (![eventDatesChecksumFromJSON isEqualToString:eventDatesChecksumFromDB])
             {
@@ -398,9 +421,10 @@ BOOL showProgress = FALSE;
                 [self updateEventsData];
                 [dbManager saveChecksum:eventDatesChecksumFromJSON withEventsDatesNumber:i];
             }
-            if (i % (numberOfEventsDates/10) == 0)
+            if ( numberOfEventsDates != 0 && i % ( numberOfEventsDates/10 ) == 0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadProgress"
                                                                     object:[NSNumber numberWithFloat:0.5+i/(numberOfEventsDates*2.0)]];
+            }
         }
         [dbManager setLastEventsDatesChecksum:eventsDatesChecksum];
         [dbManager setNumberOfEventsDatesChecksums:numberOfEventsDates];
@@ -428,12 +452,5 @@ BOOL showProgress = FALSE;
     NetworkStatus networkStatus = [reachability currentReachabilityStatus]; 
     return !(networkStatus == NotReachable);
 }
-- (void)dealloc
-{
-    [self.urlToMainJSON release];
-    [self.urlToEventsJSON release];
-    [self.urlToEventsDatesJSON release];
-    [self.xsdDateTimeFormatter release];
-    [super dealloc];
-}
+
 @end

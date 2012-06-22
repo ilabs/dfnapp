@@ -38,7 +38,7 @@
     self.title = @"Szukaj";
     tableView.backgroundColor = [UIColor clearColor];
     listEvents = [[NSArray alloc] init];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Ramy czasowe" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Ramy czasowe" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)] autorelease];
     timer = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSearch:) name:@"Search" object:nil];
 

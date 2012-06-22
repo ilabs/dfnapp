@@ -31,7 +31,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>pl.wroc.pwr.ilabs.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>pl.pwr.wroc.ilabs.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

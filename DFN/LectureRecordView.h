@@ -15,10 +15,13 @@
 {
     IBOutlet UITextField *myName, *mySurname;
     NSArray *arrayWithNames;
-    NSString *event, *data, *time, *filePath, *fileContent, *myEmail, *address, *lecturer, *name, *surname, *UserName, *UserSurname;
+    NSString *event, *filePath, *fileContent, *lecturer, *name, *surname, *UserName, *UserSurname;
 }
 
-@property (nonatomic, retain) NSString *myEmail, *data, *time;
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSString *myEmail;
+@property (nonatomic, retain) NSString *data;
+@property (nonatomic, retain) NSString *time;
 
 - (void) mainFunction;
 - (IBAction)confirmData:(id)sender;

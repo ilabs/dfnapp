@@ -70,6 +70,7 @@
     [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button5];
     [self setAuthor:@"Tomasz Topczewski\ntoptom92@gmail.com" onButton:button6];
     [self setAuthor:@"Aleksander Kocieniewski\na.kocieniewski@gmail.com" onButton:button7];
+    [self setAuthor:@"Paweł Jankowski\npawel.jankowski@me.com" onButton:button8];
     
     [self.view addSubview:subView];
     
@@ -172,6 +173,20 @@
         [self presentModalViewController:controller animated:YES];   
     }
 }
+
+- (IBAction)button8Clicked:(id)sender {
+    NSArray *array = [NSArray arrayWithObjects:@"pawel.jankowski@me.com", nil];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    if([MFMailComposeViewController canSendMail])
+    {
+        [controller setToRecipients:array];
+        [self presentModalViewController:controller animated:YES];   
+    }
+}
+
+
 - (IBAction)iLabsClicked:(id)sender
 {
     [[UIApplication sharedApplication] 
