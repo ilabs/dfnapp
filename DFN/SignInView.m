@@ -100,7 +100,7 @@ int lastChosenIndex;
 {
     // tutaj DO Stuff
     EventDate *evDate = (EventDate*)[list objectAtIndex:indexPath.row];
-    //NSLog(@"evdate: %@",[[DatabaseManager sharedInstance] hasAlreadySubscribedAtDay:evDate.day andOpeningHour:evDate.openingHour]);
+    //DLog(@"evdate: %@",[[DatabaseManager sharedInstance] hasAlreadySubscribedAtDay:evDate.day andOpeningHour:evDate.openingHour]);
     if ([[DatabaseManager sharedInstance] hasAlreadySubscribedAtDay:evDate.day andOpeningHour:evDate.openingHour])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ostrzeżenie" message:@"Jesteś już zapisany na inne wydarzenie w tym czasie!" delegate:self cancelButtonTitle:@"Rozumiem" otherButtonTitles:nil];

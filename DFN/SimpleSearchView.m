@@ -58,7 +58,7 @@
     [sBar setText:[[notification userInfo] objectForKey:@"string"]];
     [(UITabBarController*)self.parentViewController.parentViewController setSelectedIndex:2];
     [(UINavigationController*)self.parentViewController popToRootViewControllerAnimated:YES];
-    NSLog(@"PRE timer krash!");
+    DLog(@"PRE timer krash!");
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(searchStart:) userInfo:[[notification userInfo] objectForKey:@"string"] repeats:NO];
 }
 

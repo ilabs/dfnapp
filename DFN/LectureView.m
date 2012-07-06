@@ -60,7 +60,7 @@
     }
 }
 - (IBAction)signIn:(id)sender {
-    NSLog(@"wcisnieta zapisz sie");
+    DLog(@"wcisnieta zapisz sie");
     SignInView *lview = [[[SignInView alloc] initWithNibName:@"SignInView" bundle:nil lecture:event] autorelease];
     lview.parent = self;
     [self.navigationController pushViewController:lview animated:YES];
@@ -167,9 +167,9 @@
         {
             [signinImage setImage:[UIImage imageNamed:@"phone.png"]];
         }
-        NSLog(@"zapisy sa dostepne");
+        DLog(@"zapisy sa dostepne");
     }else{
-        NSLog(@"zapisy sa niedostepne");
+        DLog(@"zapisy sa niedostepne");
         if([event.subscription rangeOfString:@"na bieżąco"].location != NSNotFound || [event.subscription rangeOfString:@"trakcie imprezy"].location){
             [signinLabel setText:@"Zapisy w trakcie imprezy."];
         }

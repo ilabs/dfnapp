@@ -14,7 +14,8 @@
     #import <CoreData/CoreData.h>
 #endif
 
-#ifndef DEBUG
-#undef NSLog
-#define NSLog(args, ...)
+#ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__)
+#else
+    #define DLog(...)
 #endif

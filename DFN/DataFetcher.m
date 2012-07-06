@@ -138,13 +138,13 @@ static DataFetcher *sharedInstance;
 {
     NSDictionary *eventsData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    NSLog(@"events\n %@", [eventsData description]);
+    DLog(@"events\n %@", [eventsData description]);
     int i = 1;
     int all = [eventsData count];
     for (NSDictionary *event in eventsData)
     {
         //     [dbManager refreshState];
-        NSLog(@"%d %@",i, [event description] );
+        DLog(@"%d %@",i, [event description] );
         i++;
         Event * dbEvent = [dbManager getEventWithId:[event objectForKey:@"id_imprezy"]];
         if (!dbEvent)
@@ -238,11 +238,11 @@ static DataFetcher *sharedInstance;
 {
     NSDictionary *eventsDatesData = [self decodeFromJSON:[self downloadDataFromURL:self.urlToEventsDatesJSON]];
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
-    //   NSLog(@"events's dates \n %@", [eventsDatesData description]);
+    //   DLog(@"events's dates \n %@", [eventsDatesData description]);
     int i = 1;
     for (NSDictionary *eventDatesData in eventsDatesData)
     {
-        NSLog(@"%d %@",i, [eventDatesData description] );
+        DLog(@"%d %@",i, [eventDatesData description] );
         i++;
         id ID = [eventDatesData objectForKey:@"id_imprezy"];
         if ([ID isKindOfClass:[NSString class]])
@@ -332,7 +332,7 @@ static DataFetcher *sharedInstance;
 }
 - (void)updateData
 {
-    NSLog(@"Jestem tu! %@", self.urlToMainJSON);
+    DLog(@"Jestem tu! %@", self.urlToMainJSON);
     if (![self checkConnection])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"No connection" object:nil];
@@ -343,11 +343,11 @@ static DataFetcher *sharedInstance;
     if (!eventsChecksum)
         return;
     NSString *eventsDatesChecksum = [checksums objectForKey:@"terminy"];
-    NSLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
+    DLog(@"imprezy:  %@ \n terminy %@", eventsChecksum, eventsDatesChecksum);
     
     int numberOfEvents = [(NSString *)[checksums objectForKey:@"ile_imprez"] intValue];
     int numberOfEventsDates = [(NSString *)[checksums objectForKey:@"ile_terminow"] intValue];
-    NSLog(@"# imprez - %d , # dat - %d", numberOfEvents, numberOfEventsDates);
+    DLog(@"# imprez - %d , # dat - %d", numberOfEvents, numberOfEventsDates);
     DatabaseManager *dbManager = [DatabaseManager sharedInstance];
     if ([dbManager getNumberOfEventsChecksums] == 0)
     {

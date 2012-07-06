@@ -41,11 +41,11 @@
 - (void)progressBar:(NSNotification *)notif;
 {
     float progress = [[notif object] floatValue];
-    /*NSLog(@"progress: %f", progress);
+    /*DLog(@"progress: %f", progress);
      NSMutableString * string = [NSMutableString stringWithFormat:@"|"];
      for (int i = 0; i < progress; i++)
      [string appendString:@"=>"];
-     NSLog(@"%@", string);
+     DLog(@"%@", string);
      */
     [self.loadingView setLoadingProgress:progress];
     //[self.loadingView performSelectorOnMainThread:@selector(setLoadingProgress:) withObject:[] waitUntilDone:NO];
@@ -228,7 +228,7 @@
 //             
 //             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
 //             */
-//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //            abort();
 //        } 
 //    }
@@ -308,7 +308,7 @@
 //         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
 //         
 //         */
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //        abort();
 //    }    
 //    

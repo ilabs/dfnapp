@@ -26,7 +26,7 @@
     for (NSTextCheckingResult *Result in ArrayOfTextCheckingResults) {
         NSRange matchRange = [Result rangeAtIndex:0];
         MatchingString = [eventString substringWithRange:matchRange];
-        NSLog(@"Found string '%@'", MatchingString);
+        DLog(@"Found string '%@'", MatchingString);
     }
     return MatchingString;
 }
@@ -44,7 +44,7 @@
     for (NSTextCheckingResult *Result in ArrayOfTextCheckingResults) {
         NSRange matchRange = [Result rangeAtIndex:0];
         MatchingString = [eventString substringWithRange:matchRange];
-        NSLog(@"Found string '%@'", MatchingString);
+        DLog(@"Found string '%@'", MatchingString);
     }
     return MatchingString;
 }
@@ -62,7 +62,7 @@
     for (NSTextCheckingResult *Result in ArrayOfTextCheckingResults) {
         NSRange matchRange = [Result rangeAtIndex:0];
         MatchingString = [eventString substringWithRange:matchRange];
-        NSLog(@"Found string '%@'", MatchingString);
+        DLog(@"Found string '%@'", MatchingString);
     }
     return MatchingString;
 }

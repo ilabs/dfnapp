@@ -125,7 +125,7 @@
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error])
     {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }    
     
@@ -140,7 +140,7 @@
     {
         if([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -690,7 +690,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-    // NSLog(@"zapisuje checksume event %@", checksum);
+    // DLog(@"zapisuje checksume event %@", checksum);
 }
 - (void)saveChecksum:(NSString *)md5 withEventsDatesNumber:(int)eventsDatesNumber
 {
@@ -707,7 +707,7 @@
     }
     [checksum setMd5:md5];
     [self saveDatabase];
-    // NSLog(@"zapisuje checksume event date %@", checksum);
+    // DLog(@"zapisuje checksume event date %@", checksum);
 }
 - (int)getNumberOfEventsChecksums
 {
