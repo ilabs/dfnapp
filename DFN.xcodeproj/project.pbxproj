@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		501159541593AE0B000A0B81 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 501159531593AE0B000A0B81 /* DFN.sqlite */; };
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
+		502A8F8B15CD1970000C92F4 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 502A8F8A15CD1970000C92F4 /* DFN.sqlite */; };
+		506D6C6A15CC366A00633D30 /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 506D6C6915CC366A00633D30 /* 12.png */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
 		506E3F71158017DE00A355B7 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F66158017DE00A355B7 /* 2.png */; };
@@ -104,9 +105,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		501159531593AE0B000A0B81 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		502A8F8A15CD1970000C92F4 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
+		506D6C6915CC366A00633D30 /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoTaxi.png; path = ../logoTaxi.png; sourceTree = "<group>"; };
 		506E3F65158017DE00A355B7 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		506E3F66158017DE00A355B7 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -257,10 +259,10 @@
 			isa = PBXGroup;
 			children = (
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
+				502A8F8A15CD1970000C92F4 /* DFN.sqlite */,
 				50F16A34157BD92B00DDE90D /* Section.h */,
 				50F16A35157BD92B00DDE90D /* Section.m */,
 				50F16A2A157BD92B00DDE90D /* Category.h */,
-				501159531593AE0B000A0B81 /* DFN.sqlite */,
 				50F16A2B157BD92B00DDE90D /* Category.m */,
 				5019C0011572E4AC00880C34 /* User.h */,
 				5019C0021572E4AC00880C34 /* User.m */,
@@ -316,6 +318,7 @@
 				506E3F66158017DE00A355B7 /* 2.png */,
 				506E3F67158017DE00A355B7 /* 3.png */,
 				506E3F68158017DE00A355B7 /* 4.png */,
+				506D6C6915CC366A00633D30 /* 12.png */,
 				506E3F69158017DE00A355B7 /* 5.png */,
 				506E3F6A158017DE00A355B7 /* 6.png */,
 				506E3F6B158017DE00A355B7 /* 7.png */,
@@ -657,9 +660,10 @@
 				50BAA0691593068500C59FD1 /* search@2x.png in Resources */,
 				50BAA06D159306E500C59FD1 /* eye3@2x.png in Resources */,
 				50BAA06E159306E500C59FD1 /* eye3.png in Resources */,
-				501159541593AE0B000A0B81 /* DFN.sqlite in Resources */,
 				B5019B291593DA5D00E6DBDC /* Default.png in Resources */,
 				B5019B2A1593DA5F00E6DBDC /* Default@2x.png in Resources */,
+				506D6C6A15CC366A00633D30 /* 12.png in Resources */,
+				502A8F8B15CD1970000C92F4 /* DFN.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,8 +750,8 @@
 					arm6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -755,7 +759,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -823,7 +827,7 @@
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -834,8 +838,8 @@
 		B57D6BCC14AA480300A4D201 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -843,7 +847,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

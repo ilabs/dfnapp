@@ -168,6 +168,8 @@ static DataFetcher *sharedInstance;
         if ([ID isKindOfClass:[NSString class]])
         {
             //To jeszcze nie działa do końca!!!
+            if ([ID isEqualToString:@"Nauki humanistycznei"])
+                ID = [NSString stringWithFormat:@"Nauki humanistyczne"];
             Category *dbCategory = [dbManager getCategoryWithId:(NSString *)ID];
             if (dbEvent.category != dbCategory || ![dbCategory.name isEqualToString:(NSString *)ID])
             {

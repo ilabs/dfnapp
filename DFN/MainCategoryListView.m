@@ -31,6 +31,7 @@
     iconList = [[NSMutableArray alloc] init];
     for (Section * section in list)
     {
+        NSLog(@"section id %@", section.dbID);
         [iconList addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", section.dbID]]];
     }
 //    [iconList addObject:[UIImage imageNamed:@"2.png"]];

@@ -117,7 +117,7 @@
             [fileManager copyItemAtPath:defaultStorePath toPath:storePath error:NULL];
         }
     }
-    
+//    
 //    NSString *path = [self databasePath];
 //    NSURL *storeUrl = [NSURL fileURLWithPath:path];
 
