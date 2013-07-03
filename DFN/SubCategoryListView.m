@@ -41,6 +41,7 @@
     [super viewDidLoad];
     [self loadData];
     self.title = @"Kategorie";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

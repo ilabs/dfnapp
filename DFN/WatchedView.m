@@ -40,6 +40,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     nothingWatchedView.backgroundColor = [UIColor clearColor];
     self.title = @"Obserwowane";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.editButtonItem.title = @"Edytuj";
     changed = nil;

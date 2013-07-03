@@ -140,6 +140,7 @@
         [alert release];
         [self dismissModalViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Subscribed" object:nil]];
+        [Flurry logEvent:@"DidRegister" withParameters:@{@"event": event}];
     } 
     if (result == MFMailComposeResultFailed) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nie wysłano wiadomości!" message:@"Niestety Twoja wiadomość nie została wysłana!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];

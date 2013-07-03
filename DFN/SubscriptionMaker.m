@@ -74,6 +74,8 @@
                             [subject stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
                             [body stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailString]];
+    [Flurry logEvent:@"RegisteredForEvent" withParameters:@{@"eventTitle": event}];
+
 }
 
 - (void) makeCall:(NSString *)number

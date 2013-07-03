@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
-		502A8F8B15CD1970000C92F4 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 502A8F8A15CD1970000C92F4 /* DFN.sqlite */; };
+		505FD8F41784AEDA00BA9656 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 505FD8F31784AEDA00BA9656 /* DFN.sqlite */; };
+		505FD8F81784B3D300BA9656 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */; };
 		506D6C6A15CC366A00633D30 /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 506D6C6915CC366A00633D30 /* 12.png */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
@@ -65,6 +66,8 @@
 		CE7FFEBA15605EBD00BC13EC /* LectureRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */; };
 		CE7FFEC01560667A00BC13EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7FFEBF1560667A00BC13EC /* MessageUI.framework */; };
 		CE9393211563F598005F216A /* imiona.csv in Resources */ = {isa = PBXBuildFile; fileRef = CE9393201563F598005F216A /* imiona.csv */; };
+		DBD7B399178049CE00C97CD0 /* background-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD7B398178049CD00C97CD0 /* background-568@2x.png */; };
+		DBD7B39B17804AC700C97CD0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD7B39A17804AC600C97CD0 /* Default-568h@2x.png */; };
 		DBED5CD2158697A400321265 /* SubscriptionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = DBED5CCE158697A400321265 /* SubscriptionMaker.m */; };
 		DBED5CD3158697A400321265 /* LectureRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBED5CD0158697A400321265 /* LectureRecordView.m */; };
 		E845B31215543AB700485C36 /* DescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E845B31015543AB700485C36 /* DescriptionView.m */; };
@@ -107,7 +110,9 @@
 /* Begin PBXFileReference section */
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		502A8F8A15CD1970000C92F4 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
+		505FD8F31784AEDA00BA9656 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
+		505FD8F61784B3D300BA9656 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.2.a; sourceTree = "<group>"; };
 		506D6C6915CC366A00633D30 /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoTaxi.png; path = ../logoTaxi.png; sourceTree = "<group>"; };
 		506E3F65158017DE00A355B7 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -186,6 +191,8 @@
 		CE7FFEB915605EBD00BC13EC /* LectureRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureRecordView.xib; sourceTree = "<group>"; };
 		CE7FFEBF1560667A00BC13EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE9393201563F598005F216A /* imiona.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = imiona.csv; path = ../imiona.csv; sourceTree = "<group>"; };
+		DBD7B398178049CD00C97CD0 /* background-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-568@2x.png"; path = "icons/background-568@2x.png"; sourceTree = "<group>"; };
+		DBD7B39A17804AC600C97CD0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DBED5CCE158697A400321265 /* SubscriptionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SubscriptionMaker.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DBED5CCF158697A400321265 /* SubscriptionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionMaker.h; sourceTree = "<group>"; };
 		DBED5CD0158697A400321265 /* LectureRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureRecordView.m; sourceTree = "<group>"; };
@@ -249,6 +256,7 @@
 				B57D6BB614AA480300A4D201 /* CoreGraphics.framework in Frameworks */,
 				B57D6BB814AA480300A4D201 /* CoreData.framework in Frameworks */,
 				50AFF237152E680F00418C3F /* SystemConfiguration.framework in Frameworks */,
+				505FD8F81784B3D300BA9656 /* libFlurry_4.2.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +266,8 @@
 		502C2ECE14DB460600EB8E34 /* Database Model */ = {
 			isa = PBXGroup;
 			children = (
+				505FD8F31784AEDA00BA9656 /* DFN.sqlite */,
 				50AFF238152E694200418C3F /* Model.xcdatamodeld */,
-				502A8F8A15CD1970000C92F4 /* DFN.sqlite */,
 				50F16A34157BD92B00DDE90D /* Section.h */,
 				50F16A35157BD92B00DDE90D /* Section.m */,
 				50F16A2A157BD92B00DDE90D /* Category.h */,
@@ -309,6 +317,15 @@
 				E848BFC715167672000640A3 /* Images */,
 			);
 			name = GUI;
+			sourceTree = "<group>";
+		};
+		505FD8F51784B3D300BA9656 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				505FD8F61784B3D300BA9656 /* Flurry.h */,
+				505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		50E4A491151A5BAC00467B87 /* icons */ = {
@@ -393,6 +410,7 @@
 		B57D6BB914AA480300A4D201 /* DFN */ = {
 			isa = PBXGroup;
 			children = (
+				505FD8F51784B3D300BA9656 /* Vendor */,
 				B5360AA61593D98D0059BD5A /* Classes */,
 				B5360AA71593D9A70059BD5A /* Resources */,
 				B57D6BBA14AA480300A4D201 /* Supporting Files */,
@@ -501,6 +519,8 @@
 				50E4A491151A5BAC00467B87 /* icons */,
 				50BAA0681593068500C59FD1 /* search@2x.png */,
 				E87552D7151E248B0009F89E /* search.png */,
+				DBD7B39A17804AC600C97CD0 /* Default-568h@2x.png */,
+				DBD7B398178049CD00C97CD0 /* background-568@2x.png */,
 				E8A3EE9F1541DB5500596388 /* mail.png */,
 				E8A3EEA01541DB5500596388 /* mail@2x.png */,
 				E8A3EEA11541DB5500596388 /* phone.png */,
@@ -663,7 +683,9 @@
 				B5019B291593DA5D00E6DBDC /* Default.png in Resources */,
 				B5019B2A1593DA5F00E6DBDC /* Default@2x.png in Resources */,
 				506D6C6A15CC366A00633D30 /* 12.png in Resources */,
-				502A8F8B15CD1970000C92F4 /* DFN.sqlite in Resources */,
+				DBD7B399178049CE00C97CD0 /* background-568@2x.png in Resources */,
+				DBD7B39B17804AC700C97CD0 /* Default-568h@2x.png in Resources */,
+				505FD8F41784AEDA00BA9656 /* DFN.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,7 +757,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -748,10 +770,10 @@
 			buildSettings = {
 				ARCHS = (
 					arm6,
+					arm7,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeniusz Keptia (9AYU9PFC7E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -759,12 +781,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DFN/Vendor\"",
+				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6F0D649C-FA16-417B-B486-31B089DDD2A4";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc Distribution";
@@ -788,7 +814,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DDEBUG";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -807,7 +833,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -818,7 +844,8 @@
 		B57D6BCB14AA480300A4D201 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeniusz Keptia (9AYU9PFC7E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -827,10 +854,16 @@
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DFN/Vendor\"",
+				);
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6F0D649C-FA16-417B-B486-31B089DDD2A4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -838,8 +871,7 @@
 		B57D6BCC14AA480300A4D201 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eugeniusz Keptia (9AYU9PFC7E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks/**",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks/**",
@@ -847,11 +879,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DFN/DFN-Prefix.pch";
 				INFOPLIST_FILE = "DFN/DFN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DFN/Vendor\"",
+				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6F0D649C-FA16-417B-B486-31B089DDD2A4";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

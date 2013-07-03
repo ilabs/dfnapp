@@ -49,6 +49,7 @@ int lastChosenIndex;
     
     self.view.backgroundColor = [UIColor clearColor];
     tableView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(successfullySubscribed) name:@"Subscribed" object:nil];
     
