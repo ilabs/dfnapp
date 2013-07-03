@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5007D2F41784C5C100BC5651 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5007D2EE1784C5C100BC5651 /* libFlurry_4.2.2.a */; };
 		5019C0031572E4AC00880C34 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0021572E4AC00880C34 /* User.m */; };
 		505FD8F41784AEDA00BA9656 /* DFN.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 505FD8F31784AEDA00BA9656 /* DFN.sqlite */; };
-		505FD8F81784B3D300BA9656 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */; };
 		506D6C6A15CC366A00633D30 /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 506D6C6915CC366A00633D30 /* 12.png */; };
 		506E3F601580084900A355B7 /* logoTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F5F1580084900A355B7 /* logoTaxi.png */; };
 		506E3F70158017DE00A355B7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 506E3F65158017DE00A355B7 /* 1.png */; };
@@ -108,11 +108,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5007D2EE1784C5C100BC5651 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Vendor/libFlurry_4.2.2.a; sourceTree = SOURCE_ROOT; };
+		5007D2F31784C5C100BC5651 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Vendor/Flurry.h; sourceTree = SOURCE_ROOT; };
 		5019C0011572E4AC00880C34 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5019C0021572E4AC00880C34 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		505FD8F31784AEDA00BA9656 /* DFN.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DFN.sqlite; sourceTree = "<group>"; };
-		505FD8F61784B3D300BA9656 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.2.a; sourceTree = "<group>"; };
 		506D6C6915CC366A00633D30 /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
 		506E3F5F1580084900A355B7 /* logoTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoTaxi.png; path = ../logoTaxi.png; sourceTree = "<group>"; };
 		506E3F65158017DE00A355B7 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 				B57D6BB614AA480300A4D201 /* CoreGraphics.framework in Frameworks */,
 				B57D6BB814AA480300A4D201 /* CoreData.framework in Frameworks */,
 				50AFF237152E680F00418C3F /* SystemConfiguration.framework in Frameworks */,
-				505FD8F81784B3D300BA9656 /* libFlurry_4.2.2.a in Frameworks */,
+				5007D2F41784C5C100BC5651 /* libFlurry_4.2.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,8 +322,6 @@
 		505FD8F51784B3D300BA9656 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				505FD8F61784B3D300BA9656 /* Flurry.h */,
-				505FD8F71784B3D300BA9656 /* libFlurry_4.2.2.a */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -352,6 +350,8 @@
 		B5360AA61593D98D0059BD5A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5007D2EE1784C5C100BC5651 /* libFlurry_4.2.2.a */,
+				5007D2F31784C5C100BC5651 /* Flurry.h */,
 				502C2ECE14DB460600EB8E34 /* Database Model */,
 				E80A804B15090F8E006C1E3D /* Views */,
 				502C2ED014DB461000EB8E34 /* RestAPI */,
@@ -785,6 +785,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DFN/Vendor\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -858,6 +859,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DFN/Vendor\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -883,6 +885,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DFN/Vendor\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
