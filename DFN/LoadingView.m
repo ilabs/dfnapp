@@ -58,7 +58,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0, 20, 320, 460);
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    self.view.frame = CGRectMake(0, 20, 320, rect.size.height - 20);
     texts = [[NSArray arrayWithObjects:@"Nauka jest zbiorem wypróbowanych przepisów.", 
               @"A ona się jednak porusza!", 
               @"Dajcie mi punkt oparcia, a poruszę ziemię.", 

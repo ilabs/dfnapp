@@ -52,7 +52,8 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    self.title = @"Wykłady";
+    self.title = @"Imprezy";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"Szukaj";
     tableView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
     listEvents = [[NSArray alloc] init];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Ramy czasowe" style:UIBarButtonItemStylePlain target:self action:@selector(pickDate)] autorelease];
     timer = nil;

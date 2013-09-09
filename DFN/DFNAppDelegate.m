@@ -16,6 +16,7 @@
 #import "SimpleSearchView.h"
 
 
+
 @implementation DFNAppDelegate
 
 @synthesize window = _window;
@@ -156,7 +157,8 @@
     [_tabBar setViewControllers:views];
     
     // Customize TabBar
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    imageView.frame = [[UIScreen mainScreen] bounds];
     [_tabBar.view insertSubview:imageView atIndex:0];
     [imageView release];
     
@@ -165,7 +167,8 @@
     
     // Loading view commituje krotka animacja i wywoluje (void)loadData
     [self showLoadingView:YES];
-    
+    [Flurry startSession:@"4J284WQZJD5655NHHJSN"];
+    [Flurry logAllPageViews:self.tabBar];
     // To co tu bylo jest teraz w -loadData!
     [self.window makeKeyAndVisible];
     return YES;

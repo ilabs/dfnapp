@@ -91,7 +91,8 @@
     scrollView.frame = CGRectMake(0, 20, 320, 460);
     
     dates = [[[DatabaseManager sharedInstance] getAllDatesForEvent:event] retain];
-    
+    [Flurry logEvent:@"Lecture view loaded" withParameters:@{@"eventTitle": event.title}];
+
     [titleLabel setText:event.title];
     [placeLabel setText:[event.place.address stringByReplacingOccurrencesOfString:@", " withString:@"\r\n"]];
     [placeCityLabel setText:event.place.city];
@@ -250,19 +251,38 @@
     }
 }
 
+- (void)performCalendarActivity:(EKEventStore *)eventStore
+{
+    EKEvent *nevent  = [EKEvent eventWithEventStore:eventStore];
+    nevent.title     = event.title;
+    EventDate *evdate = [dates objectAtIndex:selected];
+    nevent.startDate = evdate.openingHour;
+    nevent.endDate   = evdate.closingHour;
+    [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
+    NSError *err;
+    [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if([alertView.title isEqual:@"Kalendarz"])
     {
         if(buttonIndex==1){
             EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
-            EKEvent *nevent  = [EKEvent eventWithEventStore:eventStore];
-            nevent.title     = event.title;
-            EventDate *evdate = [dates objectAtIndex:selected];
-            nevent.startDate = evdate.openingHour;
-            nevent.endDate   = evdate.closingHour;
-            [nevent setCalendar:[eventStore defaultCalendarForNewEvents]];
-            NSError *err;
-            [eventStore saveEvent:nevent span:EKSpanThisEvent error:&err];       
+            if([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+                // iOS 6 and later
+                [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+                    if (granted){
+                        [self performCalendarActivity:eventStore];
+                        
+                    }else
+                    {
+                        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Event" message:@"Odmowa dostępu" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alertview show];
+                    }
+                }];
+            }
+            else
+                [self performCalendarActivity:eventStore];
+            
         }
         [datesTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0] animated:YES];
     }else{ // Prowadzacy

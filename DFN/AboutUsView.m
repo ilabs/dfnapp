@@ -64,18 +64,23 @@
     
     [subView setBackgroundColor:[UIColor clearColor]];
     [self setAuthor:@"Paweł Nużka\npawelqus@gmail.com" onButton:button1];
-    [self setAuthor:@"Radek Wilczak\nradekwilczak@gmail.com" onButton:button2];
-    [self setAuthor:@"Michał Jodko\nthe.kazior@gmail.com" onButton:button3];
-    [self setAuthor:@"Marcin Raburski\nrabursky@gmail.com" onButton:button4];
-    [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button5];
-    [self setAuthor:@"Tomasz Topczewski\ntoptom92@gmail.com" onButton:button6];
-    [self setAuthor:@"Aleksander Kocieniewski\na.kocieniewski@gmail.com" onButton:button7];
-    [self setAuthor:@"Paweł Jankowski\npawel.jankowski@me.com" onButton:button8];
+    [self setAuthor:@"Eugeniusz Keptia\nedzio27@gmail.com" onButton:button2];
+    [self setAuthor:@"Marcin Raburski\nrabursky@gmail.com" onButton:button3];
+    [self setAuthor:@"Radek Wilczak\nradekwilczak@gmail.com" onButton:button4];
+    [self setAuthor:@"Tomasz Topczewski\ntoptom92@gmail.com" onButton:button5];
+    [self setAuthor:@"Aleksander Kocieniewski\na.kocieniewski@gmail.com" onButton:button6];
+    [self setAuthor:@"Michał Jodko\nthe.kazior@gmail.com" onButton:button7];
     
     [self.view addSubview:subView];
     
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [Flurry logEvent:@"AboutUs"];
 }
 
 - (void)viewDidUnload
@@ -191,5 +196,7 @@
 {
     [[UIApplication sharedApplication] 
                 openURL:[NSURL URLWithString: @"http://ilabs.pwr.wroc.pl/"]];
+    [Flurry logEvent:@"iLabsClicked"];
+
 }
 @end

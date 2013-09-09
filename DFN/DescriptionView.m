@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     [textView setText:event.descriptionContent];
     self.view.backgroundColor = [UIColor clearColor];
+    [Flurry logEvent:@"Description view loaded" withParameters:@{@"eventTitle": event.title}];
 }
 
 - (void)viewDidUnload

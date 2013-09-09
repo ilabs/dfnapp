@@ -72,6 +72,7 @@
     [self loadData];
     self.title = @"Działy";
     infoImage = [[UIImage imageNamed:@"info.png"] retain];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroud"]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
